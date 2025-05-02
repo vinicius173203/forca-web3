@@ -2,19 +2,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
 
 body {
-    background: linear-gradient(135deg, #2e003e, #6a0dad, #800080);
-    background-size: 400% 400%;
-    animation: gradientShift 15s ease infinite;
-    color: #ffffff;
-    font-family: 'Orbitron', sans-serif;
-    text-align: center;
-  }
+  background: #6a0dad;  /* roxo fixo */
+  color: #ffffff;
+  font-family: 'Orbitron', sans-serif;
+  text-align: center;
+}
+
   
-  @keyframes gradientShift {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
+
   
   h1 {
     font-size: 3rem;
