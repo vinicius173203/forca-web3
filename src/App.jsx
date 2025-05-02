@@ -155,7 +155,7 @@ function App() {
       await tx.wait();
       loadWord();
       setGameActive(true);
-      setTimeLeft(60);
+      setTimeLeft(30);
       fetchLeaderboard();
     } catch (err) {
       console.error('Erro ao iniciar o jogo:', err);

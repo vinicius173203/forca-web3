@@ -1,502 +1,442 @@
 [
-  "elephant",
-  "giraffe",
-  "leopard",
-  "crocodile",
-  "dolphin",
-  "penguin",
-  "kangaroo",
-  "hippopotamus",
-  "rhinoceros",
-  "chimpanzee",
-  "alligator",
-  "porcupine",
-  "armadillo",
-  "woodpecker",
-  "butterfly",
-  "grasshopper",
-  "hummingbird",
-  "salamander",
-  "chameleon",
-  "tarantula",
-  "raccoon",
-  "squirrel",
-  "beaver",
-  "hamster",
-  "mongoose",
-  "panther",
-  "wombat",
-  "platypus",
-  "flamingo",
-  "pelican",
-  "ostrich",
-  "peacock",
-  "sparrow",
-  "parakeet",
-  "toucan",
-  "falcon",
-  "vulture",
-  "computer",
-  "keyboard",
-  "monitor",
-  "telephone",
-  "microwave",
-  "refrigerator",
-  "backpack",
-  "wallet",
-  "glasses",
-  "sneakers",
-  "headphones",
-  "microphone",
-  "notebook",
-  "calendar",
-  "umbrella",
-  "suitcase",
-  "charger",
-  "bicycle",
-  "flashlight",
-  "binoculars",
-  "projector",
-  "television",
-  "airplane",
-  "elevator",
-  "backpack",
-  "whiteboard",
-  "blackboard",
-  "compass",
-  "thermometer",
-  "microscope",
-  "telescope",
-  "calculator",
-  "printer",
-  "scanner",
-  "briefcase",
-  "earphones",
-  "smartphone",
-  "tablet",
-  "backpack",
-  "waterbottle",
-  "brazil",
-  "argentina",
-  "canada",
-  "mexico",
-  "australia",
-  "germany",
-  "france",
-  "england",
-  "ireland",
-  "scotland",
-  "portugal",
-  "greece",
-  "sweden",
-  "norway",
-  "finland",
-  "denmark",
-  "switzerland",
-  "belgium",
-  "netherlands",
-  "poland",
-  "austria",
-  "hungary",
-  "czechia",
-  "slovakia",
-  "slovenia",
-  "croatia",
-  "serbia",
-  "bulgaria",
-  "romania",
-  "ukraine",
-  "russia",
-  "kazakhstan",
-  "thailand",
-  "vietnam",
-  "singapore",
-  "elephant",
-  "giraffe",
-  "leopard",
-  "crocodile",
-  "dolphin",
-  "penguin",
-  "kangaroo",
-  "hippopotamus",
-  "rhinoceros",
-  "chimpanzee",
-  "alligator",
-  "porcupine",
-  "armadillo",
-  "woodpecker",
-  "butterfly",
-  "grasshopper",
-  "hummingbird",
-  "salamander",
-  "chameleon",
-  "tarantula",
-  "raccoon",
-  "squirrel",
-  "beaver",
-  "hamster",
-  "mongoose",
-  "panther",
-  "wombat",
-  "platypus",
-  "flamingo",
-  "pelican",
-  "ostrich",
-  "peacock",
-  "sparrow",
-  "parakeet",
-  "toucan",
-  "falcon",
-  "vulture",
-  "computer",
-  "keyboard",
-  "monitor",
-  "telephone",
-  "microwave",
-  "refrigerator",
-  "backpack",
-  "wallet",
-  "glasses",
-  "sneakers",
-  "headphones",
-  "microphone",
-  "notebook",
-  "calendar",
-  "umbrella",
-  "suitcase",
-  "charger",
-  "bicycle",
-  "flashlight",
-  "binoculars",
-  "projector",
-  "television",
-  "airplane",
-  "elevator",
-  "backpack",
-  "whiteboard",
-  "blackboard",
-  "compass",
-  "thermometer",
-  "microscope",
-  "telescope",
-  "calculator",
-  "printer",
-  "scanner",
-  "briefcase",
-  "earphones",
-  "smartphone",
-  "tablet",
-  "backpack",
-  "waterbottle",
-  "brazil",
-  "argentina",
-  "canada",
-  "mexico",
-  "australia",
-  "germany",
-  "france",
-  "england",
-  "ireland",
-  "scotland",
-  "portugal",
-  "greece",
-  "sweden",
-  "norway",
-  "finland",
-  "denmark",
-  "switzerland",
-  "belgium",
-  "netherlands",
-  "poland",
-  "austria",
-  "hungary",
-  "czechia",
-  "slovakia",
-  "slovenia",
-  "croatia",
-  "serbia",
-  "bulgaria",
-  "romania",
-  "ukraine",
-  "russia",
-  "kazakhstan",
-  "thailand",
-  "vietnam",
-  "singapore",
-  "elephant",
-  "giraffe",
-  "leopard",
-  "crocodile",
-  "dolphin",
-  "penguin",
-  "kangaroo",
-  "hippopotamus",
-  "rhinoceros",
-  "chimpanzee",
-  "alligator",
-  "porcupine",
-  "armadillo",
-  "woodpecker",
-  "butterfly",
-  "grasshopper",
-  "hummingbird",
-  "salamander",
-  "chameleon",
-  "tarantula",
-  "raccoon",
-  "squirrel",
-  "beaver",
-  "hamster",
-  "mongoose",
-  "panther",
-  "wombat",
-  "platypus",
-  "flamingo",
-  "pelican",
-  "ostrich",
-  "peacock",
-  "sparrow",
-  "parakeet",
-  "toucan",
-  "falcon",
-  "vulture",
-  "computer",
-  "keyboard",
-  "monitor",
-  "telephone",
-  "microwave",
-  "refrigerator",
-  "backpack",
-  "wallet",
-  "glasses",
-  "sneakers",
-  "headphones",
-  "microphone",
-  "notebook",
-  "calendar",
-  "umbrella",
-  "suitcase",
-  "charger",
-  "bicycle",
-  "flashlight",
-  "binoculars",
-  "projector",
-  "television",
-  "airplane",
-  "elevator",
-  "backpack",
-  "whiteboard",
-  "blackboard",
-  "compass",
-  "thermometer",
-  "microscope",
-  "telescope",
-  "calculator",
-  "printer",
-  "scanner",
-  "briefcase",
-  "earphones",
-  "smartphone",
-  "tablet",
-  "backpack",
-  "waterbottle",
-  "brazil",
-  "argentina",
-  "canada",
-  "mexico",
-  "australia",
-  "germany",
-  "france",
-  "england",
-  "ireland",
-  "scotland",
-  "portugal",
-  "greece",
-  "sweden",
-  "norway",
-  "finland",
-  "denmark",
-  "switzerland",
-  "belgium",
-  "netherlands",
-  "poland",
-  "austria",
-  "hungary",
-  "czechia",
-  "slovakia",
-  "slovenia",
-  "croatia",
-  "serbia",
-  "bulgaria",
-  "romania",
-  "ukraine",
-  "russia",
-  "kazakhstan",
-  "thailand",
-  "vietnam",
-  "singapore",
-  "elephant",
-  "giraffe",
-  "leopard",
-  "crocodile",
-  "dolphin",
-  "penguin",
-  "kangaroo",
-  "hippopotamus",
-  "rhinoceros",
-  "chimpanzee",
-  "alligator",
-  "porcupine",
-  "armadillo",
-  "woodpecker",
-  "butterfly",
-  "grasshopper",
-  "hummingbird",
-  "salamander",
-  "chameleon",
-  "tarantula",
-  "raccoon",
-  "squirrel",
-  "beaver",
-  "hamster",
-  "mongoose",
-  "panther",
-  "wombat",
-  "platypus",
-  "flamingo",
-  "pelican",
-  "ostrich",
-  "peacock",
-  "sparrow",
-  "parakeet",
-  "toucan",
-  "falcon",
-  "vulture",
-  "computer",
-  "keyboard",
-  "monitor",
-  "telephone",
-  "microwave",
-  "refrigerator",
-  "backpack",
-  "wallet",
-  "glasses",
-  "sneakers",
-  "headphones",
-  "microphone",
-  "notebook",
-  "calendar",
-  "umbrella",
-  "suitcase",
-  "charger",
-  "bicycle",
-  "flashlight",
-  "binoculars",
-  "projector",
-  "television",
-  "airplane",
-  "elevator",
-  "backpack",
-  "whiteboard",
-  "blackboard",
-  "compass",
-  "thermometer",
-  "microscope",
-  "telescope",
-  "calculator",
-  "printer",
-  "scanner",
-  "briefcase",
-  "earphones",
-  "smartphone",
-  "tablet",
-  "backpack",
-  "waterbottle",
-  "brazil",
-  "argentina",
-  "canada",
-  "mexico",
-  "australia",
-  "germany",
-  "france",
-  "england",
-  "ireland",
-  "scotland",
-  "portugal",
-  "greece",
-  "sweden",
-  "norway",
-  "finland",
-  "denmark",
-  "switzerland",
-  "belgium",
-  "netherlands",
-  "poland",
-  "austria",
-  "hungary",
-  "czechia",
-  "slovakia",
-  "slovenia",
-  "croatia",
-  "serbia",
-  "bulgaria",
-  "romania",
-  "ukraine",
-  "russia",
-  "kazakhstan",
-  "thailand",
-  "vietnam",
-  "singapore",
-  "elephant",
-  "giraffe",
-  "leopard",
-  "crocodile",
-  "dolphin",
-  "penguin",
-  "kangaroo",
-  "hippopotamus",
-  "rhinoceros",
-  "chimpanzee",
-  "alligator",
-  "porcupine",
-  "armadillo",
-  "woodpecker",
-  "butterfly",
-  "grasshopper",
-  "hummingbird",
-  "salamander",
-  "chameleon",
-  "tarantula",
-  "raccoon",
-  "squirrel",
-  "beaver",
-  "hamster",
-  "mongoose",
-  "panther",
-  "wombat",
-  "platypus",
-  "flamingo",
-  "pelican",
-  "ostrich",
-  "peacock",
-  "sparrow",
-  "parakeet",
-  "toucan",
-  "falcon",
-  "vulture",
-  "computer",
-  "keyboard",
-  "monitor",
-  "telephone",
-  "microwave",
-  "refrigerator",
-  "backpack",
-  "wallet",
-  "glasses",
-  "sneakers",
-  "headphones",
-  "microphone",
-  "notebook",
-  "calendar",
-  "umbrella"
+  {
+    "word": "elephant",
+    "hint": "Animal"
+  },
+  {
+    "word": "giraffe",
+    "hint": "Animal"
+  },
+  {
+    "word": "leopard",
+    "hint": "Animal"
+  },
+  {
+    "word": "crocodile",
+    "hint": "Animal"
+  },
+  {
+    "word": "dolphin",
+    "hint": "Animal"
+  },
+  {
+    "word": "penguin",
+    "hint": "Animal"
+  },
+  {
+    "word": "kangaroo",
+    "hint": "Animal"
+  },
+  {
+    "word": "hippopotamus",
+    "hint": "Animal"
+  },
+  {
+    "word": "rhinoceros",
+    "hint": "Animal"
+  },
+  {
+    "word": "chimpanzee",
+    "hint": "Animal"
+  },
+  {
+    "word": "alligator",
+    "hint": "Animal"
+  },
+  {
+    "word": "porcupine",
+    "hint": "Animal"
+  },
+  {
+    "word": "armadillo",
+    "hint": "Animal"
+  },
+  {
+    "word": "woodpecker",
+    "hint": "Animal"
+  },
+  {
+    "word": "butterfly",
+    "hint": "Animal"
+  },
+  {
+    "word": "grasshopper",
+    "hint": "Animal"
+  },
+  {
+    "word": "hummingbird",
+    "hint": "Animal"
+  },
+  {
+    "word": "salamander",
+    "hint": "Animal"
+  },
+  {
+    "word": "chameleon",
+    "hint": "Animal"
+  },
+  {
+    "word": "tarantula",
+    "hint": "Animal"
+  },
+  {
+    "word": "raccoon",
+    "hint": "Animal"
+  },
+  {
+    "word": "squirrel",
+    "hint": "Animal"
+  },
+  {
+    "word": "beaver",
+    "hint": "Animal"
+  },
+  {
+    "word": "hamster",
+    "hint": "Animal"
+  },
+  {
+    "word": "mongoose",
+    "hint": "Animal"
+  },
+  {
+    "word": "panther",
+    "hint": "Animal"
+  },
+  {
+    "word": "wombat",
+    "hint": "Animal"
+  },
+  {
+    "word": "platypus",
+    "hint": "Animal"
+  },
+  {
+    "word": "flamingo",
+    "hint": "Animal"
+  },
+  {
+    "word": "pelican",
+    "hint": "Animal"
+  },
+  {
+    "word": "ostrich",
+    "hint": "Animal"
+  },
+  {
+    "word": "peacock",
+    "hint": "Animal"
+  },
+  {
+    "word": "sparrow",
+    "hint": "Animal"
+  },
+  {
+    "word": "parakeet",
+    "hint": "Animal"
+  },
+  {
+    "word": "toucan",
+    "hint": "Animal"
+  },
+  {
+    "word": "falcon",
+    "hint": "Animal"
+  },
+  {
+    "word": "vulture",
+    "hint": "Animal"
+  },
+  {
+    "word": "computer",
+    "hint": "Object"
+  },
+  {
+    "word": "keyboard",
+    "hint": "Object"
+  },
+  {
+    "word": "monitor",
+    "hint": "Object"
+  },
+  {
+    "word": "telephone",
+    "hint": "Object"
+  },
+  {
+    "word": "microwave",
+    "hint": "Object"
+  },
+  {
+    "word": "refrigerator",
+    "hint": "Object"
+  },
+  {
+    "word": "backpack",
+    "hint": "Object"
+  },
+  {
+    "word": "wallet",
+    "hint": "Object"
+  },
+  {
+    "word": "glasses",
+    "hint": "Object"
+  },
+  {
+    "word": "sneakers",
+    "hint": "Object"
+  },
+  {
+    "word": "headphones",
+    "hint": "Object"
+  },
+  {
+    "word": "microphone",
+    "hint": "Object"
+  },
+  {
+    "word": "notebook",
+    "hint": "Object"
+  },
+  {
+    "word": "calendar",
+    "hint": "Object"
+  },
+  {
+    "word": "umbrella",
+    "hint": "Object"
+  },
+  {
+    "word": "suitcase",
+    "hint": "Object"
+  },
+  {
+    "word": "charger",
+    "hint": "Object"
+  },
+  {
+    "word": "bicycle",
+    "hint": "Object"
+  },
+  {
+    "word": "flashlight",
+    "hint": "Object"
+  },
+  {
+    "word": "binoculars",
+    "hint": "Object"
+  },
+  {
+    "word": "projector",
+    "hint": "Object"
+  },
+  {
+    "word": "television",
+    "hint": "Object"
+  },
+  {
+    "word": "airplane",
+    "hint": "Object"
+  },
+  {
+    "word": "elevator",
+    "hint": "Object"
+  },
+  {
+    "word": "whiteboard",
+    "hint": "Object"
+  },
+  {
+    "word": "blackboard",
+    "hint": "Object"
+  },
+  {
+    "word": "compass",
+    "hint": "Object"
+  },
+  {
+    "word": "thermometer",
+    "hint": "Object"
+  },
+  {
+    "word": "microscope",
+    "hint": "Object"
+  },
+  {
+    "word": "telescope",
+    "hint": "Object"
+  },
+  {
+    "word": "calculator",
+    "hint": "Object"
+  },
+  {
+    "word": "printer",
+    "hint": "Object"
+  },
+  {
+    "word": "scanner",
+    "hint": "Object"
+  },
+  {
+    "word": "briefcase",
+    "hint": "Object"
+  },
+  {
+    "word": "earphones",
+    "hint": "Object"
+  },
+  {
+    "word": "smartphone",
+    "hint": "Object"
+  },
+  {
+    "word": "tablet",
+    "hint": "Object"
+  },
+  {
+    "word": "waterbottle",
+    "hint": "Object"
+  },
+  {
+    "word": "brazil",
+    "hint": "Country"
+  },
+  {
+    "word": "argentina",
+    "hint": "Country"
+  },
+  {
+    "word": "canada",
+    "hint": "Country"
+  },
+  {
+    "word": "mexico",
+    "hint": "Country"
+  },
+  {
+    "word": "australia",
+    "hint": "Country"
+  },
+  {
+    "word": "germany",
+    "hint": "Country"
+  },
+  {
+    "word": "france",
+    "hint": "Country"
+  },
+  {
+    "word": "england",
+    "hint": "Country"
+  },
+  {
+    "word": "ireland",
+    "hint": "Country"
+  },
+  {
+    "word": "scotland",
+    "hint": "Country"
+  },
+  {
+    "word": "portugal",
+    "hint": "Country"
+  },
+  {
+    "word": "greece",
+    "hint": "Country"
+  },
+  {
+    "word": "sweden",
+    "hint": "Country"
+  },
+  {
+    "word": "norway",
+    "hint": "Country"
+  },
+  {
+    "word": "finland",
+    "hint": "Country"
+  },
+  {
+    "word": "denmark",
+    "hint": "Country"
+  },
+  {
+    "word": "switzerland",
+    "hint": "Country"
+  },
+  {
+    "word": "belgium",
+    "hint": "Country"
+  },
+  {
+    "word": "netherlands",
+    "hint": "Country"
+  },
+  {
+    "word": "poland",
+    "hint": "Country"
+  },
+  {
+    "word": "austria",
+    "hint": "Country"
+  },
+  {
+    "word": "hungary",
+    "hint": "Country"
+  },
+  {
+    "word": "czechia",
+    "hint": "Country"
+  },
+  {
+    "word": "slovakia",
+    "hint": "Country"
+  },
+  {
+    "word": "slovenia",
+    "hint": "Country"
+  },
+  {
+    "word": "croatia",
+    "hint": "Country"
+  },
+  {
+    "word": "serbia",
+    "hint": "Country"
+  },
+  {
+    "word": "bulgaria",
+    "hint": "Country"
+  },
+  {
+    "word": "romania",
+    "hint": "Country"
+  },
+  {
+    "word": "ukraine",
+    "hint": "Country"
+  },
+  {
+    "word": "russia",
+    "hint": "Country"
+  },
+  {
+    "word": "kazakhstan",
+    "hint": "Country"
+  },
+  {
+    "word": "thailand",
+    "hint": "Country"
+  },
+  {
+    "word": "vietnam",
+    "hint": "Country"
+  },
+  {
+    "word": "singapore",
+    "hint": "Country"
+  }
 ]
