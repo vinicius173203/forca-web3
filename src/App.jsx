@@ -23,6 +23,8 @@ function App() {
   const [leaderboard, setLeaderboard] = useState([]);
   const [isOwner, setIsOwner] = useState(false);
   const [timeLeft, setTimeLeft] = useState(60);
+  const [currentHint, setCurrentHint] = useState('');
+
 
   const translations = {
     pt: { start: 'Começar Jogo', restart: 'Recomeçar', chances: 'Tentativas restantes', connect: 'Conectar Carteira', leaderboard: 'Tabela de Classificação', timeLeft: 'Tempo Restante' },
@@ -177,13 +179,15 @@ function App() {
   }
 
   function loadWord() {
-    const word = words[Math.floor(Math.random() * words.length)];
-    setCurrentWord(word);
-    setMaskedWord('_ '.repeat(word.length));
-    setChances(word.length <= 6 ? 3 : word.length <= 9 ? 4 : 5);
+    const wordObj = words[Math.floor(Math.random() * words.length)];
+    setCurrentWord(wordObj.palavra);
+    setCurrentHint(wordObj.dica);
+    setMaskedWord('_ '.repeat(wordObj.palavra.length));
+    setChances(wordObj.palavra.length <= 6 ? 3 : wordObj.palavra.length <= 9 ? 4 : 5);
     setUsedLetters([]);
     setMessage('');
   }
+  
 
   async function handleGuess(letter) {
     if (!gameActive || usedLetters.includes(letter) || message) return;
@@ -304,7 +308,8 @@ function App() {
             <button className="action-button" onClick={startGame} style={{ marginTop: '10px' }}>
               {translations[language].start}
             </button>
-            
+            <p className="hint"><strong>Dica:</strong> {currentHint}</p>
+
             {gameActive && (
               <div style={{ marginTop: '10px' }}>
                 

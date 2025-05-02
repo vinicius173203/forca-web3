@@ -171,6 +171,14 @@ body {
   cursor: not-allowed;
 }
 
+
+.hint {
+  font-size: 1.2em;
+  margin: 10px 0;
+  color: #FFD700; /* ou outro tom chamativo */
+}
+
+
 @keyframes pulse {
   from { transform: scale(1); }
   to { transform: scale(1.1); }

@@ -1,1001 +1,4002 @@
 [
-  "amizade",
-  "esperanca",
-  "alegria",
-  "bondade",
-  "vencedor",
-  "sabedoria",
-  "respeito",
-  "humilde",
-  "paciente",
-  "trabalho",
-  "vontade",
-  "honesto",
-  "dedicado",
-  "generoso",
-  "gentileza",
-  "inteligente",
-  "confiavel",
-  "determinado",
-  "compromisso",
-  "esforcado",
-  "fortaleza",
-  "motivacao",
-  "planejado",
-  "disciplinado",
-  "responsavel",
-  "organizado",
-  "focado",
-  "desenvolver",
-  "descobrir",
-  "melhoria",
-  "inovacao",
-  "progresso",
-  "solucao",
-  "objetivo",
-  "resultado",
-  "avaliacao",
-  "conquista",
-  "lideranca",
-  "colaborar",
-  "compreender",
-  "aprimorar",
-  "estudar",
-  "aprender",
-  "ensinar",
-  "integridade",
-  "perseverar",
-  "conquistar",
-  "planejamento",
-  "superacao",
-  "competencia",
-  "habilidade",
-  "disciplina",
-  "resiliente",
-  "criatividade",
-  "cooperativo",
-  "entendimento",
-  "capacitado",
-  "empenhado",
-  "motivacional",
-  "produtividade",
-  "eficiencia",
-  "proatividade",
-  "planejador",
-  "determinar",
-  "estrategia",
-  "prioridade",
-  "analitico",
-  "efetividade",
-  "implementacao",
-  "constante",
-  "aprendizado",
-  "aperfeicoar",
-  "qualificado",
-  "visualizar",
-  "transformar",
-  "desenvolvimento",
-  "aperfeicoamento",
-  "colaborativo",
-  "gestao",
-  "resiliencia",
-  "solucionar",
-  "otimizacao",
-  "iniciativa",
-  "motivador",
-  "colaborador",
-  "comprometido",
-  "organizacao",
-  "desempenho",
-  "perseverante",
-  "responsabilidade",
-  "planejando",
-  "aperfeicoador",
-  "planejamento",
-  "concretizar",
-  "possibilidade",
-  "participacao",
-  "conhecimento",
-  "planejamento",
-  "reconhecimento",
-  "aprendizagem",
-  "atendimento",
-  "comunicacao",
-  "relacionamento",
-  "acompanhamento",
-  "amizade",
-  "esperanca",
-  "alegria",
-  "bondade",
-  "vencedor",
-  "sabedoria",
-  "respeito",
-  "humilde",
-  "paciente",
-  "trabalho",
-  "vontade",
-  "honesto",
-  "dedicado",
-  "generoso",
-  "gentileza",
-  "inteligente",
-  "confiavel",
-  "determinado",
-  "compromisso",
-  "esforcado",
-  "fortaleza",
-  "motivacao",
-  "planejado",
-  "disciplinado",
-  "responsavel",
-  "organizado",
-  "focado",
-  "desenvolver",
-  "descobrir",
-  "melhoria",
-  "inovacao",
-  "progresso",
-  "solucao",
-  "objetivo",
-  "resultado",
-  "avaliacao",
-  "conquista",
-  "lideranca",
-  "colaborar",
-  "compreender",
-  "aprimorar",
-  "estudar",
-  "aprender",
-  "ensinar",
-  "integridade",
-  "perseverar",
-  "conquistar",
-  "planejamento",
-  "superacao",
-  "competencia",
-  "habilidade",
-  "disciplina",
-  "resiliente",
-  "criatividade",
-  "cooperativo",
-  "entendimento",
-  "capacitado",
-  "empenhado",
-  "motivacional",
-  "produtividade",
-  "eficiencia",
-  "proatividade",
-  "planejador",
-  "determinar",
-  "estrategia",
-  "prioridade",
-  "analitico",
-  "efetividade",
-  "implementacao",
-  "constante",
-  "aprendizado",
-  "aperfeicoar",
-  "qualificado",
-  "visualizar",
-  "transformar",
-  "desenvolvimento",
-  "aperfeicoamento",
-  "colaborativo",
-  "gestao",
-  "resiliencia",
-  "solucionar",
-  "otimizacao",
-  "iniciativa",
-  "motivador",
-  "colaborador",
-  "comprometido",
-  "organizacao",
-  "desempenho",
-  "perseverante",
-  "responsabilidade",
-  "planejando",
-  "aperfeicoador",
-  "planejamento",
-  "concretizar",
-  "possibilidade",
-  "participacao",
-  "conhecimento",
-  "planejamento",
-  "reconhecimento",
-  "aprendizagem",
-  "atendimento",
-  "comunicacao",
-  "relacionamento",
-  "acompanhamento",
-  "amizade",
-  "esperanca",
-  "alegria",
-  "bondade",
-  "vencedor",
-  "sabedoria",
-  "respeito",
-  "humilde",
-  "paciente",
-  "trabalho",
-  "vontade",
-  "honesto",
-  "dedicado",
-  "generoso",
-  "gentileza",
-  "inteligente",
-  "confiavel",
-  "determinado",
-  "compromisso",
-  "esforcado",
-  "fortaleza",
-  "motivacao",
-  "planejado",
-  "disciplinado",
-  "responsavel",
-  "organizado",
-  "focado",
-  "desenvolver",
-  "descobrir",
-  "melhoria",
-  "inovacao",
-  "progresso",
-  "solucao",
-  "objetivo",
-  "resultado",
-  "avaliacao",
-  "conquista",
-  "lideranca",
-  "colaborar",
-  "compreender",
-  "aprimorar",
-  "estudar",
-  "aprender",
-  "ensinar",
-  "integridade",
-  "perseverar",
-  "conquistar",
-  "planejamento",
-  "superacao",
-  "competencia",
-  "habilidade",
-  "disciplina",
-  "resiliente",
-  "criatividade",
-  "cooperativo",
-  "entendimento",
-  "capacitado",
-  "empenhado",
-  "motivacional",
-  "produtividade",
-  "eficiencia",
-  "proatividade",
-  "planejador",
-  "determinar",
-  "estrategia",
-  "prioridade",
-  "analitico",
-  "efetividade",
-  "implementacao",
-  "constante",
-  "aprendizado",
-  "aperfeicoar",
-  "qualificado",
-  "visualizar",
-  "transformar",
-  "desenvolvimento",
-  "aperfeicoamento",
-  "colaborativo",
-  "gestao",
-  "resiliencia",
-  "solucionar",
-  "otimizacao",
-  "iniciativa",
-  "motivador",
-  "colaborador",
-  "comprometido",
-  "organizacao",
-  "desempenho",
-  "perseverante",
-  "responsabilidade",
-  "planejando",
-  "aperfeicoador",
-  "planejamento",
-  "concretizar",
-  "possibilidade",
-  "participacao",
-  "conhecimento",
-  "planejamento",
-  "reconhecimento",
-  "aprendizagem",
-  "atendimento",
-  "comunicacao",
-  "relacionamento",
-  "acompanhamento",
-  "amizade",
-  "esperanca",
-  "alegria",
-  "bondade",
-  "vencedor",
-  "sabedoria",
-  "respeito",
-  "humilde",
-  "paciente",
-  "trabalho",
-  "vontade",
-  "honesto",
-  "dedicado",
-  "generoso",
-  "gentileza",
-  "inteligente",
-  "confiavel",
-  "determinado",
-  "compromisso",
-  "esforcado",
-  "fortaleza",
-  "motivacao",
-  "planejado",
-  "disciplinado",
-  "responsavel",
-  "organizado",
-  "focado",
-  "desenvolver",
-  "descobrir",
-  "melhoria",
-  "inovacao",
-  "progresso",
-  "solucao",
-  "objetivo",
-  "resultado",
-  "avaliacao",
-  "conquista",
-  "lideranca",
-  "colaborar",
-  "compreender",
-  "aprimorar",
-  "estudar",
-  "aprender",
-  "ensinar",
-  "integridade",
-  "perseverar",
-  "conquistar",
-  "planejamento",
-  "superacao",
-  "competencia",
-  "habilidade",
-  "disciplina",
-  "resiliente",
-  "criatividade",
-  "cooperativo",
-  "entendimento",
-  "capacitado",
-  "empenhado",
-  "motivacional",
-  "produtividade",
-  "eficiencia",
-  "proatividade",
-  "planejador",
-  "determinar",
-  "estrategia",
-  "prioridade",
-  "analitico",
-  "efetividade",
-  "implementacao",
-  "constante",
-  "aprendizado",
-  "aperfeicoar",
-  "qualificado",
-  "visualizar",
-  "transformar",
-  "desenvolvimento",
-  "aperfeicoamento",
-  "colaborativo",
-  "gestao",
-  "resiliencia",
-  "solucionar",
-  "otimizacao",
-  "iniciativa",
-  "motivador",
-  "colaborador",
-  "comprometido",
-  "organizacao",
-  "desempenho",
-  "perseverante",
-  "responsabilidade",
-  "planejando",
-  "aperfeicoador",
-  "planejamento",
-  "concretizar",
-  "possibilidade",
-  "participacao",
-  "conhecimento",
-  "planejamento",
-  "reconhecimento",
-  "aprendizagem",
-  "atendimento",
-  "comunicacao",
-  "relacionamento",
-  "acompanhamento",
-  "amizade",
-  "esperanca",
-  "alegria",
-  "bondade",
-  "vencedor",
-  "sabedoria",
-  "respeito",
-  "humilde",
-  "paciente",
-  "trabalho",
-  "vontade",
-  "honesto",
-  "dedicado",
-  "generoso",
-  "gentileza",
-  "inteligente",
-  "confiavel",
-  "determinado",
-  "compromisso",
-  "esforcado",
-  "fortaleza",
-  "motivacao",
-  "planejado",
-  "disciplinado",
-  "responsavel",
-  "organizado",
-  "focado",
-  "desenvolver",
-  "descobrir",
-  "melhoria",
-  "inovacao",
-  "progresso",
-  "solucao",
-  "objetivo",
-  "resultado",
-  "avaliacao",
-  "conquista",
-  "lideranca",
-  "colaborar",
-  "compreender",
-  "aprimorar",
-  "estudar",
-  "aprender",
-  "ensinar",
-  "integridade",
-  "perseverar",
-  "conquistar",
-  "planejamento",
-  "superacao",
-  "competencia",
-  "habilidade",
-  "disciplina",
-  "resiliente",
-  "criatividade",
-  "cooperativo",
-  "entendimento",
-  "capacitado",
-  "empenhado",
-  "motivacional",
-  "produtividade",
-  "eficiencia",
-  "proatividade",
-  "planejador",
-  "determinar",
-  "estrategia",
-  "prioridade",
-  "analitico",
-  "efetividade",
-  "implementacao",
-  "constante",
-  "aprendizado",
-  "aperfeicoar",
-  "qualificado",
-  "visualizar",
-  "transformar",
-  "desenvolvimento",
-  "aperfeicoamento",
-  "colaborativo",
-  "gestao",
-  "resiliencia",
-  "solucionar",
-  "otimizacao",
-  "iniciativa",
-  "motivador",  "cachorro",
-  "elefante",
-  "leopardo",
-  "girafa",
-  "camaleao",
-  "hipopotamo",
-  "rinoceronte",
-  "chimpanze",
-  "crocodilo",
-  "jacare",
-  "golfinho",
-  "baleia",
-  "ornitorrinco",
-  "pinguim",
-  "abelha",
-  "formiga",
-  "escorpiao",
-  "tartaruga",
-  "coruja",
-  "falcao",
-  "condor",
-  "pantera",
-  "guaxinim",
-  "tamandua",
-  "suricato",
-  "castor",
-  "esquilo",
-  "javali",
-  "papagaio",
-  "periquito",
-  "cadeira",
-  "computador",
-  "teclado",
-  "monitor",
-  "telefone",
-  "celular",
-  "televisao",
-  "microfone",
-  "ventilador",
-  "aspirador",
-  "liquidificador",
-  "geladeira",
-  "panela",
-  "frigideira",
-  "garrafa",
-  "talher",
-  "armario",
-  "luminaria",
-  "abajur",
-  "torneira",
-  "espelho",
-  "janela",
-  "cadeado",
-  "mochila",
-  "carteira",
-  "relogio",
-  "oculos",
-  "sapato",
-  "chinelo",
-  "camiseta",
-  "brasilia",
-  "riojaneiro",
-  "saopaulo",
-  "recife",
-  "salvador",
-  "fortaleza",
-  "manaus",
-  "curitiba",
-  "florianopolis",
-  "portoalegre",
-  "belohorizonte",
-  "goiania",
-  "vitoria",
-  "aracaju",
-  "joaopessoa",
-  "maceio",
-  "teresina",
-  "palmas",
-  "macapa",
-  "portovelho",
-  "riobranco",
-  "cuiaba",
-  "campogrande",
-  "londres",
-  "lisboa",
-  "berlim",
-  "amsterda",
-  "atenas",
-  "dublin",
-  "estocolmo",
-  "helsinque",
-  "moscou",
-  "cachorro",
-  "elefante",
-  "leopardo",
-  "girafa",
-  "camaleao",
-  "hipopotamo",
-  "rinoceronte",
-  "chimpanze",
-  "crocodilo",
-  "jacare",
-  "golfinho",
-  "baleia",
-  "ornitorrinco",
-  "pinguim",
-  "abelha",
-  "formiga",
-  "escorpiao",
-  "tartaruga",
-  "coruja",
-  "falcao",
-  "condor",
-  "pantera",
-  "guaxinim",
-  "tamandua",
-  "suricato",
-  "castor",
-  "esquilo",
-  "javali",
-  "papagaio",
-  "periquito",
-  "cadeira",
-  "computador",
-  "teclado",
-  "monitor",
-  "telefone",
-  "celular",
-  "televisao",
-  "microfone",
-  "ventilador",
-  "aspirador",
-  "liquidificador",
-  "geladeira",
-  "panela",
-  "frigideira",
-  "garrafa",
-  "talher",
-  "armario",
-  "luminaria",
-  "abajur",
-  "torneira",
-  "espelho",
-  "janela",
-  "cadeado",
-  "mochila",
-  "carteira",
-  "relogio",
-  "oculos",
-  "sapato",
-  "chinelo",
-  "camiseta",
-  "brasilia",
-  "riojaneiro",
-  "saopaulo",
-  "recife",
-  "salvador",
-  "fortaleza",
-  "manaus",
-  "curitiba",
-  "florianopolis",
-  "portoalegre",
-  "belohorizonte",
-  "goiania",
-  "vitoria",
-  "aracaju",
-  "joaopessoa",
-  "maceio",
-  "teresina",
-  "palmas",
-  "macapa",
-  "portovelho",
-  "riobranco",
-  "cuiaba",
-  "campogrande",
-  "londres",
-  "lisboa",
-  "berlim",
-  "amsterda",
-  "atenas",
-  "dublin",
-  "estocolmo",
-  "helsinque",
-  "moscou",
-  "cachorro",
-  "elefante",
-  "leopardo",
-  "girafa",
-  "camaleao",
-  "hipopotamo",
-  "rinoceronte",
-  "chimpanze",
-  "crocodilo",
-  "jacare",
-  "golfinho",
-  "baleia",
-  "ornitorrinco",
-  "pinguim",
-  "abelha",
-  "formiga",
-  "escorpiao",
-  "tartaruga",
-  "coruja",
-  "falcao",
-  "condor",
-  "pantera",
-  "guaxinim",
-  "tamandua",
-  "suricato",
-  "castor",
-  "esquilo",
-  "javali",
-  "papagaio",
-  "periquito",
-  "cadeira",
-  "computador",
-  "teclado",
-  "monitor",
-  "telefone",
-  "celular",
-  "televisao",
-  "microfone",
-  "ventilador",
-  "aspirador",
-  "liquidificador",
-  "geladeira",
-  "panela",
-  "frigideira",
-  "garrafa",
-  "talher",
-  "armario",
-  "luminaria",
-  "abajur",
-  "torneira",
-  "espelho",
-  "janela",
-  "cadeado",
-  "mochila",
-  "carteira",
-  "relogio",
-  "oculos",
-  "sapato",
-  "chinelo",
-  "camiseta",
-  "brasilia",
-  "riojaneiro",
-  "saopaulo",
-  "recife",
-  "salvador",
-  "fortaleza",
-  "manaus",
-  "curitiba",
-  "florianopolis",
-  "portoalegre",
-  "belohorizonte",
-  "goiania",
-  "vitoria",
-  "aracaju",
-  "joaopessoa",
-  "maceio",
-  "teresina",
-  "palmas",
-  "macapa",
-  "portovelho",
-  "riobranco",
-  "cuiaba",
-  "campogrande",
-  "londres",
-  "lisboa",
-  "berlim",
-  "amsterda",
-  "atenas",
-  "dublin",
-  "estocolmo",
-  "helsinque",
-  "moscou",
-  "cachorro",
-  "elefante",
-  "leopardo",
-  "girafa",
-  "camaleao",
-  "hipopotamo",
-  "rinoceronte",
-  "chimpanze",
-  "crocodilo",
-  "jacare",
-  "golfinho",
-  "baleia",
-  "ornitorrinco",
-  "pinguim",
-  "abelha",
-  "formiga",
-  "escorpiao",
-  "tartaruga",
-  "coruja",
-  "falcao",
-  "condor",
-  "pantera",
-  "guaxinim",
-  "tamandua",
-  "suricato",
-  "castor",
-  "esquilo",
-  "javali",
-  "papagaio",
-  "periquito",
-  "cadeira",
-  "computador",
-  "teclado",
-  "monitor",
-  "telefone",
-  "celular",
-  "televisao",
-  "microfone",
-  "ventilador",
-  "aspirador",
-  "liquidificador",
-  "geladeira",
-  "panela",
-  "frigideira",
-  "garrafa",
-  "talher",
-  "armario",
-  "luminaria",
-  "abajur",
-  "torneira",
-  "espelho",
-  "janela",
-  "cadeado",
-  "mochila",
-  "carteira",
-  "relogio",
-  "oculos",
-  "sapato",
-  "chinelo",
-  "camiseta",
-  "brasilia",
-  "riojaneiro",
-  "saopaulo",
-  "recife",
-  "salvador",
-  "fortaleza",
-  "manaus",
-  "curitiba",
-  "florianopolis",
-  "portoalegre",
-  "belohorizonte",
-  "goiania",
-  "vitoria",
-  "aracaju",
-  "joaopessoa",
-  "maceio",
-  "teresina",
-  "palmas",
-  "macapa",
-  "portovelho",
-  "riobranco",
-  "cuiaba",
-  "campogrande",
-  "londres",
-  "lisboa",
-  "berlim",
-  "amsterda",
-  "atenas",
-  "dublin",
-  "estocolmo",
-  "helsinque",
-  "moscou",
-  "cachorro",
-  "elefante",
-  "leopardo",
-  "girafa",
-  "camaleao",
-  "hipopotamo",
-  "rinoceronte",
-  "chimpanze",
-  "crocodilo",
-  "jacare",
-  "golfinho",
-  "baleia",
-  "ornitorrinco",
-  "pinguim",
-  "abelha",
-  "formiga",
-  "escorpiao",
-  "tartaruga",
-  "coruja",
-  "falcao",
-  "condor",
-  "pantera",
-  "guaxinim",
-  "tamandua",
-  "suricato",
-  "castor",
-  "esquilo",
-  "javali",
-  "papagaio",
-  "periquito",
-  "cadeira",
-  "computador",
-  "teclado",
-  "monitor",
-  "telefone",
-  "celular",
-  "televisao",
-  "microfone",
-  "ventilador",
-  "aspirador",
-  "liquidificador",
-  "geladeira",
-  "panela",
-  "frigideira",
-  "garrafa",
-  "talher",
-  "armario",
-  "luminaria",
-  "abajur",
-  "torneira",
-  "espelho",
-  "janela",
-  "cadeado",
-  "mochila",
-  "carteira",
-  "relogio",
-  "oculos",
-  "sapato",
-  "chinelo",
-  "camiseta",
-  "brasilia",
-  "riojaneiro",
-  "saopaulo",
-  "recife",
-  "salvador",
-  "fortaleza",
-  "manaus",
-  "curitiba",
-  "florianopolis",
-  "portoalegre",
-  "belohorizonte",
-  "goiania",
-  "vitoria",
-  "aracaju",
-  "joaopessoa",
-  "maceio",
-  "teresina",
-  "palmas",
-  "macapa",
-  "portovelho",
-  "riobranco",
-  "cuiaba",
-  "campogrande",
-  "londres",
-  "lisboa",
-  "berlim",
-  "amsterda",
-  "atenas",
-  "dublin",
-  "estocolmo",
-  "helsinque",
-  "moscou",
-  "cachorro",
-  "elefante",
-  "leopardo",
-  "girafa",
-  "camaleao",
-  "hipopotamo",
-  "rinoceronte",
-  "chimpanze",
-  "crocodilo",
-  "jacare",
-  "golfinho",
-  "baleia",
-  "ornitorrinco",
-  "pinguim",
-  "abelha",
-  "formiga",
-  "escorpiao",
-  "tartaruga",
-  "coruja",
-  "falcao",
-  "condor",
-  "pantera",
-  "guaxinim",
-  "tamandua",
-  "suricato",
-  "castor",
-  "esquilo",
-  "javali",
-  "papagaio",
-  "periquito",
-  "cadeira",
-  "computador",
-  "teclado",
-  "monitor",
-  "telefone",
-  "celular",
-  "televisao",
-  "microfone",
-  "ventilador",
-  "aspirador"
+  {
+    "palavra": "amizade",
+    "dica": "Tipo de relacionamento"
+  },
+  {
+    "palavra": "girafa",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "computador",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "brasilia",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "ventilador",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "cachorro",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "elefante",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "programador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "telefone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "geladeira",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "bicicleta",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "livraria",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "abacaxi",
+    "dica": "Fruta"
+  },
+  {
+    "palavra": "chaveiro",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "montanha",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "oceano",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "aviador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "padeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "sapateiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "professor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "televisao",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "microfone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "cadeira",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "armario",
+    "dica": "Móvel"
+  },
+  {
+    "palavra": "banheiro",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "escola",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "universidade",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "cientista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "engenheiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "advogado",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "medico",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "enfermeira",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "bombeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "policial",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "jornalista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "fotografo",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "artista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "cantor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "dançarino",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "pintor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "escultor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "barco",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "carro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "moto",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "aviao",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "trem",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "onibus",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "metro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "amizade",
+    "dica": "Tipo de relacionamento"
+  },
+  {
+    "palavra": "girafa",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "computador",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "brasilia",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "ventilador",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "cachorro",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "elefante",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "programador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "telefone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "geladeira",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "bicicleta",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "livraria",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "abacaxi",
+    "dica": "Fruta"
+  },
+  {
+    "palavra": "chaveiro",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "montanha",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "oceano",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "aviador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "padeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "sapateiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "professor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "televisao",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "microfone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "cadeira",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "armario",
+    "dica": "Móvel"
+  },
+  {
+    "palavra": "banheiro",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "escola",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "universidade",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "cientista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "engenheiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "advogado",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "medico",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "enfermeira",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "bombeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "policial",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "jornalista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "fotografo",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "artista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "cantor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "dançarino",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "pintor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "escultor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "barco",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "carro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "moto",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "aviao",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "trem",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "onibus",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "metro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "amizade",
+    "dica": "Tipo de relacionamento"
+  },
+  {
+    "palavra": "girafa",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "computador",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "brasilia",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "ventilador",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "cachorro",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "elefante",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "programador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "telefone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "geladeira",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "bicicleta",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "livraria",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "abacaxi",
+    "dica": "Fruta"
+  },
+  {
+    "palavra": "chaveiro",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "montanha",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "oceano",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "aviador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "padeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "sapateiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "professor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "televisao",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "microfone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "cadeira",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "armario",
+    "dica": "Móvel"
+  },
+  {
+    "palavra": "banheiro",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "escola",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "universidade",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "cientista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "engenheiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "advogado",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "medico",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "enfermeira",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "bombeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "policial",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "jornalista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "fotografo",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "artista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "cantor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "dançarino",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "pintor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "escultor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "barco",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "carro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "moto",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "aviao",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "trem",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "onibus",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "metro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "amizade",
+    "dica": "Tipo de relacionamento"
+  },
+  {
+    "palavra": "girafa",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "computador",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "brasilia",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "ventilador",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "cachorro",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "elefante",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "programador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "telefone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "geladeira",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "bicicleta",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "livraria",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "abacaxi",
+    "dica": "Fruta"
+  },
+  {
+    "palavra": "chaveiro",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "montanha",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "oceano",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "aviador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "padeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "sapateiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "professor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "televisao",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "microfone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "cadeira",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "armario",
+    "dica": "Móvel"
+  },
+  {
+    "palavra": "banheiro",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "escola",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "universidade",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "cientista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "engenheiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "advogado",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "medico",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "enfermeira",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "bombeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "policial",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "jornalista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "fotografo",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "artista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "cantor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "dançarino",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "pintor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "escultor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "barco",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "carro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "moto",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "aviao",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "trem",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "onibus",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "metro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "amizade",
+    "dica": "Tipo de relacionamento"
+  },
+  {
+    "palavra": "girafa",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "computador",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "brasilia",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "ventilador",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "cachorro",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "elefante",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "programador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "telefone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "geladeira",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "bicicleta",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "livraria",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "abacaxi",
+    "dica": "Fruta"
+  },
+  {
+    "palavra": "chaveiro",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "montanha",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "oceano",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "aviador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "padeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "sapateiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "professor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "televisao",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "microfone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "cadeira",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "armario",
+    "dica": "Móvel"
+  },
+  {
+    "palavra": "banheiro",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "escola",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "universidade",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "cientista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "engenheiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "advogado",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "medico",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "enfermeira",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "bombeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "policial",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "jornalista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "fotografo",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "artista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "cantor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "dançarino",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "pintor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "escultor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "barco",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "carro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "moto",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "aviao",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "trem",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "onibus",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "metro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "amizade",
+    "dica": "Tipo de relacionamento"
+  },
+  {
+    "palavra": "girafa",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "computador",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "brasilia",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "ventilador",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "cachorro",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "elefante",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "programador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "telefone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "geladeira",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "bicicleta",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "livraria",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "abacaxi",
+    "dica": "Fruta"
+  },
+  {
+    "palavra": "chaveiro",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "montanha",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "oceano",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "aviador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "padeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "sapateiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "professor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "televisao",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "microfone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "cadeira",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "armario",
+    "dica": "Móvel"
+  },
+  {
+    "palavra": "banheiro",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "escola",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "universidade",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "cientista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "engenheiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "advogado",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "medico",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "enfermeira",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "bombeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "policial",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "jornalista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "fotografo",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "artista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "cantor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "dançarino",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "pintor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "escultor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "barco",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "carro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "moto",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "aviao",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "trem",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "onibus",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "metro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "amizade",
+    "dica": "Tipo de relacionamento"
+  },
+  {
+    "palavra": "girafa",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "computador",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "brasilia",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "ventilador",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "cachorro",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "elefante",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "programador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "telefone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "geladeira",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "bicicleta",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "livraria",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "abacaxi",
+    "dica": "Fruta"
+  },
+  {
+    "palavra": "chaveiro",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "montanha",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "oceano",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "aviador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "padeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "sapateiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "professor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "televisao",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "microfone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "cadeira",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "armario",
+    "dica": "Móvel"
+  },
+  {
+    "palavra": "banheiro",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "escola",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "universidade",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "cientista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "engenheiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "advogado",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "medico",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "enfermeira",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "bombeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "policial",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "jornalista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "fotografo",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "artista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "cantor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "dançarino",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "pintor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "escultor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "barco",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "carro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "moto",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "aviao",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "trem",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "onibus",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "metro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "amizade",
+    "dica": "Tipo de relacionamento"
+  },
+  {
+    "palavra": "girafa",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "computador",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "brasilia",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "ventilador",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "cachorro",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "elefante",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "programador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "telefone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "geladeira",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "bicicleta",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "livraria",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "abacaxi",
+    "dica": "Fruta"
+  },
+  {
+    "palavra": "chaveiro",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "montanha",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "oceano",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "aviador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "padeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "sapateiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "professor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "televisao",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "microfone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "cadeira",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "armario",
+    "dica": "Móvel"
+  },
+  {
+    "palavra": "banheiro",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "escola",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "universidade",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "cientista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "engenheiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "advogado",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "medico",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "enfermeira",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "bombeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "policial",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "jornalista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "fotografo",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "artista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "cantor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "dançarino",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "pintor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "escultor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "barco",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "carro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "moto",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "aviao",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "trem",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "onibus",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "metro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "amizade",
+    "dica": "Tipo de relacionamento"
+  },
+  {
+    "palavra": "girafa",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "computador",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "brasilia",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "ventilador",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "cachorro",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "elefante",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "programador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "telefone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "geladeira",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "bicicleta",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "livraria",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "abacaxi",
+    "dica": "Fruta"
+  },
+  {
+    "palavra": "chaveiro",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "montanha",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "oceano",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "aviador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "padeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "sapateiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "professor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "televisao",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "microfone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "cadeira",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "armario",
+    "dica": "Móvel"
+  },
+  {
+    "palavra": "banheiro",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "escola",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "universidade",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "cientista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "engenheiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "advogado",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "medico",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "enfermeira",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "bombeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "policial",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "jornalista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "fotografo",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "artista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "cantor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "dançarino",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "pintor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "escultor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "barco",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "carro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "moto",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "aviao",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "trem",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "onibus",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "metro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "amizade",
+    "dica": "Tipo de relacionamento"
+  },
+  {
+    "palavra": "girafa",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "computador",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "brasilia",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "ventilador",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "cachorro",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "elefante",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "programador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "telefone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "geladeira",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "bicicleta",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "livraria",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "abacaxi",
+    "dica": "Fruta"
+  },
+  {
+    "palavra": "chaveiro",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "montanha",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "oceano",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "aviador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "padeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "sapateiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "professor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "televisao",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "microfone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "cadeira",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "armario",
+    "dica": "Móvel"
+  },
+  {
+    "palavra": "banheiro",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "escola",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "universidade",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "cientista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "engenheiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "advogado",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "medico",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "enfermeira",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "bombeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "policial",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "jornalista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "fotografo",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "artista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "cantor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "dançarino",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "pintor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "escultor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "barco",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "carro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "moto",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "aviao",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "trem",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "onibus",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "metro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "amizade",
+    "dica": "Tipo de relacionamento"
+  },
+  {
+    "palavra": "girafa",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "computador",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "brasilia",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "ventilador",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "cachorro",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "elefante",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "programador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "telefone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "geladeira",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "bicicleta",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "livraria",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "abacaxi",
+    "dica": "Fruta"
+  },
+  {
+    "palavra": "chaveiro",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "montanha",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "oceano",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "aviador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "padeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "sapateiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "professor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "televisao",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "microfone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "cadeira",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "armario",
+    "dica": "Móvel"
+  },
+  {
+    "palavra": "banheiro",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "escola",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "universidade",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "cientista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "engenheiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "advogado",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "medico",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "enfermeira",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "bombeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "policial",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "jornalista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "fotografo",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "artista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "cantor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "dançarino",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "pintor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "escultor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "barco",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "carro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "moto",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "aviao",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "trem",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "onibus",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "metro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "amizade",
+    "dica": "Tipo de relacionamento"
+  },
+  {
+    "palavra": "girafa",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "computador",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "brasilia",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "ventilador",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "cachorro",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "elefante",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "programador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "telefone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "geladeira",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "bicicleta",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "livraria",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "abacaxi",
+    "dica": "Fruta"
+  },
+  {
+    "palavra": "chaveiro",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "montanha",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "oceano",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "aviador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "padeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "sapateiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "professor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "televisao",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "microfone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "cadeira",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "armario",
+    "dica": "Móvel"
+  },
+  {
+    "palavra": "banheiro",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "escola",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "universidade",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "cientista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "engenheiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "advogado",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "medico",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "enfermeira",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "bombeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "policial",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "jornalista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "fotografo",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "artista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "cantor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "dançarino",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "pintor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "escultor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "barco",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "carro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "moto",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "aviao",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "trem",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "onibus",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "metro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "amizade",
+    "dica": "Tipo de relacionamento"
+  },
+  {
+    "palavra": "girafa",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "computador",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "brasilia",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "ventilador",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "cachorro",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "elefante",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "programador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "telefone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "geladeira",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "bicicleta",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "livraria",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "abacaxi",
+    "dica": "Fruta"
+  },
+  {
+    "palavra": "chaveiro",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "montanha",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "oceano",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "aviador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "padeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "sapateiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "professor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "televisao",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "microfone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "cadeira",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "armario",
+    "dica": "Móvel"
+  },
+  {
+    "palavra": "banheiro",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "escola",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "universidade",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "cientista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "engenheiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "advogado",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "medico",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "enfermeira",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "bombeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "policial",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "jornalista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "fotografo",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "artista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "cantor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "dançarino",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "pintor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "escultor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "barco",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "carro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "moto",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "aviao",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "trem",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "onibus",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "metro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "amizade",
+    "dica": "Tipo de relacionamento"
+  },
+  {
+    "palavra": "girafa",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "computador",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "brasilia",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "ventilador",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "cachorro",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "elefante",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "programador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "telefone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "geladeira",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "bicicleta",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "livraria",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "abacaxi",
+    "dica": "Fruta"
+  },
+  {
+    "palavra": "chaveiro",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "montanha",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "oceano",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "aviador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "padeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "sapateiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "professor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "televisao",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "microfone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "cadeira",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "armario",
+    "dica": "Móvel"
+  },
+  {
+    "palavra": "banheiro",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "escola",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "universidade",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "cientista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "engenheiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "advogado",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "medico",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "enfermeira",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "bombeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "policial",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "jornalista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "fotografo",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "artista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "cantor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "dançarino",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "pintor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "escultor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "barco",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "carro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "moto",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "aviao",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "trem",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "onibus",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "metro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "amizade",
+    "dica": "Tipo de relacionamento"
+  },
+  {
+    "palavra": "girafa",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "computador",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "brasilia",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "ventilador",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "cachorro",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "elefante",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "programador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "telefone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "geladeira",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "bicicleta",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "livraria",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "abacaxi",
+    "dica": "Fruta"
+  },
+  {
+    "palavra": "chaveiro",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "montanha",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "oceano",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "aviador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "padeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "sapateiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "professor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "televisao",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "microfone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "cadeira",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "armario",
+    "dica": "Móvel"
+  },
+  {
+    "palavra": "banheiro",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "escola",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "universidade",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "cientista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "engenheiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "advogado",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "medico",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "enfermeira",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "bombeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "policial",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "jornalista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "fotografo",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "artista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "cantor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "dançarino",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "pintor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "escultor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "barco",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "carro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "moto",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "aviao",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "trem",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "onibus",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "metro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "amizade",
+    "dica": "Tipo de relacionamento"
+  },
+  {
+    "palavra": "girafa",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "computador",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "brasilia",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "ventilador",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "cachorro",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "elefante",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "programador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "telefone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "geladeira",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "bicicleta",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "livraria",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "abacaxi",
+    "dica": "Fruta"
+  },
+  {
+    "palavra": "chaveiro",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "montanha",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "oceano",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "aviador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "padeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "sapateiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "professor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "televisao",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "microfone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "cadeira",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "armario",
+    "dica": "Móvel"
+  },
+  {
+    "palavra": "banheiro",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "escola",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "universidade",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "cientista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "engenheiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "advogado",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "medico",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "enfermeira",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "bombeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "policial",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "jornalista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "fotografo",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "artista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "cantor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "dançarino",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "pintor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "escultor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "barco",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "carro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "moto",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "aviao",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "trem",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "onibus",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "metro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "amizade",
+    "dica": "Tipo de relacionamento"
+  },
+  {
+    "palavra": "girafa",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "computador",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "brasilia",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "ventilador",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "cachorro",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "elefante",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "programador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "telefone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "geladeira",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "bicicleta",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "livraria",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "abacaxi",
+    "dica": "Fruta"
+  },
+  {
+    "palavra": "chaveiro",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "montanha",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "oceano",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "aviador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "padeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "sapateiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "professor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "televisao",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "microfone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "cadeira",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "armario",
+    "dica": "Móvel"
+  },
+  {
+    "palavra": "banheiro",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "escola",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "universidade",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "cientista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "engenheiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "advogado",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "medico",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "enfermeira",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "bombeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "policial",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "jornalista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "fotografo",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "artista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "cantor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "dançarino",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "pintor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "escultor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "barco",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "carro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "moto",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "aviao",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "trem",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "onibus",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "metro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "amizade",
+    "dica": "Tipo de relacionamento"
+  },
+  {
+    "palavra": "girafa",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "computador",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "brasilia",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "ventilador",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "cachorro",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "elefante",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "programador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "telefone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "geladeira",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "bicicleta",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "livraria",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "abacaxi",
+    "dica": "Fruta"
+  },
+  {
+    "palavra": "chaveiro",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "montanha",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "oceano",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "aviador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "padeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "sapateiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "professor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "televisao",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "microfone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "cadeira",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "armario",
+    "dica": "Móvel"
+  },
+  {
+    "palavra": "banheiro",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "escola",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "universidade",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "cientista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "engenheiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "advogado",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "medico",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "enfermeira",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "bombeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "policial",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "jornalista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "fotografo",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "artista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "cantor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "dançarino",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "pintor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "escultor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "barco",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "carro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "moto",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "aviao",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "trem",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "onibus",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "metro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "amizade",
+    "dica": "Tipo de relacionamento"
+  },
+  {
+    "palavra": "girafa",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "computador",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "brasilia",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "ventilador",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "cachorro",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "elefante",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "programador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "telefone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "geladeira",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "bicicleta",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "livraria",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "abacaxi",
+    "dica": "Fruta"
+  },
+  {
+    "palavra": "chaveiro",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "montanha",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "oceano",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "aviador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "padeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "sapateiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "professor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "televisao",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "microfone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "cadeira",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "armario",
+    "dica": "Móvel"
+  },
+  {
+    "palavra": "banheiro",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "escola",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "universidade",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "cientista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "engenheiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "advogado",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "medico",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "enfermeira",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "bombeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "policial",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "jornalista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "fotografo",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "artista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "cantor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "dançarino",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "pintor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "escultor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "barco",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "carro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "moto",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "aviao",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "trem",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "onibus",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "metro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "amizade",
+    "dica": "Tipo de relacionamento"
+  },
+  {
+    "palavra": "girafa",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "computador",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "brasilia",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "ventilador",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "cachorro",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "elefante",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "programador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "telefone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "geladeira",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "bicicleta",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "livraria",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "abacaxi",
+    "dica": "Fruta"
+  },
+  {
+    "palavra": "chaveiro",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "montanha",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "oceano",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "aviador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "padeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "sapateiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "professor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "televisao",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "microfone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "cadeira",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "armario",
+    "dica": "Móvel"
+  },
+  {
+    "palavra": "banheiro",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "escola",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "universidade",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "cientista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "engenheiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "advogado",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "medico",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "enfermeira",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "bombeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "policial",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "jornalista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "fotografo",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "artista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "cantor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "dançarino",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "pintor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "escultor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "barco",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "carro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "moto",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "aviao",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "trem",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "onibus",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "metro",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "amizade",
+    "dica": "Tipo de relacionamento"
+  },
+  {
+    "palavra": "girafa",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "computador",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "brasilia",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "ventilador",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "cachorro",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "elefante",
+    "dica": "Animal"
+  },
+  {
+    "palavra": "programador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "telefone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "geladeira",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "bicicleta",
+    "dica": "Transporte"
+  },
+  {
+    "palavra": "livraria",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "abacaxi",
+    "dica": "Fruta"
+  },
+  {
+    "palavra": "chaveiro",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "montanha",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "oceano",
+    "dica": "Elemento natural"
+  },
+  {
+    "palavra": "aviador",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "padeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "sapateiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "professor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "televisao",
+    "dica": "Eletrodoméstico"
+  },
+  {
+    "palavra": "microfone",
+    "dica": "Eletrônico"
+  },
+  {
+    "palavra": "cadeira",
+    "dica": "Objeto"
+  },
+  {
+    "palavra": "armario",
+    "dica": "Móvel"
+  },
+  {
+    "palavra": "banheiro",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "escola",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "universidade",
+    "dica": "Lugar"
+  },
+  {
+    "palavra": "cientista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "engenheiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "advogado",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "medico",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "enfermeira",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "bombeiro",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "policial",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "jornalista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "fotografo",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "artista",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "cantor",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "dançarino",
+    "dica": "Profissão"
+  },
+  {
+    "palavra": "pintor",
+    "dica": "Profissão"
+  }
 ]
