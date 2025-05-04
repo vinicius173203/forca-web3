@@ -4,7 +4,7 @@ import rawContract from './ForcaGame.json';
 const contractABI = rawContract.abi;
 import './App.css';
 
-const contractAddress = '0xe5C8C755E5A2415305998d5FfDecA5009a590350'; // Atualize com o novo endereço após reimplantar
+const contractAddress = '0x274Ec0b6E7cd0C3A52F359e33e66A38CdC1f4C05'; // Atualize se mudar o endereço!
 
 function App() {
   const [provider, setProvider] = useState(null);
@@ -24,7 +24,6 @@ function App() {
   const [isOwner, setIsOwner] = useState(false);
   const [timeLeft, setTimeLeft] = useState(60);
   const [currentHint, setCurrentHint] = useState('');
-
 
   const translations = {
     pt: { start: 'Começar Jogo', restart: 'Recomeçar', chances: 'Tentativas restantes', connect: 'Conectar Carteira', leaderboard: 'Tabela de Classificação', timeLeft: 'Tempo Restante' },
@@ -60,22 +59,24 @@ function App() {
   
     return () => clearInterval(timer);
   }, [gameActive, timeLeft]);
-  
 
   async function fetchLeaderboard() {
-    if (!contract) return;
     try {
-      const limit = 10;
-      const [topPlayers, topPoints] = await contract.getLeaderboard(limit);
-      const leaderboardData = topPlayers.map((player, index) => ({
-        address: player,
-        points: topPoints[index].toString(),
-      }));
-      setLeaderboard(leaderboardData);
+        const response = await fetch('https://backend-leaderboard-production.up.railway.app/leaderboard');
+        const data = await response.json();
+
+        const leaderboardData = data.map((item, index) => ({
+            address: item.address,
+            points: item.points.toString(),
+        }));
+
+        setLeaderboard(leaderboardData);
     } catch (err) {
-      console.error('Erro ao buscar leaderboard:', err);
+        console.error('Erro ao buscar leaderboard do backend:', err);
     }
-  }
+}
+
+
 
   async function checkOwner() {
     if (!contract) return;
@@ -124,7 +125,7 @@ function App() {
         const _contract = new ethers.Contract(contractAddress, contractABI, _signer);
         const address = await _signer.getAddress();
 
-        const fee = await _contract.getEntryFee();
+        const fee = await _contract.entryFee();
         const formattedFee = fee ? ethers.formatEther(fee) : "0";
 
         setProvider(_provider);
@@ -167,14 +168,43 @@ function App() {
     if (!contract) return;
     try {
       const wordLength = currentWord.length || 0;
-      const tx = await contract.endGame(won, wordLength);
+      const basePoints = wordLength <= 6 ? 3 : wordLength <= 9 ? 4 : 5;
+      const tokenId = 0;
+      const hasHint = currentHint !== '';
+      const completedInSeconds = 60 - timeLeft;
+
+      const response = await fetch('https://backend-assinatura-production.up.railway.app/sign-result', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          player: account,
+          won,
+          wordLength,
+          tokenId,
+          basePoints,
+          hasHint,
+          completedInSeconds
+        })
+      });
+      
+
+      const { finalPoints, signature } = await response.json();
+
+      const tx = await contract.endGame(won, wordLength, tokenId, finalPoints, signature);
       await tx.wait();
+
       setGameActive(false);
       setTimeLeft(0);
       fetchLeaderboard();
+
+      if (won) {
+        alert('✅ Você ganhou! Recompensa entregue!');
+      } else {
+        alert('❌ Você perdeu! Tente novamente.');
+      }
     } catch (err) {
-      console.error('Erro ao forçar finalização do jogo:', err);
-      alert('Erro ao forçar finalização do jogo: ' + err.message);
+      console.error('Erro ao finalizar jogo:', err);
+      alert('Erro ao finalizar jogo: ' + err.message);
     }
   }
 
@@ -187,7 +217,6 @@ function App() {
     setUsedLetters([]);
     setMessage('');
   }
-  
 
   async function handleGuess(letter) {
     if (!gameActive || usedLetters.includes(letter) || message) return;
@@ -198,13 +227,7 @@ function App() {
         setMessage('❌ ' + (language === 'pt' ? 'Você perdeu!' : 'You lost!'));
         setGameActive(false);
         setTimeLeft(0);
-        try {
-          const tx = await contract.endGame(false, currentWord.length);
-          await tx.wait();
-          fetchLeaderboard();
-        } catch (err) {
-          console.error('Erro ao registrar derrota:', err);
-        }
+        await forceEndGame(false);
         return;
       }
       return;
@@ -215,14 +238,7 @@ function App() {
       setMessage('✅ ' + (language === 'pt' ? 'Você venceu!' : 'You won!'));
       setGameActive(false);
       setTimeLeft(0);
-      try {
-        const tx = await contract.endGame(true, currentWord.length);
-        await tx.wait();
-        alert('Parabéns! Você recebeu ' + ethers.formatEther(await contract.rewardAmount()) + ' MON');
-        fetchLeaderboard();
-      } catch (err) {
-        console.error('Erro ao registrar vitória:', err);
-      }
+      await forceEndGame(true);
     }
   }
 
@@ -237,7 +253,6 @@ function App() {
       >
         {letter.toUpperCase()}
       </button>
-
     ));
   }
 
@@ -312,7 +327,6 @@ function App() {
 
             {gameActive && (
               <div style={{ marginTop: '10px' }}>
-                
                 <button className="action-button" onClick={() => forceEndGame(false)}>
                   {language === 'pt' ? 'Forçar Derrota' : 'Force Loss'}
                 </button>
@@ -326,13 +340,12 @@ function App() {
         <div style={{ margin: '10px' }}>{renderLetters()}</div>
         <p className="message">{message}</p>
       </div>
-  
+
       <div className="leaderboard-section">
         {renderLeaderboard()}
       </div>
     </div>
   );
-  
 }
 
 export default App;

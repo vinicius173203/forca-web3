@@ -174,7 +174,45 @@ body {
 }
 
 
-@keyframes pulse {
-  from { transform: scale(1); }
-  to { transform: scale(1.1); }
+@media (max-width: 768px) {
+  .main-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .game-section, .leaderboard-section {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+
+  .letter-button {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+    margin: 5px;
+  }
+
+  .masked-word {
+    font-size: 1.5rem;
+    letter-spacing: 5px;
+  }
+
+  .timer {
+    font-size: 1.5rem;
+    padding: 8px 16px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .leaderboard-container {
+    overflow-x: auto;
+  }
+
+  .leaderboard-table {
+    width: 600px; /* fixa largura para poder rolar horizontalmente */
+  }
 }
+
