@@ -375,9 +375,13 @@ function App() {
                 </label>
               </div>
   
-              <button className="action-button" onClick={startGame} style={{ marginTop: '10px' }}>
-                {translations[language].start}
-              </button>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '10px' }}>
+                <img src="/forca.png" alt="Forca" style={{ width: '170px', marginRight: '20px' }} />
+                <button className="action-button" onClick={startGame}>
+                  {translations[language].start}
+                </button>
+                <img src="/forca.png" alt="Forca" style={{ width: '170px', marginLeft: '20px' }} />
+              </div>
               <p className="hint">
                 <strong>Dica:</strong> {useHint ? currentHint : (language === 'pt' ? 'Sem dica selecionada' : 'No hint selected')}
               </p>
@@ -391,8 +395,9 @@ function App() {
               )}
             </>
           )}
-  
+          
           <p className="masked-word">{maskedWord}</p>
+          
           {renderChances()}
           {renderTimer()}
           <div style={{ margin: '10px' }}>{renderLetters()}</div>
