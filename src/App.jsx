@@ -4,6 +4,7 @@ import rawContract from './ForcaGame.json';
 const contractABI = rawContract.abi;
 import './App.css';
 
+
 const contractAddress = '0x274Ec0b6E7cd0C3A52F359e33e66A38CdC1f4C05'; // Atualize se mudar o endereço!
 
 function App() {
@@ -24,7 +25,7 @@ function App() {
   const [isOwner, setIsOwner] = useState(false);
   const [timeLeft, setTimeLeft] = useState(60);
   const [currentHint, setCurrentHint] = useState('');
-
+  const [useHint, setUseHint] = useState(true);
   const translations = {
     pt: { start: 'Começar Jogo', restart: 'Recomeçar', chances: 'Tentativas restantes', connect: 'Conectar Carteira', leaderboard: 'Tabela de Classificação', timeLeft: 'Tempo Restante' },
     en: { start: 'Start Game', restart: 'Restart', chances: 'Chances left', connect: 'Connect Wallet', leaderboard: 'Leaderboard', timeLeft: 'Time Left' }
@@ -156,7 +157,7 @@ function App() {
       await tx.wait();
       loadWord();
       setGameActive(true);
-      setTimeLeft(30);
+      setTimeLeft(useHint ? 30 : 45);
       fetchLeaderboard();
     } catch (err) {
       console.error('Erro ao iniciar o jogo:', err);
@@ -170,7 +171,7 @@ function App() {
       const wordLength = currentWord.length || 0;
       const basePoints = wordLength <= 6 ? 3 : wordLength <= 9 ? 4 : 5;
       const tokenId = 0;
-      const hasHint = currentHint !== '';
+      const hasHint = useHint && currentHint !== '';
       const completedInSeconds = 60 - timeLeft;
 
       const response = await fetch('https://backend-assinatura-production.up.railway.app/sign-result', {
@@ -183,7 +184,9 @@ function App() {
           tokenId,
           basePoints,
           hasHint,
-          completedInSeconds
+          completedInSeconds,
+          initialTime: useHint ? 30 : 45  // NOVO campo enviado
+
         })
       });
       
@@ -320,10 +323,26 @@ function App() {
         ) : (
           <>
             <p className="account-info">Usuário conectado: {account.slice(0, 4)}...{account.slice(-3)}</p>
+
+            <div style={{ marginTop: '10px' }}>
+            <label>
+              <input
+                type="checkbox"
+                checked={useHint}
+                onChange={() => setUseHint(!useHint)}
+                disabled={gameActive}
+              />
+              {language === 'pt' ? ' Jogar com dica' : ' Play with hint'}
+            </label>
+          </div>
+
             <button className="action-button" onClick={startGame} style={{ marginTop: '10px' }}>
               {translations[language].start}
             </button>
-            <p className="hint"><strong>Dica:</strong> {currentHint}</p>
+            <p className="hint">
+              <strong>Dica:</strong> {useHint ? currentHint : (language === 'pt' ? 'Sem dica selecionada' : 'No hint selected')}
+            </p>
+
 
             {gameActive && (
               <div style={{ marginTop: '10px' }}>
