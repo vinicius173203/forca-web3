@@ -221,7 +221,8 @@ function App() {
 
   async function loadWord() {
       try {
-          const response = await fetch(`${BACKEND_URL}/get-word?lang=${language}`);
+        const response = await fetch(`${BACKEND_URL}/get-word?lang=${language}&wallet=${account}`);
+
           const data = await response.json();
   
           setCurrentWord(data.palavra);
