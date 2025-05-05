@@ -57,7 +57,20 @@ function App() {
   
     return () => clearInterval(timer);
   }, [gameActive, timeLeft]);
-
+  useEffect(() => {
+    function handleKeyPress(event) {
+      const key = event.key.toLowerCase();
+      if (/^[a-z]$/.test(key) && gameActive && !usedLetters.includes(key)) {
+        handleGuess(key);
+      }
+    }
+  
+    window.addEventListener('keydown', handleKeyPress);
+    return () => {
+      window.removeEventListener('keydown', handleKeyPress);
+    };
+  }, [gameActive, usedLetters]);
+  
   async function fetchLeaderboard() {
     try {
         const response = await fetch('https://backend-leaderboard-production.up.railway.app/leaderboard');
@@ -312,62 +325,126 @@ function App() {
   }
 
   return (
-    <div className="main-container">
-      <div className="game-section">
-        <h1>Forca Web3</h1>
-        <div>
-          <button className="action-button" onClick={() => setLanguage('pt')}>Português</button>
-          <button className="action-button" onClick={() => setLanguage('en')}>English</button>
-        </div>
+    <>
+      {/* Topo direito: usuário + conectar/desconectar */}
+      <div style={{ position: 'absolute', top: '10px', right: '20px', textAlign: 'right' }}>
         {!account ? (
-          <button className="action-button" onClick={connectWallet} style={{ marginTop: '10px' }}>
+          <button
+            className="action-button"
+            onClick={connectWallet}
+          >
             {translations[language].connect}
           </button>
         ) : (
           <>
-            <p className="account-info">Usuário conectado: {account.slice(0, 4)}...{account.slice(-3)}</p>
-
-            <div style={{ marginTop: '10px' }}>
-            <label>
-              <input
-                type="checkbox"
-                checked={useHint}
-                onChange={() => setUseHint(!useHint)}
-                disabled={gameActive}
-              />
-              {language === 'pt' ? ' Jogar com dica' : ' Play with hint'}
-            </label>
-          </div>
-
-            <button className="action-button" onClick={startGame} style={{ marginTop: '10px' }}>
-              {translations[language].start}
+            <p>👤 {account.slice(0, 6)}...{account.slice(-4)}</p>
+            <button
+              className="action-button"
+              onClick={() => {
+                setAccount('');
+                setContract(null);
+                setSigner(null);
+                setProvider(null);
+              }}
+            >
+              {language === 'pt' ? 'Desconectar' : 'Disconnect'}
             </button>
-            <p className="hint">
-              <strong>Dica:</strong> {useHint ? currentHint : (language === 'pt' ? 'Sem dica selecionada' : 'No hint selected')}
-            </p>
-
-
-            {gameActive && (
-              <div style={{ marginTop: '10px' }}>
-                <button className="action-button" onClick={() => forceEndGame(false)}>
-                  {language === 'pt' ? 'Forçar Derrota' : 'Force Loss'}
-                </button>
-              </div>
-            )}
           </>
         )}
-        <p className="masked-word">{maskedWord}</p>
-        {renderChances()}
-        {renderTimer()}
-        <div style={{ margin: '10px' }}>{renderLetters()}</div>
-        <p className="message">{message}</p>
       </div>
+  
+      <div className="main-container">
+        <div className="game-section">
+          <h1>Forca Web3</h1>
+          <div>
+            <button className="action-button" onClick={() => setLanguage('pt')}>Português</button>
+            <button className="action-button" onClick={() => setLanguage('en')}>English</button>
+          </div>
+  
+          {account && (
+            <>
+              <div style={{ marginTop: '10px' }}>
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={useHint}
+                    onChange={() => setUseHint(!useHint)}
+                    disabled={gameActive}
+                  />
+                  {language === 'pt' ? ' Jogar com dica' : ' Play with hint'}
+                </label>
+              </div>
+  
+              <button className="action-button" onClick={startGame} style={{ marginTop: '10px' }}>
+                {translations[language].start}
+              </button>
+              <p className="hint">
+                <strong>Dica:</strong> {useHint ? currentHint : (language === 'pt' ? 'Sem dica selecionada' : 'No hint selected')}
+              </p>
+  
+              {gameActive && (
+                <div style={{ marginTop: '10px' }}>
+                  <button className="action-button" onClick={() => forceEndGame(false)}>
+                    {language === 'pt' ? 'Forçar Derrota' : 'Force Loss'}
+                  </button>
+                </div>
+              )}
+            </>
+          )}
+  
+          <p className="masked-word">{maskedWord}</p>
+          {renderChances()}
+          {renderTimer()}
+          <div style={{ margin: '10px' }}>{renderLetters()}</div>
+          <p className="message">{message}</p>
+        </div>
+  
+        <div className="leaderboard-section">
+          {renderLeaderboard()}
+        </div>
+      </div>
+  
+      <div style={{ width: '90%', maxWidth: '1200px', margin: '30px auto', padding: '20px', background: 'rgba(255,255,255,0.1)', borderRadius: '15px', textAlign: 'center' }}>
+      <h2>🕹️ Como Jogar Forca Web3</h2>
+      <p style={{ fontSize: '1.1rem', marginBottom: '15px' }}>
+        Conecte sua carteira e prepare-se para desafiar seu cérebro!<br />
+        Você precisa adivinhar a palavra secreta, letra por letra, antes que o tempo acabe ou as tentativas terminem.
+      </p>
+      <ul style={{ listStyle: 'none', padding: 0, fontSize: '1.1rem', textAlign: 'left', maxWidth: '600px', margin: '0 auto' }}>
+        <li>✅ Escolha o idioma (Português/English)</li>
+        <li>✅ Decida se quer usar dica (mais fácil, mas menos pontos)</li>
+        <li>✅ Comece o jogo e clique ou digite letras para chutar</li>
+        <li>✅ Complete a palavra e ganhe pontos no leaderboard on-chain!</li>
+      </ul>
+      <p style={{ marginTop: '10px', fontStyle: 'italic' }}>
+        Os resultados são assinados no backend para garantir que ninguém roube pontos — Web3 de verdade! 🌐
+      </p>
 
-      <div className="leaderboard-section">
-        {renderLeaderboard()}
-      </div>
+      <h2 style={{ marginTop: '30px' }}>🎯 Quantos Pontos Vale Cada Palavra?</h2>
+      <ul style={{ listStyle: 'none', padding: 0, fontSize: '1.1rem' }}>
+        <li>🔹 Até 6 letras → <strong>3 pontos base</strong></li>
+        <li>🔹 Até 9 letras → <strong>4 pontos base</strong></li>
+        <li>🔹 Mais de 9 letras → <strong>5 pontos base</strong></li>
+      </ul>
+
+      <h2 style={{ marginTop: '30px' }}>🚀 Multiplicadores Ativos</h2>
+      <ul style={{ listStyle: 'none', padding: 0, fontSize: '1.1rem' }}>
+        <li>🎯 Sem dica → <strong>2x pontos!</strong></li>
+        <li>⏱️ Resolver rápido (menos de 15s) → <strong>+20% bônus!</strong></li>
+        <li>🧠 Palavra longa (mais de 15 letras) → <strong>+20% bônus!</strong></li>
+      
+      </ul>
+
+      <p style={{ marginTop: '10px', fontStyle: 'italic' }}>
+        Jogue como um verdadeiro caçador de bônus na Monad testnet! 🎮✨
+      </p>
     </div>
+
+    
+
+    </>
   );
+  
 }
 
 export default App;
