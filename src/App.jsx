@@ -31,9 +31,6 @@ function App() {
     en: { start: 'Start Game', restart: 'Restart', chances: 'Chances left', connect: 'Connect Wallet', leaderboard: 'Leaderboard', timeLeft: 'Time Left' }
   };
 
-  useEffect(() => {
-    loadWords(language);
-  }, [language]);
 
   useEffect(() => {
     let timer;
@@ -110,12 +107,6 @@ function App() {
     }
   }, [contract, account]);
 
-  async function loadWords(lang) {
-    const file = lang === 'pt' ? '/words_pt.json' : '/words.json';
-    fetch(file)
-      .then(res => res.json())
-      .then(data => setWords(data));
-  }
 
   async function connectWallet() {
     if (window.ethereum) {
@@ -211,15 +202,27 @@ function App() {
     }
   }
 
-  function loadWord() {
-    const wordObj = words[Math.floor(Math.random() * words.length)];
-    setCurrentWord(wordObj.palavra);
-    setCurrentHint(wordObj.dica);
-    setMaskedWord('_ '.repeat(wordObj.palavra.length));
-    setChances(wordObj.palavra.length <= 6 ? 3 : wordObj.palavra.length <= 9 ? 4 : 5);
-    setUsedLetters([]);
-    setMessage('');
+  const BACKEND_URL = 'https://palavras-production.up.railway.app';
+
+
+
+  async function loadWord() {
+      try {
+          const response = await fetch(`${BACKEND_URL}/get-word?lang=${language}`);
+          const data = await response.json();
+  
+          setCurrentWord(data.palavra);
+          setCurrentHint(data.dica);
+          setMaskedWord('_ '.repeat(data.palavra.length));
+          setChances(data.palavra.length <= 6 ? 3 : data.palavra.length <= 9 ? 4 : 5);
+          setUsedLetters([]);
+          setMessage('');
+      } catch (err) {
+          console.error('Erro ao buscar palavra do backend:', err);
+          alert(language === 'pt' ? 'Erro ao carregar palavra do servidor.' : 'Error loading word from server.');
+      }
   }
+  
 
   async function handleGuess(letter) {
     if (!gameActive || usedLetters.includes(letter) || message) return;
