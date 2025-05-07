@@ -26,10 +26,23 @@ function App() {
   const [timeLeft, setTimeLeft] = useState(60);
   const [currentHint, setCurrentHint] = useState('');
   const [useHint, setUseHint] = useState(true);
+  const [gameMode, setGameMode] = useState('normal');  // 'normal' ou 'hardcore'
+  const [secondHint, setSecondHint] = useState('');
+  const [pendingEnd, setPendingEnd] = useState(null);  // { won: true/false } ou null
+
+
   const translations = {
     pt: { start: 'Começar Jogo', restart: 'Recomeçar', chances: 'Tentativas restantes', connect: 'Conectar Carteira', leaderboard: 'Tabela de Classificação', timeLeft: 'Tempo Restante' },
     en: { start: 'Start Game', restart: 'Restart', chances: 'Chances left', connect: 'Connect Wallet', leaderboard: 'Leaderboard', timeLeft: 'Time Left' }
   };
+
+  useEffect(() => {
+    if (pendingEnd) {
+        console.log("👉 Disparando finalização segura, won:", pendingEnd.won);
+        forceEndGame(pendingEnd.won);
+        setPendingEnd(null);  // ✅ Reset para não duplicar
+    }
+}, [pendingEnd]);
 
 
   useEffect(() => {
@@ -49,14 +62,18 @@ function App() {
           return newTime;
         });
       }, 1000);
-    } else if (gameActive && timeLeft <= 0) {
+    } else if (gameActive && timeLeft <= 0 && currentWord) {
       setMessage(language === 'pt' ? '⏰ Tempo esgotado! Você perdeu!' : '⏰ Time’s up! You lost!');
       setGameActive(false);
-      forceEndGame(false);
+      setPendingEnd({ won: false });  // ✅ NOVO
     }
+  
   
     return () => clearInterval(timer);
   }, [gameActive, timeLeft]);
+  
+
+  
   useEffect(() => {
     function handleKeyPress(event) {
       const key = event.key.toLowerCase();
@@ -73,6 +90,7 @@ function App() {
   
   async function fetchLeaderboard() {
     try {
+        //const response = await fetch('http://localhost:3002/Leaderboard');
         const response = await fetch('https://backend-leaderboard-production.up.railway.app/leaderboard');
         const data = await response.json();
 
@@ -160,8 +178,15 @@ function App() {
       const tx = await contract.startGame({ value: feeInWei });
       await tx.wait();
       loadWord();
+      if (gameMode === 'hardcore') {
+        setTimeLeft(60);
+      } else {
+          setTimeLeft(useHint ? 30 : 45);
+      }
+      
       setGameActive(true);
-      setTimeLeft(useHint ? 30 : 45);
+    
+    
       fetchLeaderboard();
     } catch (err) {
       console.error('Erro ao iniciar o jogo:', err);
@@ -176,8 +201,11 @@ function App() {
       const basePoints = wordLength <= 6 ? 3 : wordLength <= 9 ? 4 : 5;
       const tokenId = 0;
       const hasHint = useHint && currentHint !== '';
-      const completedInSeconds = 60 - timeLeft;
+      const maxTime = gameMode === 'hardcore' ? 60 : (useHint ? 30 : 45);
+      const completedInSeconds = maxTime - timeLeft;
 
+
+      //const response = await fetch('http://localhost:3001/sign-result'
       const response = await fetch('https://backend-assinatura-production.up.railway.app/sign-result', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -189,16 +217,25 @@ function App() {
           basePoints,
           hasHint,
           completedInSeconds,
-          initialTime: useHint ? 30 : 45  // NOVO campo enviado
+          initialTime: gameMode === 'hardcore' ? 60 : (useHint ? 30 : 45),
+          mode: gameMode
+
 
         })
       });
       
 
       const { finalPoints, signature } = await response.json();
+      console.log('👉 FINALIZANDO: won:', won, 'wordLength:', wordLength, 'tokenId:', tokenId, 'finalPoints:', finalPoints);
+
 
       const tx = await contract.endGame(won, wordLength, tokenId, finalPoints, signature);
       await tx.wait();
+      setCurrentWord('');
+      setMaskedWord('');
+      setUsedLetters([]);
+      setCurrentHint('');
+      setSecondHint('');
 
       setGameActive(false);
       setTimeLeft(0);
@@ -215,20 +252,39 @@ function App() {
     }
   }
 
+  //const BACKEND_URL = 'http://localhost:3000';
   const BACKEND_URL = 'https://palavras-production.up.railway.app';
-
-
 
   async function loadWord() {
       try {
-        const response = await fetch(`${BACKEND_URL}/get-word?lang=${language}&wallet=${account}`);
+          const modeQuery = gameMode === 'hardcore' ? '&mode=hardcore' : '';
+          const response = await fetch(`${BACKEND_URL}/get-word?lang=${language}&wallet=${account}${modeQuery}`);
+
 
           const data = await response.json();
-  
+          console.log('👉 Palavra recebida:', data.palavra, '| Dica:', data.dica || data.dica1);
+
+
           setCurrentWord(data.palavra);
-          setCurrentHint(data.dica);
+
+            // Se hardcore: dica1/dica2, se normal: dica
+            if (gameMode === 'hardcore') {
+      
+              setCurrentHint(data.dica1 || '');
+              setSecondHint(data.dica2 || '');
+          } else {
+              setCurrentHint(data.dica || '');
+              setSecondHint('');
+          }
+
           setMaskedWord('_ '.repeat(data.palavra.length));
-          setChances(data.palavra.length <= 6 ? 3 : data.palavra.length <= 9 ? 4 : 5);
+          if (gameMode === 'hardcore') {
+            setChances(7);  // sempre 7 chances fixas no hardcore
+          } else {
+              const baseChances = data.palavra.length <= 6 ? 3 : data.palavra.length <= 9 ? 4 : 5;
+              setChances(baseChances);
+          }
+        
           setUsedLetters([]);
           setMessage('');
       } catch (err) {
@@ -242,24 +298,27 @@ function App() {
     if (!gameActive || usedLetters.includes(letter) || message) return;
     setUsedLetters(prev => [...prev, letter]);
     if (!currentWord.includes(letter)) {
-      setChances(prev => prev - 1);
-      if (chances - 1 <= 0) {
-        setMessage('❌ ' + (language === 'pt' ? 'Você perdeu!' : 'You lost!'));
-        setGameActive(false);
-        setTimeLeft(0);
-        await forceEndGame(false);
-        return;
-      }
+      setChances(prev => {
+        const newChances = prev - 1;
+        if (newChances <= 0) {
+          setMessage('❌ ' + (language === 'pt' ? 'Você perdeu!' : 'You lost!'));
+          setGameActive(false);
+          setPendingEnd({ won: false });  // ✅ NOVO
+        }
+      
+        return newChances;
+      });
       return;
     }
+    
     const updated = maskedWord.split(' ').map((char, i) => (currentWord[i] === letter ? letter : char));
     setMaskedWord(updated.join(' '));
     if (!updated.includes('_')) {
       setMessage('✅ ' + (language === 'pt' ? 'Você venceu!' : 'You won!'));
       setGameActive(false);
-      setTimeLeft(0);
-      await forceEndGame(true);
+      setPendingEnd({ won: true });  // ✅ NOVO
     }
+  
   }
 
   function renderLetters() {
@@ -277,12 +336,14 @@ function App() {
   }
 
   function renderChances() {
-    const total = currentWord.length <= 6 ? 3 : currentWord.length <= 9 ? 4 : 5;
+    const total = gameMode === 'hardcore' ? 7 : (currentWord.length <= 6 ? 3 : currentWord.length <= 9 ? 4 : 5);
+
     return (
       <p>
-        {translations[language].chances}: {'🔴'.repeat(chances)}{'⚪'.repeat(total - chances)}
+        {translations[language].chances}: {'🔴'.repeat(chances)}{'⚪'.repeat(Math.max(0, total - chances))}
       </p>
     );
+
   }
 
   function renderTimer() {
@@ -361,6 +422,31 @@ function App() {
             <button className="action-button" onClick={() => setLanguage('pt')}>Português</button>
             <button className="action-button" onClick={() => setLanguage('en')}>English</button>
           </div>
+          <div style={{ marginTop: '10px' }}>
+          <label>
+            <input
+              type="radio"
+              name="gameMode"
+              value="normal"
+              checked={gameMode === 'normal'}
+              onChange={() => setGameMode('normal')}
+              disabled={gameActive}
+            />
+            {language === 'pt' ? ' Modo Normal' : ' Normal Mode'}
+          </label>
+          <label style={{ marginLeft: '15px' }}>
+            <input
+              type="radio"
+              name="gameMode"
+              value="hardcore"
+              checked={gameMode === 'hardcore'}
+              onChange={() => setGameMode('hardcore')}
+              disabled={gameActive}
+            />
+            {language === 'pt' ? ' Modo Hardcore' : ' Hardcore Mode'}
+          </label>
+        </div>
+
   
           {account && (
             <>
@@ -377,15 +463,34 @@ function App() {
               </div>
   
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '10px' }}>
-                <img src="/forca.png" alt="Forca" style={{ width: '170px', marginRight: '20px' }} />
+                <img src="/forca.png" alt="Forca" style={{ width: '130px', marginRight: '20px' }} />
                 <button className="action-button" onClick={startGame}>
                   {translations[language].start}
                 </button>
-                <img src="/forca.png" alt="Forca" style={{ width: '170px', marginLeft: '20px' }} />
+                <img src="/forca.png" alt="Forca" style={{ width: '130px', marginLeft: '20px' }} />
               </div>
-              <p className="hint">
-                <strong>Dica:</strong> {useHint ? currentHint : (language === 'pt' ? 'Sem dica selecionada' : 'No hint selected')}
-              </p>
+              {gameActive && useHint && (
+              <div className="hint">
+                {gameMode === 'hardcore' ? (
+                  <>
+                    <p><strong>Dica 1:</strong> {currentHint.split(' | ')[0]}</p>
+                    {secondHint && currentHint.includes(secondHint) && (
+                      <p><strong>Dica 2:</strong> {secondHint}</p>
+                    )}
+                  </>
+                ) : (
+                  <p><strong>{language === 'pt' ? 'Dica:' : 'Hint:'}</strong> {currentHint}</p>
+                )}
+              </div>
+            )}
+
+            {/* Se quiser continuar mostrando "Sem dica selecionada" mesmo depois do jogo: */}
+            {gameActive && !useHint && (
+              <p>{language === 'pt' ? 'Sem dica selecionada' : 'No hint selected'}</p>
+            )}
+
+
+
   
               {gameActive && (
                 <div style={{ marginTop: '10px' }}>
