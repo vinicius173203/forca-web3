@@ -38,39 +38,41 @@ function App() {
 
   useEffect(() => {
     if (pendingEnd) {
-        console.log("👉 Disparando finalização segura, won:", pendingEnd.won);
-        forceEndGame(pendingEnd.won);
-        setPendingEnd(null);  // ✅ Reset para não duplicar
+      
+      forceEndGame(pendingEnd.won);
+      setPendingEnd(null);
     }
-}, [pendingEnd]);
+  }, [pendingEnd]);
+  
 
 
-  useEffect(() => {
-    let timer;
-    const tickSound = new Audio('/sounds/tick.wav');
-    const warningSound = new Audio('/sounds/warning.wav');
+useEffect(() => {
+  let timer;
+  const tickSound = new Audio('/sounds/tick.wav');
+  const warningSound = new Audio('/sounds/warning.wav');
+
+  if (gameActive && timeLeft > 0) {
+    timer = setInterval(() => {
+      setTimeLeft(prev => {
+        const newTime = prev - 1;
+        if (newTime <= 10) {
+          warningSound.play();
+        } else {
+          tickSound.play();
+        }
+        return newTime;
+      });
+    }, 1000);
+  } else if (gameActive && timeLeft <= 0 && currentWord && !pendingEnd) {
+    setMessage(language === 'pt' ? '⏰ Tempo esgotado! Você perdeu!' : '⏰ Time’s up! You lost!');
+    setGameActive(false);
+    setPendingEnd({ won: false }); // ✅ Só se ainda não estava pendente
+  }
   
-    if (gameActive && timeLeft > 0) {
-      timer = setInterval(() => {
-        setTimeLeft(prev => {
-          const newTime = prev - 1;
-          if (newTime <= 10) {
-            warningSound.play();
-          } else {
-            tickSound.play();
-          }
-          return newTime;
-        });
-      }, 1000);
-    } else if (gameActive && timeLeft <= 0 && currentWord) {
-      setMessage(language === 'pt' ? '⏰ Tempo esgotado! Você perdeu!' : '⏰ Time’s up! You lost!');
-      setGameActive(false);
-      setPendingEnd({ won: false });  // ✅ NOVO
-    }
-  
-  
-    return () => clearInterval(timer);
-  }, [gameActive, timeLeft]);
+
+  return () => clearInterval(timer);
+}, [gameActive, timeLeft]);
+
   
 
   
@@ -226,7 +228,7 @@ function App() {
       
 
       const { finalPoints, signature } = await response.json();
-      console.log('👉 FINALIZANDO: won:', won, 'wordLength:', wordLength, 'tokenId:', tokenId, 'finalPoints:', finalPoints);
+     
 
 
       const tx = await contract.endGame(won, wordLength, tokenId, finalPoints, signature);
@@ -262,7 +264,7 @@ function App() {
 
 
           const data = await response.json();
-          console.log('👉 Palavra recebida:', data.palavra, '| Dica:', data.dica || data.dica1);
+          
 
 
           setCurrentWord(data.palavra);
@@ -473,16 +475,24 @@ function App() {
               <div className="hint">
                 {gameMode === 'hardcore' ? (
                   <>
-                    <p><strong>Dica 1:</strong> {currentHint.split(' | ')[0]}</p>
-                    {secondHint && currentHint.includes(secondHint) && (
-                      <p><strong>Dica 2:</strong> {secondHint}</p>
+                    <p>
+                      <strong>{language === 'pt' ? 'Dica 1:' : 'Hint 1:'}</strong> {currentHint}
+                    </p>
+                    {timeLeft <= 30 && secondHint && (
+                      <p>
+                        <strong>{language === 'pt' ? 'Dica 2:' : 'Hint 2:'}</strong> {secondHint}
+                      </p>
                     )}
                   </>
                 ) : (
-                  <p><strong>{language === 'pt' ? 'Dica:' : 'Hint:'}</strong> {currentHint}</p>
+                  <p>
+                    <strong>{language === 'pt' ? 'Dica:' : 'Hint:'}</strong> {currentHint}
+                  </p>
                 )}
               </div>
             )}
+
+
 
             {/* Se quiser continuar mostrando "Sem dica selecionada" mesmo depois do jogo: */}
             {gameActive && !useHint && (
