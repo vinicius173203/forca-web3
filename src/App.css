@@ -1,71 +1,109 @@
 /* Import Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Poppins:wght@400;600&display=swap');
 
 body {
-  background: #6a0dad;  /* roxo fixo */
-  color: #ffffff;
-  font-family: 'Orbitron', sans-serif;
+  background: #1a1d3e;
+  color: #e0e0e0;
+  font-family: 'Poppins', sans-serif;
   text-align: center;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  /* Removido overflow-y: hidden pra permitir rolagem vertical */
 }
 
-  
+h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 2rem;
+  text-shadow: 0 0 8px #00f7ff, 0 0 16px #00f7ff66;
+  color: #ffffff;
+  margin: 5px 0;
+}
 
-  
-  h1 {
-    font-size: 3rem;
-    text-shadow: 0 0 10px #d291ff, 0 0 20px #d291ff;
-  }
-  
-  button {
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid #d291ff;
-    color: #d291ff;
-    padding: 10px 20px;
-    margin: 5px;
-    border-radius: 12px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  button:hover {
-    background: #d291ff;
-    color: #2e003e;
-    box-shadow: 0 0 20px #d291ff;
-    transform: scale(1.1);
-  }
-.letter-button {
-  width: 40px;
-  height: 40px;
+button, .how-to-play-button, .back-button {
+  background: linear-gradient(45deg, #00f7ff22, #ff4da622);
+  border: 1px solid #00f7ff;
+  color: #e0e0e0;
+  padding: 8px 16px;
   margin: 3px;
-  font-size: 1.2rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none;
+  display: inline-block;
+}
+
+button:hover, .how-to-play-button:hover, .back-button:hover {
+  background: linear-gradient(45deg, #00f7ff, #ff4da6);
+  color: #1a1d3e;
+  box-shadow: 0 0 15px #00f7ff80;
+  transform: translateY(-2px);
+}
+
+.letter-button {
+  width: clamp(40px, 5vw, 70px);
+  height: clamp(40px, 5vw, 70px);
+  margin: clamp(3px, 0.5vw, 6px);
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  font-weight: bold;
+  background: #2a2a3b;
+  color: #00f7ff;
+  border: 2px solid #00f7ff;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.letter-button:hover:not(:disabled) {
+  background: #00f7ff;
+  color: #1a1d3e;
+  transform: scale(1.05);
+  box-shadow: 0 0 12px #00f7ff80;
+}
+
+.letter-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 .masked-word {
-  font-size: 2rem;
-  letter-spacing: 10px;
-  margin: 20px 0;
+  font-size: 1.5rem;
+  letter-spacing: 6px;
+  margin: 5px 0;
+  color: #ff4da6;
 }
 
 .chances {
-  font-size: 1.5rem;
-  margin: 10px 0;
+  font-size: 1.2rem;
+  margin: 3px 0;
+  color: #e0e0e0;
 }
 
 .message {
-  font-size: 1.8rem;
-  margin: 15px 0;
-  text-shadow: 0 0 10px #ff4081, 0 0 20px #ff4081;
+  font-size: 1.3rem;
+  margin: 5px 0;
+  text-shadow: 0 0 10px #ff4da6, 0 0 20px #ff4da666;
+}
+
+.tokens-won {
+  font-size: 1rem;
+  color: #00f7ff;
+  text-shadow: 0 0 8px #00f7ff66;
+  margin-top: 3px;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: bold;
 }
 
 .leaderboard-container {
-  width: 80%;
-  margin: 30px auto;
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  width: 100%;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
   border-radius: 15px;
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+  box-shadow: 0 0 15px rgba(0, 247, 255, 0.2);
 }
 
 .leaderboard-table {
@@ -75,231 +113,370 @@ body {
 
 .leaderboard-table th,
 .leaderboard-table td {
-  padding: 10px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 6px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  color: #e0e0e0;
+  font-size: 0.8rem;
 }
 
 .account-info {
-  font-size: 1.1rem;
-  margin: 10px 0;
+  font-size: 0.9rem;
+  margin: 3px 0;
+  color: #00f7ff;
 }
 
 .hangman-image {
-  width: 80px;
-  margin-bottom: 10px;
+  width: 60px;
+  margin-bottom: 3px;
 }
 
 .action-button {
-  margin: 5px;
+  margin: 3px;
+  padding: 6px 12px;
+  font-size: 0.8rem;
 }
 
 .timer {
-    font-size: 2rem;
-    margin-top: 20px;
-    padding: 10px 20px;
-    background: rgba(210, 145, 255, 0.2);
-    border: 2px solid #d291ff;
-    border-radius: 15px;
-    display: inline-block;
-    box-shadow: 0 0 20px #d291ff;
-    animation: pulse 1s infinite alternate;
-  }
-
-.main-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    width: 90%;
-    max-width: 1350px;
-    margin: 40px auto;
-  }
-  
-  .game-section {
-    flex: 2;
-    margin-right: 20px;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
-  }
-  
-  .leaderboard-section {
-    flex: 1;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 20px;
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
-  }
-
-  .letters-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  max-width: 600px;
-  margin: 20px auto;
+  font-size: 1.5rem;
+  margin-top: 5px;
+  padding: 6px 12px;
+  background: rgba(0, 247, 255, 0.15);
+  border: 2px solid #00f7ff;
+  border-radius: 15px;
+  display: inline-block;
+  box-shadow: 0 0 15px #00f7ff80;
+  animation: pulse 1.2s infinite alternate;
+  color: #e0e0e0;
 }
 
-.letter-button {
-  width: 60px;
-  height: 60px;
-  margin: 8px;
-  font-size: 1.8rem;
-  font-weight: bold;
-  background: #ffffff;
-  color: #6a0dad;
-  border: 2px solid #6a0dad;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-}
-
-.letter-button:hover:not(:disabled) {
-  background: #6a0dad;
-  color: #ffffff;
-  transform: scale(1.1);
-  box-shadow: 0 6px 12px rgba(0,0,0,0.3);
-}
-
-.letter-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-
-.hint {
-  font-size: 1.2em;
-  margin: 10px 0;
-  color: #FFD700; /* ou outro tom chamativo */
-}
-
-
-.wallet-popup-overlay {
+.modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
-  justify-content: center;
   align-items: center;
-  z-index: 1000;
+  justify-content: center;
+  z-index: 999;
 }
 
-.wallet-popup {
-  background: #1a1a1a;
-  padding: 20px;
-  border-radius: 10px;
-  width: 300px;
-  text-align: center;
+.modal-content {
+  background-color: #2a2a3b;
+  color: #e0e0e0;
+  border-radius: 12px;
+  padding: 15px;
+  width: 280px;
   position: relative;
-  color: white;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  box-shadow: 0 0 15px rgba(0, 247, 255, 0.3);
 }
 
-.wallet-popup h3 {
-  margin-bottom: 20px;
-  font-size: 1.2rem;
-  font-weight: bold;
-}
-
-.wallet-option {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: 10px;
-  margin: 5px 0;
-  background: #2a2a2a;
-  border: none;
-  border-radius: 5px;
-  color: white;
+.modal-content h2 {
+  font-family: 'Orbitron', sans-serif;
+  color: #00f7ff;
+  margin-bottom: 10px;
   font-size: 1rem;
-  cursor: pointer;
-  transition: background 0.2s;
 }
 
-.wallet-option:hover {
-  background: #3a3a3a;
-}
-
-.recent-tag {
-  background: #444;
-  padding: 2px 8px;
-  border-radius: 10px;
-  font-size: 0.8rem;
-  color: #ccc;
-}
-
-.arrow-right {
-  margin-left: 10px;
-  color: #888;
-}
-
-.privy-footer {
-  margin-top: 15px;
+.modal-content button {
   display: flex;
-  justify-content: center;
   align-items: center;
-  font-size: 0.9rem;
-  color: #888;
+  justify-content: center;
+  gap: 8px;
+  margin: 6px 0;
+  width: 100%;
+  padding: 6px;
+  background: linear-gradient(45deg, #00f7ff, #ff4da6);
+  border: none;
+  color: #1a1d3e;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.modal-content button:hover {
+  background: linear-gradient(45deg, #ff4da6, #00f7ff);
+  box-shadow: 0 0 10px #00f7ff80;
+}
+
+.modal-content img {
+  width: 18px;
+  height: 18px;
 }
 
 .close-button {
-  position: absolute;
-  top: 10px;
-  right: 10px;
   background: none;
   border: none;
-  color: #888;
   font-size: 1rem;
+  font-weight: bold;
+  color: #e0e0e0;
   cursor: pointer;
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  transition: color 0.2s;
 }
 
 .close-button:hover {
-  color: white;
+  color: #ff4da6;
+}
+
+.main-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 98%;
+  max-width: 1400px;
+  margin: 10px auto;
+  /* Ajustado pra ser mais flexível, sem forçar altura fixa */
+  min-height: auto;
+}
+
+.sidebar-section {
+  flex: 0 0 120px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0, 247, 255, 0.2);
+  margin-right: 10px;
+  margin-left: 5px;
+}
+
+.game-and-leaderboard {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.game-section {
+  flex: 3;
+  margin-right: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 10px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0, 247, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.leaderboard-section {
+  flex: 1;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 10px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0, 247, 255, 0.2);
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+.letters-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: clamp(500px, 55vw, 800px);
+  margin: 5px auto;
+  flex-shrink: 0;
+  /* Adicionado pra limitar altura e permitir rolagem interna se necessário */
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.hint {
+  font-size: 1rem;
+  margin: 3px 0;
+  color: #ff4da6;
+}
+
+.points-info {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.2rem;
+  color: #ff4da6;
+  margin: 5px 0;
+  text-shadow: 0 0 8px #ff4da666;
+}
+
+/* Estilos pra página Como Jogar */
+.how-to-play-container {
+  width: 100%;
+  padding: 10px;
+}
+
+.instructions-container {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 0 15px rgba(0, 247, 255, 0.2);
+  margin: 10px auto;
+  width: 80%;
+  max-width: 800px;
+  text-align: left;
+}
+
+.instructions-container h2 {
+  font-family: 'Orbitron', sans-serif;
+  color: #00f7ff;
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+  text-align: center;
+}
+
+.section {
+  margin-bottom: 15px;
+}
+
+.section h3 {
+  font-family: 'Orbitron', sans-serif;
+  color: #ff4da6;
+  font-size: 1rem;
+  margin-bottom: 5px;
+  text-shadow: 0 0 5px #ff4da666;
+}
+
+.section p {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  margin: 2px 0;
+}
+
+.section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.section li {
+  margin: 5px 0;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.section li::before {
+  content: "✔";
+  color: #ff4da6;
+  margin-right: 6px;
 }
 
 @media (max-width: 768px) {
   .main-container {
     flex-direction: column;
     align-items: center;
+    margin: 5px auto;
+    min-height: auto; /* Ajustado pra ser mais flexível */
   }
 
-  .game-section, .leaderboard-section {
+  .sidebar-section {
     width: 100%;
     margin-right: 0;
-    margin-bottom: 20px;
+    margin-left: 0;
+    margin-bottom: 5px;
+    padding: 8px;
+    flex: 0 0 auto;
+  }
+
+  .game-and-leaderboard {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .game-section,
+  .leaderboard-section {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 5px;
+    padding: 8px;
   }
 
   .letter-button {
-    width: 40px;
-    height: 40px;
-    font-size: 1.2rem;
-    margin: 5px;
+    width: clamp(35px, 8vw, 50px);
+    height: clamp(35px, 8vw, 50px);
+    font-size: clamp(1rem, 3vw, 1.4rem);
+    margin: clamp(2px, 0.5vw, 4px);
+  }
+
+  .letters-container {
+    max-width: clamp(300px, 80vw, 450px);
+    margin: 3px auto;
+    max-height: 150px; /* Ajustado pra mobile */
+    overflow-y: auto;
   }
 
   .masked-word {
-    font-size: 1.5rem;
-    letter-spacing: 5px;
+    font-size: 1.3rem;
+    letter-spacing: 4px;
+    margin: 3px 0;
+  }
+
+  .chances {
+    font-size: 1rem;
+    margin: 2px 0;
+  }
+
+  .message {
+    font-size: 1.1rem;
+    margin: 3px 0;
+  }
+
+  .tokens-won {
+    font-size: 0.9rem;
+    margin-top: 2px;
   }
 
   .timer {
-    font-size: 1.5rem;
-    padding: 8px 16px;
+    font-size: 1.3rem;
+    padding: 5px 10px;
+    margin-top: 3px;
   }
 
   h1 {
-    font-size: 2rem;
+    font-size: 1.5rem;
   }
 
   .leaderboard-container {
     overflow-x: auto;
+    padding: 8px;
+  }
+
+  .leaderboard-section {
+    max-height: 300px;
   }
 
   .leaderboard-table {
-    width: 600px; /* fixa largura para poder rolar horizontalmente */
+    width: 450px;
+  }
+
+  .points-info {
+    font-size: 1rem;
+    margin: 3px 0;
+  }
+
+  .instructions-container {
+    width: 90%;
+    padding: 10px;
+    margin: 5px auto;
+  }
+
+  .instructions-container h2 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+  }
+
+  .section h3 {
+    font-size: 0.9rem;
+    margin-bottom: 3px;
+  }
+
+  .section p, .section li {
+    font-size: 0.7rem;
+    line-height: 1.3;
+  }
+
+  .section li {
+    margin: 3px 0;
   }
 }
-
