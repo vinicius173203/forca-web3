@@ -9,7 +9,6 @@ const BACKEND_URL = 'https://backend-leaderboard-production.up.railway.app';
 const BACKEND_UR = 'https://palavras-production.up.railway.app';
 const contractABI = rawContract.abi;
 
-
 export const GlobalContext = createContext();
 
 export const GlobalProvider = ({ children }) => {
@@ -23,7 +22,8 @@ export const GlobalProvider = ({ children }) => {
   const [isOwner, setIsOwner] = useState(false);
   const [showWalletModal, setShowWalletModal] = useState(false);
   const [currentChainId, setCurrentChainId] = useState(null);
-  const [networkPromptRejected, setNetworkPromptRejected] = useState(false); // Mantido por compatibilidade, mas não será usado
+  const [networkPromptRejected, setNetworkPromptRejected] = useState(false);
+  const [isLeaderboardLoading, setIsLeaderboardLoading] = useState(false); // Novo estado pra controle de carregamento
 
   // Definir translations dentro do GlobalProvider
   const translations = {
@@ -42,6 +42,8 @@ export const GlobalProvider = ({ children }) => {
       walletConnected: 'Carteira conectada com sucesso!',
       switchToMonad: 'Por favor, mude para a Monad Testnet para continuar.',
       wrongNetwork: 'Rede incorreta! Por favor, mude para a Monad Testnet.',
+      leaderboardLoading: 'Carregando tabela de classificação...',
+      leaderboardError: 'Erro ao carregar a tabela de classificação.',
     },
     en: {
       start: 'Start Game',
@@ -58,6 +60,8 @@ export const GlobalProvider = ({ children }) => {
       walletConnected: 'Wallet connected successfully!',
       switchToMonad: 'Please switch to Monad Testnet to continue.',
       wrongNetwork: 'Wrong network! Please switch to Monad Testnet.',
+      leaderboardLoading: 'Loading leaderboard...',
+      leaderboardError: 'Error loading leaderboard.',
     },
   };
 
@@ -68,6 +72,10 @@ export const GlobalProvider = ({ children }) => {
       setCurrentChainId(chainId);
       const monadTestnetChainId = '0x27cf'; // Chain ID 10143 em hexadecimal
 
+      if (chainId !== monadTestnetChainId) {
+        alert(translations[language].switchToMonad);
+        return false;
+      }
 
       const provider = new ethers.BrowserProvider(ethProvider);
       setProvider(provider);
@@ -143,6 +151,8 @@ export const GlobalProvider = ({ children }) => {
       setShowWalletModal(false);
       setCurrentChainId(null);
       setNetworkPromptRejected(false);
+      setLeaderboard([]); // Limpa o leaderboard ao desconectar
+      setIsLeaderboardLoading(false);
     } catch (err) {
       console.error('Erro ao desconectar carteira:', err);
     }
@@ -174,6 +184,8 @@ export const GlobalProvider = ({ children }) => {
           setProvider(null);
           setCurrentChainId(null);
           setNetworkPromptRejected(false);
+          setLeaderboard([]);
+          setIsLeaderboardLoading(false);
         }
       });
 
@@ -190,6 +202,8 @@ export const GlobalProvider = ({ children }) => {
           setSigner(null);
           setProvider(null);
           setIsConnected(false);
+          setLeaderboard([]);
+          setIsLeaderboardLoading(false);
           alert(translations[language].wrongNetwork);
         }
       });
@@ -216,7 +230,10 @@ export const GlobalProvider = ({ children }) => {
   }
 
   async function fetchLeaderboard() {
+    if (isLeaderboardLoading) return; // Evita chamadas simultâneas
+    setIsLeaderboardLoading(true);
     try {
+      console.log('Iniciando busca do leaderboard...');
       const data = await fetchWithBackoff(`${BACKEND_URL}/leaderboard`);
       const leaderboardData = data.map((item) => ({
         address: item.address,
@@ -226,6 +243,9 @@ export const GlobalProvider = ({ children }) => {
       console.log('Leaderboard carregado com sucesso:', leaderboardData);
     } catch (err) {
       console.error('Erro ao buscar leaderboard do backend:', err);
+      alert(translations[language].leaderboardError);
+    } finally {
+      setIsLeaderboardLoading(false);
     }
   }
 
@@ -239,12 +259,13 @@ export const GlobalProvider = ({ children }) => {
     }
   }
 
+  // Carrega o leaderboard e verifica o owner apenas uma vez quando o contract é inicializado
   useEffect(() => {
-    if (contract) {
+    if (contract && !isLeaderboardLoading) {
       fetchLeaderboard();
       checkOwner();
     }
-  }, [contract, account]);
+  }, [contract]); // Removido 'account' das dependências pra evitar loops
 
   const ProgressBar = ({ timeLeft, maxTime }) => {
     const percentage = (timeLeft / maxTime) * 100;
@@ -279,9 +300,14 @@ export const GlobalProvider = ({ children }) => {
   };
 
   const renderLeaderboard = () => {
+    if (isLeaderboardLoading) {
+      return <p>{translations[language].leaderboardLoading}</p>;
+    }
+
     if (leaderboard.length === 0) {
       return <p>{translations[language].pt ? 'Nenhum jogador no leaderboard ainda.' : 'No players in the leaderboard yet.'}</p>;
     }
+
     return (
       <div style={{ marginTop: '20px' }}>
         <h2>{translations[language].leaderboard}</h2>
