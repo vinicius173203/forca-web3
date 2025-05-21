@@ -276,10 +276,10 @@ const NormalHardcore = ({ gameMode }) => {
   const renderTimer = () => {
     if (!gameActive) return null;
     return (
-      <p>
+      <div>
         {translations[language].timeLeft}: {timeLeft} {translations[language].pt ? 'segundos' : 'seconds'}
         <ProgressBar timeLeft={timeLeft} maxTime={gameMode === 'hardcore' ? 60 : hintLocked ? 30 : 45} />
-      </p>
+      </div>
     );
   };
 

@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, useContext } from 'react';
 import { ethers } from 'ethers';
 import { motion } from 'framer-motion';
@@ -323,6 +322,8 @@ const PvP = ({ gameMode }) => {
   async function handleGuessPvp(letter) {
     if (!isMyTurn || !gameActive || !currentMatchId || !pvpRedisMatchId) return;
     try {
+      // Adiciona a letra às usadas
+      setUsedLetters((prev) => [...prev, letter]);
       const response = await fetch(`${BACKEND_URL}/pvp/guess`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -334,6 +335,8 @@ const PvP = ({ gameMode }) => {
       });
       const data = await response.json();
       if (data.error) {
+        // Remove a letra se der erro
+        setUsedLetters((prev) => prev.filter((l) => l !== letter));
         alert(data.error);
         return;
       }
@@ -357,6 +360,7 @@ const PvP = ({ gameMode }) => {
       }
     } catch (err) {
       console.error('Erro ao chutar letra no PvP:', err);
+      setUsedLetters((prev) => prev.filter((l) => l !== letter)); // Remove a letra se der erro
       alert('Erro ao chutar letra: ' + err.message);
     }
   }
@@ -407,7 +411,7 @@ const PvP = ({ gameMode }) => {
     return alphabet.map((letter) => (
       <button
         key={letter}
-        className="letter-button"
+        className={`letter-button ${usedLetters.includes(letter) ? 'used' : ''}`}
         onClick={() => handleGuessPvp(letter)}
         disabled={usedLetters.includes(letter) || message || !gameActive || !isMyTurn}
       >
@@ -456,11 +460,21 @@ const PvP = ({ gameMode }) => {
 
   return (
     <div className="game-section">
+      <div style={{ marginTop: '10px' }}>
+            <label>
+              {translations[language].pt ? 'Em Breve' : 'Em Breve'}
+            </label>
+          </div>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '10px' }}>
+            <img src="/forca.png" alt="Forca" style={{ width: '130px', marginRight: '20px' }} />
+            <img src="/forca.png" alt="Forca" style={{ width: '130px', marginLeft: '20px' }} />
+      </div>
+      
       {account && (
         <>
           {!gameActive && !waitingForPvP && !currentMatchId && (
-            <button className="action-button" onClick={handlePvPStart}>
-              {translations[language].pt ? 'Iniciar PvP' : 'Start PvP'}
+            <button className="action-button" disabled={handlePvPStart}>
+              {translations[language].pt ? 'Começar Jogo' : 'Começar Jogo'}
             </button>
           )}
           {waitingForPvP && (
@@ -481,51 +495,52 @@ const PvP = ({ gameMode }) => {
               {translations[language].pt ? 'Confirmar e Pagar' : 'Confirm and Pay'}
             </button>
           )}
-          {(gameActive || matchState.countdown > 0) && (
-            <div style={{ marginTop: '10px' }}>
-              {matchState.countdown > 0 ? (
-                <p>
-                  {translations[language].pt
-                    ? `Iniciando em ${matchState.countdown} segundos`
-                    : `Starting in ${matchState.countdown} seconds`}
-                </p>
-              ) : (
-                <>
-                  <p className="masked-word">{maskedWord}</p>
-                  <p
-                    style={{
-                      fontWeight: 'bold',
-                      color: matchState.currentTurn.toLowerCase() === account.toLowerCase() ? 'lime' : 'orange',
-                    }}
-                  >
-                    {matchState.currentTurn.toLowerCase() === account.toLowerCase()
-                      ? translations[language].pt
-                        ? 'É sua vez!'
-                        : 'Your turn!'
-                      : translations[language].pt
-                      ? 'Aguardando oponente...'
-                      : 'Waiting opponent...'}
-                  </p>
-                  {renderChances()}
-                  {renderTimer()}
-                  <div style={{ margin: '10px' }}>{renderLetters()}</div>
+          <div style={{ marginTop: '10px' }}>
+            {/* Sempre renderizar os botões das letras, mas desabilitar até que o jogo comece */}
+            <div style={{ margin: '10px' }}>{renderLetters()}</div>
+
+            {(gameActive || matchState.countdown > 0) && (
+              <>
+                {matchState.countdown > 0 ? (
                   <p>
-                    {translations[language].pt ? 'Chances do adversário:' : 'Opponent chances:'}{' '}
-                    {isPlayer1 ? matchState.player2Chances : matchState.player1Chances}
+                    {translations[language].pt
+                      ? `Iniciando em ${matchState.countdown} segundos`
+                      : `Starting in ${matchState.countdown} seconds`}
                   </p>
-                  {matchState.winner && (
-                    <p style={{ fontWeight: 'bold', color: 'gold' }}>
-                      {translations[language].pt ? 'Vencedor: ' : 'Winner: '}
-                      {matchState.winner.toLowerCase() === account.toLowerCase() ? 'Você' : 'Adversário'}
+                ) : (
+                  <>
+                    <p className="masked-word">{maskedWord}</p>
+                    <p
+                      style={{
+                        fontWeight: 'bold',
+                        color: matchState.currentTurn.toLowerCase() === account.toLowerCase() ? 'lime' : 'orange',
+                      }}
+                    >
+                      {matchState.currentTurn.toLowerCase() === account.toLowerCase()
+                        ? translations[language].pt
+                          ? 'É sua vez!'
+                          : 'Your turn!'
+                        : translations[language].pt
+                        ? 'Aguardando oponente...'
+                        : 'Waiting opponent...'}
                     </p>
-                  )}
-                </>
-              )}
-            </div>
-          )}
-          <button className="action-button" onClick={() => testPvpMatches(32)}>
-            Test pvpMatches(32)
-          </button>
+                    {renderChances()}
+                    {renderTimer()}
+                    <p>
+                      {translations[language].pt ? 'Chances do adversário:' : 'Opponent chances:'}{' '}
+                      {isPlayer1 ? matchState.player2Chances : matchState.player1Chances}
+                    </p>
+                    {matchState.winner && (
+                      <p style={{ fontWeight: 'bold', color: 'gold' }}>
+                        {translations[language].pt ? 'Vencedor: ' : 'Winner: '}
+                        {matchState.winner.toLowerCase() === account.toLowerCase() ? 'Você' : 'Adversário'}
+                      </p>
+                    )}
+                  </>
+                )}
+              </>
+            )}
+          </div>
           <p className="message">{renderMessage(message)}</p>
         </>
       )}
@@ -533,4 +548,4 @@ const PvP = ({ gameMode }) => {
   );
 };
 
-export default PvP;
+export default PvP; 

@@ -362,6 +362,79 @@ button:hover, .how-to-play-button:hover, .back-button:hover {
   margin-right: 6px;
 }
 
+/* Estilos pra página de como jogar */
+.how-to-play-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  background-color: #f0f2f5; /* Fundo suave pra página inteira */
+  color: #333; /* Texto escuro pra contraste geral */
+}
+
+.instructions-container {
+  margin-top: 20px;
+}
+
+.section {
+  margin-bottom: 30px;
+}
+
+.mode-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.mode-item {
+  background-color: #d9e6f2; /* Fundo cinza-azulado suave, melhor contraste */
+  border: 2px solid #007bff;
+  border-radius: 10px;
+  padding: 15px;
+  flex: 1 1 calc(50% - 20px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Sombra mais pronunciada */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mode-item:hover {
+  transform: translateY(-3px); /* Efeito de elevação ao passar o mouse */
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.mode-item h4 {
+  color: #0056b3; /* Azul escuro pro título, mais contraste */
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+}
+
+.mode-item p {
+  margin-bottom: 10px;
+  color: #1a2526; /* Texto mais escuro pra melhor legibilidade */
+}
+
+.mode-item ul {
+  padding-left: 20px;
+}
+
+.mode-item li {
+  color: #1a2526; /* Texto das listas mais escuro */
+}
+
+.back-button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.2s ease;
+}
+
+.back-button:hover {
+  background-color: #0056b3;
+}
+
 @media (max-width: 768px) {
   .main-container {
     flex-direction: column;
