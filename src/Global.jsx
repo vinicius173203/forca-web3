@@ -70,10 +70,6 @@ export const GlobalProvider = ({ children }) => {
       setCurrentChainId(chainId);
       const monadTestnetChainId = '0x27cf'; // Chain ID 10143 em hexadecimal
 
-      if (chainId !== monadTestnetChainId) {
-        alert(translations[language].switchToMonad);
-        return false; // Não inicializa o contrato se a rede estiver errada
-      }
 
       const provider = new ethers.BrowserProvider(ethProvider);
       setProvider(provider);
