@@ -18,6 +18,7 @@ const AppContent = () => {
     connectWallet,
     renderLeaderboard,
     translations,
+    disconnectWallet,
   } = useContext(GlobalContext);
 
   const [gameMode, setGameMode] = useState('normal');
@@ -42,26 +43,8 @@ const AppContent = () => {
                   <>
                     <p>👤 {account.slice(0, 6)}...{account.slice(-4)}</p>
                     <button
-                      className="action-button"
-                      onClick={async () => {
-                        try {
-                          setAccount('');
-                          setIsConnected(false);
-                          setContract(null);
-                          setSigner(null);
-                          setProvider(null);
-                          if (window.ethereum) {
-                            await window.ethereum.request({
-                              method: 'wallet_revokePermissions',
-                              params: [{ eth_accounts: {} }],
-                            });
-                          }
-                          localStorage.removeItem('walletConnected');
-                        } catch (err) {
-                          console.error('Erro ao desconectar:', err);
-                          alert('Erro ao desconectar a carteira.');
-                        }
-                      }}
+                      className="action-button" 
+                      onClick={disconnectWallet}
                     >
                       {translations[language].pt ? 'Desconectar' : 'Disconnect'}
                     </button>
