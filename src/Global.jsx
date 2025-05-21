@@ -4,13 +4,11 @@ import { motion } from 'framer-motion';
 import rawContract from './ForcaGame.json';
 
 // Definir as variáveis de ambiente com fallback
-const contractAddress = import.meta.env.VITE_CONTRACT_ADDRESS || '0x88C6bF0246f2A48456F0f384BAe1cDF1C85834ef';
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'https://backend-leaderboard-production.up.railway.app';
-const BACKEND_UR = import.meta.env.VITE_BACKEND_UR || 'https://palavras-production.up.railway.app';
+const contractAddress = '0x88C6bF0246f2A48456F0f384BAe1cDF1C85834ef';
+const BACKEND_URL = 'https://backend-leaderboard-production.up.railway.app';
+const BACKEND_UR = 'https://palavras-production.up.railway.app';
 const contractABI = rawContract.abi;
 
-// Debug das variáveis
-console.log({ contractAddress, BACKEND_URL, BACKEND_UR });
 
 export const GlobalContext = createContext();
 
