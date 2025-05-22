@@ -21,9 +21,7 @@ export const GlobalProvider = ({ children }) => {
   const [leaderboard, setLeaderboard] = useState([]);
   const [isOwner, setIsOwner] = useState(false);
   const [showWalletModal, setShowWalletModal] = useState(false);
-  const [currentChainId, setCurrentChainId] = useState(null);
-  const [networkPromptRejected, setNetworkPromptRejected] = useState(false);
-  const [isLeaderboardLoading, setIsLeaderboardLoading] = useState(false); // Novo estado pra controle de carregamento
+  const [isLeaderboardLoading, setIsLeaderboardLoading] = useState(false);
 
   // Definir translations dentro do GlobalProvider
   const translations = {
@@ -40,8 +38,6 @@ export const GlobalProvider = ({ children }) => {
       walletNotDetected: 'Carteira não detectada. Verifique se ela está instalada e ativa.',
       storageError: 'Erro de armazenamento: acesso ao localStorage ou sessionStorage bloqueado. Tente desativar modo anônimo ou extensões de privacidade.',
       walletConnected: 'Carteira conectada com sucesso!',
-      switchToMonad: 'Por favor, mude para a Monad Testnet para continuar.',
-      wrongNetwork: 'Rede incorreta! Por favor, mude para a Monad Testnet.',
       leaderboardLoading: 'Carregando tabela de classificação...',
       leaderboardError: 'Erro ao carregar a tabela de classificação.',
     },
@@ -58,25 +54,14 @@ export const GlobalProvider = ({ children }) => {
       walletNotDetected: 'Wallet not detected. Please ensure it is installed and active.',
       storageError: 'Storage error: access to localStorage or sessionStorage is blocked. Try disabling private mode or privacy extensions.',
       walletConnected: 'Wallet connected successfully!',
-      switchToMonad: 'Please switch to Monad Testnet to continue.',
-      wrongNetwork: 'Wrong network! Please switch to Monad Testnet.',
       leaderboardLoading: 'Loading leaderboard...',
       leaderboardError: 'Error loading leaderboard.',
     },
   };
 
-  // Inicializa o contrato apenas quando a carteira for conectada e a rede for a correta
+  // Inicializa o contrato sem verificação de rede
   const initializeContract = async (ethProvider) => {
     try {
-      const chainId = await ethProvider.request({ method: 'eth_chainId' });
-      setCurrentChainId(chainId);
-      const monadTestnetChainId = '0x27cf'; // Chain ID 10143 em hexadecimal
-
-      if (chainId !== monadTestnetChainId) {
-        alert(translations[language].switchToMonad);
-        return false;
-      }
-
       const provider = new ethers.BrowserProvider(ethProvider);
       setProvider(provider);
       const signer = await provider.getSigner();
@@ -99,7 +84,12 @@ export const GlobalProvider = ({ children }) => {
     try {
       let ethProvider;
 
-      if (walletType === 'metamask' && window.ethereum?.isMetaMask) {
+      if (walletType === 'metamask') {
+        if (!window.ethereum || !window.ethereum.isMetaMask) {
+          alert(translations[language].walletNotDetected);
+          console.error('MetaMask not detected.');
+          return;
+        }
         ethProvider = window.ethereum;
       } else if (walletType === 'okx' && window.okxwallet?.ethereum) {
         ethProvider = window.okxwallet.ethereum;
@@ -109,26 +99,37 @@ export const GlobalProvider = ({ children }) => {
         ethProvider = window.backpack.ethereum;
       } else {
         alert(translations[language].walletNotDetected);
+        console.error(`Wallet ${walletType} not detected.`);
         return;
       }
 
-      // Conecta a carteira sem mudar a rede
-      await ethProvider.request({ method: 'eth_requestAccounts' });
-      alert(translations[language].walletConnected);
+      // Conecta a carteira
+      try {
+        await ethProvider.request({ method: 'eth_requestAccounts' });
+        console.log(`${walletType} wallet connected successfully.`);
+        alert(translations[language].walletConnected);
+      } catch (err) {
+        if (err.code === 4001) {
+          alert(translations[language].walletRejected);
+          console.error('User rejected wallet connection:', err);
+        } else {
+          alert('Error connecting wallet: ' + err.message);
+          console.error('Error connecting wallet:', err);
+        }
+        return;
+      }
 
-      // Após conectar, inicializa o contrato e verifica a rede
+      // Inicializa o contrato após conexão
       const initialized = await initializeContract(ethProvider);
       if (initialized) {
         setShowWalletModal(false);
       }
     } catch (err) {
-      console.error('Erro ao conectar carteira:', err);
+      console.error('Unexpected error in connectWallet:', err);
       if (err.message.includes('storage')) {
         alert(translations[language].storageError);
-      } else if (err.code === 4001) {
-        alert(translations[language].walletRejected);
       } else {
-        alert('Erro ao conectar: ' + err.message);
+        alert('Unexpected error: ' + err.message);
       }
     }
   }
@@ -149,71 +150,55 @@ export const GlobalProvider = ({ children }) => {
       setSigner(null);
       setProvider(null);
       setShowWalletModal(false);
-      setCurrentChainId(null);
-      setNetworkPromptRejected(false);
-      setLeaderboard([]); // Limpa o leaderboard ao desconectar
+      setLeaderboard([]);
       setIsLeaderboardLoading(false);
     } catch (err) {
       console.error('Erro ao desconectar carteira:', err);
     }
   }
 
-  // Listener para mudanças de rede e contas
+  // Listener para mudanças de contas
   useEffect(() => {
     if (window.ethereum) {
       // Verifica contas conectadas ao carregar a página
-      window.ethereum.request({ method: 'eth_accounts' }).then(accounts => {
-        if (accounts.length > 0) {
-          setAccount(accounts[0]);
-          setIsConnected(true);
-          initializeContract(window.ethereum);
+      const checkAccounts = async () => {
+        try {
+          const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+          if (accounts.length > 0) {
+            setAccount(accounts[0]);
+            setIsConnected(true);
+            await initializeContract(window.ethereum);
+          }
+        } catch (err) {
+          console.error('Error checking accounts:', err);
         }
-      });
+      };
+      checkAccounts();
 
       // Listener para mudanças de conta
-      window.ethereum.on('accountsChanged', accounts => {
+      const handleAccountsChanged = async (accounts) => {
         if (accounts.length > 0) {
           setAccount(accounts[0]);
           setIsConnected(true);
-          initializeContract(window.ethereum);
+          await initializeContract(window.ethereum);
         } else {
           setAccount('');
           setIsConnected(false);
           setContract(null);
           setSigner(null);
           setProvider(null);
-          setCurrentChainId(null);
-          setNetworkPromptRejected(false);
           setLeaderboard([]);
           setIsLeaderboardLoading(false);
         }
-      });
+      };
 
-      // Listener para mudanças de rede
-      window.ethereum.on('chainChanged', (chainId) => {
-        setCurrentChainId(chainId);
-        const monadTestnetChainId = '0x27cf';
-        if (chainId === monadTestnetChainId) {
-          if (account) {
-            initializeContract(window.ethereum);
-          }
-        } else {
-          setContract(null);
-          setSigner(null);
-          setProvider(null);
-          setIsConnected(false);
-          setLeaderboard([]);
-          setIsLeaderboardLoading(false);
-          alert(translations[language].wrongNetwork);
-        }
-      });
+      window.ethereum.on('accountsChanged', handleAccountsChanged);
 
       return () => {
-        window.ethereum.removeListener('accountsChanged', () => {});
-        window.ethereum.removeListener('chainChanged', () => {});
+        window.ethereum.removeListener('accountsChanged', handleAccountsChanged);
       };
     }
-  }, [account]);
+  }, []);
 
   async function fetchWithBackoff(url, retries = 3, delay = 1000) {
     for (let i = 0; i < retries; i++) {
@@ -230,7 +215,7 @@ export const GlobalProvider = ({ children }) => {
   }
 
   async function fetchLeaderboard() {
-    if (isLeaderboardLoading) return; // Evita chamadas simultâneas
+    if (isLeaderboardLoading) return;
     setIsLeaderboardLoading(true);
     try {
       console.log('Iniciando busca do leaderboard...');
@@ -259,13 +244,13 @@ export const GlobalProvider = ({ children }) => {
     }
   }
 
-  // Carrega o leaderboard e verifica o owner apenas uma vez quando o contract é inicializado
+  // Carrega o leaderboard e verifica o owner quando o contrato é inicializado
   useEffect(() => {
     if (contract && !isLeaderboardLoading) {
       fetchLeaderboard();
       checkOwner();
     }
-  }, [contract]); // Removido 'account' das dependências pra evitar loops
+  }, [contract]);
 
   const ProgressBar = ({ timeLeft, maxTime }) => {
     const percentage = (timeLeft / maxTime) * 100;
