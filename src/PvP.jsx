@@ -465,10 +465,6 @@ const PvP = ({ gameMode }) => {
               {translations[language].pt ? 'Em Breve' : 'Em Breve'}
             </label>
           </div>
-      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '10px' }}>
-            <img src="/forca.png" alt="Forca" style={{ width: '130px', marginRight: '20px' }} />
-            <img src="/forca.png" alt="Forca" style={{ width: '130px', marginLeft: '20px' }} />
-      </div>
       
       {account && (
         <>

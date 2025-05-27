@@ -20,7 +20,7 @@ h1 {
   margin: 5px 0;
 }
 
-button, .how-to-play-button, .back-button {
+button, .how-to-play-button, .back-button{
   background: linear-gradient(45deg, #00f7ff22, #ff4da622);
   border: 1px solid #00f7ff;
   color: #e0e0e0;
@@ -33,6 +33,21 @@ button, .how-to-play-button, .back-button {
   font-family: 'Poppins', sans-serif;
   text-decoration: none;
   display: inline-block;
+}
+h8 {
+  background: linear-gradient(45deg, #00f7ff22, #ff4da622);
+  border: 1px solid #00f7ff;
+  color: #e0e0e0;
+  padding: 8px 16px;
+  margin: 3px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  transition: all 0.4s ease;
+  font-family: 'Poppins', sans-serif;
+  text-decoration: none;
+  display: inline-block;
+  position: relative;
+  margin-right: 200px;
 }
 
 button:hover, .how-to-play-button:hover, .back-button:hover {
@@ -266,6 +281,7 @@ button:hover, .how-to-play-button:hover, .back-button:hover {
   justify-content: flex-start;
 }
 
+
 .leaderboard-section {
   flex: 1;
   background: rgba(255, 255, 255, 0.03);
@@ -303,7 +319,7 @@ button:hover, .how-to-play-button:hover, .back-button:hover {
 }
 
 /* Estilos pra página Como Jogar */
-.how-to-play-container {
+.how-to-play-container{
   width: 100%;
   padding: 10px;
 }
@@ -452,7 +468,7 @@ button:hover, .how-to-play-button:hover, .back-button:hover {
     flex: 0 0 auto;
   }
 
-  .game-and-leaderboard {
+  .game-and-leaderboard{
     flex-direction: column;
     width: 100%;
   }

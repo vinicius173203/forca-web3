@@ -7,6 +7,26 @@ import PvP from './PvP.jsx';
 import HowToPlay from './HowToPlay.jsx';
 import { Route, Routes, Link } from 'react-router-dom';
 
+class ErrorBoundary extends React.Component {
+  state = { hasError: false, error: null };
+
+  static getDerivedStateFromError(error) {
+    return { hasError: true, error };
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div>
+          <h1>Something went wrong.</h1>
+          <p>{this.state.error?.message}</p>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
+
 const AppContent = () => {
   const {
     account,
@@ -21,12 +41,11 @@ const AppContent = () => {
     disconnectWallet,
   } = useContext(GlobalContext);
 
-  const [gameMode, setGameMode] = useState('normal');
+  const [gameMode, setGameMode] = useState('easy'); // Default to easy mode
 
   return (
     <>
       <Routes>
-        {/* Rota pra página inicial */}
         <Route
           path="/"
           element={
@@ -42,10 +61,7 @@ const AppContent = () => {
                 ) : (
                   <>
                     <p>👤 {account.slice(0, 6)}...{account.slice(-4)}</p>
-                    <button
-                      className="action-button" 
-                      onClick={disconnectWallet}
-                    >
+                    <button className="action-button" onClick={disconnectWallet}>
                       {translations[language].pt ? 'Desconectar' : 'Disconnect'}
                     </button>
                   </>
@@ -53,17 +69,40 @@ const AppContent = () => {
               </div>
 
               <div className="main-container">
-                {/* Nova seção à esquerda pra o botão "Como Jogar" */}
                 <div className="sidebar-section">
                   <Link to="/how-to-play" className="how-to-play-button">
                     {translations[language].pt ? 'Como Jogar' : 'How to Play'}
                   </Link>
                 </div>
 
-                {/* Seção de jogo e leaderboard */}
                 <div className="game-and-leaderboard">
                   <div className="game-section">
-                    <h1>Forca Web3</h1>
+                    <div style={{ position: 'relative', width: '100%', textAlign: 'center', marginBottom: '20px' }}>
+                      <img
+                        src="/forca.png"
+                        alt="Forca Left"
+                        style={{
+                          position: 'absolute',
+                          left: '10%',
+                          top: '30px',
+                          width: '130px',
+                        }}
+                      />
+                      <h1 style={{ margin: 0, fontSize: '2.5rem', color: '#00f0ff', textShadow: '0 0 10px #00f0ff' }}>
+                        Forca Web3
+                      </h1>
+                      <img
+                        src="/forca.png"
+                        alt="Forca Right"
+                        style={{
+                          position: 'absolute',
+                          right: '10%',
+                          top: '30px',
+                          width: '130px',
+                        }}
+                      />
+                    </div>
+
                     <div>
                       <button className="action-button" onClick={() => setLanguage('pt')}>
                         Português
@@ -74,6 +113,16 @@ const AppContent = () => {
                     </div>
                     <div style={{ marginTop: '20px' }}>
                       <h2>{translations[language].pt ? 'Selecionar Modo de Jogo' : 'Select Game Mode'}</h2>
+                      <label style={{ marginRight: '15px' }}>
+                        <input
+                          type="radio"
+                          name="gameMode"
+                          value="easy"
+                          checked={gameMode === 'easy'}
+                          onChange={() => setGameMode('easy')}
+                        />
+                        {translations[language].pt ? ' Modo Fácil' : ' Easy Mode'}
+                      </label>
                       <label style={{ marginRight: '15px' }}>
                         <input
                           type="radio"
@@ -108,14 +157,16 @@ const AppContent = () => {
                     {gameMode === 'pvp' ? (
                       <PvP gameMode={gameMode} setGameMode={setGameMode} />
                     ) : (
-                      <NormalHardcore gameMode={gameMode} setGameMode={setGameMode} />
+                      <NormalHardcore gameMode={gameMode} />
                     )}
                   </div>
 
                   <div className="leaderboard-section">{renderLeaderboard()}</div>
                 </div>
               </div>
-
+              <div style={{ textAlign: 'center', marginTop: '20px' }}>
+                <h8>Endereço do contrato: 0xBEa6E7c7c4375111C512d9966D2D75F0873d16Ab</h8>
+              </div>
               {showWalletModal && (
                 <motion.div
                   initial={{ opacity: 0 }}
@@ -154,8 +205,6 @@ const AppContent = () => {
             </>
           }
         />
-
-        {/* Rota pra página Como Jogar */}
         <Route path="/how-to-play" element={<HowToPlay />} />
       </Routes>
     </>
@@ -165,7 +214,9 @@ const AppContent = () => {
 const App = () => {
   return (
     <GlobalProvider>
-      <AppContent />
+      <ErrorBoundary>
+        <AppContent />
+      </ErrorBoundary>
     </GlobalProvider>
   );
 };
