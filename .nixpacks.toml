@@ -1,0 +1,8 @@
+[phases.setup]
+nixPkgs = ["nodejs", "yarn"]
+
+[phases.build]
+cmds = ["yarn install", "yarn build"]
+
+[start]
+cmd = "vite preview --port $PORT"
