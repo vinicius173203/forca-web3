@@ -277,7 +277,8 @@ const NormalHardcore = ({ gameMode }) => {
       };
 
       console.log('Parameters sent to backend:', params);
-
+        //'http://localhost:3001/sign-result'
+        //'https://backend-assinatura-production.up.railway.app/sign-result'
       const response = await fetch('https://backend-assinatura-production.up.railway.app/sign-result', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
