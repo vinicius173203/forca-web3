@@ -279,11 +279,12 @@ const NormalHardcore = ({ gameMode }) => {
       console.log('Parameters sent to backend:', params);
         //'http://localhost:3001/sign-result'
         //'https://backend-assinatura-production.up.railway.app/sign-result'
-      const response = await fetch('https://backend-assinatura-production.up.railway.app/sign-result', {
+      await fetch('https://cors-proxy-forca.railway.internal/proxy', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(params),
       });
+
 
       if (!response.ok) {
         throw new Error(`Backend error: ${response.statusText}`);
