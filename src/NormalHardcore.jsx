@@ -233,172 +233,208 @@ const NormalHardcore = ({ gameMode }) => {
     }
   }
 
-  async function forceEndGame(won) {
-    if (!contract || !account) {
-      console.error('Contrato ou conta não inicializados');
-      setMessage(translations[language].pt ? '❌ Contrato ou conta não inicializados.' : '❌ Contract or account not initialized.');
-      return;
+async function forceEndGame(won) {
+  if (!contract || !account) {
+    console.error('Contrato ou conta não inicializados');
+    setMessage(
+      translations[language].pt
+        ? '❌ Contrato ou conta não inicializados.'
+        : '❌ Contract or account not initialized.'
+    );
+    return;
+  }
+
+  setIsEndingGame(true);
+  try {
+    console.log('forceEndGame called', { won, currentWord, account, timeLeft, gameMode, useHint });
+
+    // Validação de currentWord
+    if (!currentWord) {
+      console.warn('currentWord is empty, defaulting to wordLength: 0');
     }
 
-    setIsEndingGame(true);
-    try {
-      console.log('forceEndGame called', { won, currentWord, account, timeLeft, gameMode, useHint });
+    // Obter saldos iniciais
+    const initialPlayerBalance = await provider.getBalance(account);
+    const contractBalance = await provider.getBalance('0xBEa6E7c7c4375111C512d9966D2D75F0873d16Ab');
+    console.log('Initial player balance (MON):', ethers.formatEther(initialPlayerBalance));
+    console.log('Contract balance (MON):', ethers.formatEther(contractBalance));
 
-      if (!currentWord) {
-        console.warn('currentWord is empty, defaulting to wordLength: 0');
+    // Obter dados iniciais do jogador
+    const initialPlayerData = await contract.players(account);
+    console.log('Initial player state:', {
+      points: initialPlayerData.points.toString(),
+      gamesPlayed: initialPlayerData.gamesPlayed.toString(),
+      isPlaying: initialPlayerData.isPlaying,
+      nonce: initialPlayerData.nonce.toString(),
+    });
+
+    const playerNonce = initialPlayerData.nonce.toString();
+    console.log('Current player nonce:', playerNonce);
+
+    // Definir wordLength com base em currentWord
+    const wordLength = currentWord ? currentWord.length : 0;
+
+    // Parâmetros para o backend
+    const params = {
+      player: ethers.getAddress(account),
+      won,
+      wordLength,
+      tokenId: 0,
+      finalPoints: 0,
+      nonce: playerNonce,
+      gameMode,
+      chances,
+      useHint,
+    };
+
+    console.log('Parameters sent to backend:', params);
+
+    // Fazer a chamada ao backend via proxy
+    const response = await fetch('https://cors-proxy-forca-production.up.railway.app/proxy', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(params),
+    });
+
+    // Verificar se a requisição foi bem-sucedida
+    if (!response.ok) {
+      throw new Error(`Backend error: ${response.status} ${response.statusText}`);
+    }
+
+    // Processar a resposta do backend
+    const data = await response.json();
+    console.log('Backend response:', data);
+
+    // Validar a resposta do backend
+    if (!data.signature || data.rewardAmount === undefined || data.finalPoints === undefined) {
+      throw new Error('Invalid backend response: missing signature, rewardAmount, or finalPoints');
+    }
+
+    // Preparar parâmetros para a chamada ao contrato
+    const endGameParams = {
+      won,
+      wordLength,
+      tokenId: 0,
+      finalPoints: data.finalPoints,
+      rewardAmount: data.rewardAmount.toString(),
+      signature: data.signature,
+    };
+
+    // Estimar gás
+    const estimatedGas = await contract.endGame.estimateGas(
+      endGameParams.won,
+      endGameParams.wordLength,
+      endGameParams.tokenId,
+      endGameParams.finalPoints,
+      endGameParams.rewardAmount,
+      endGameParams.signature
+    );
+    console.log('Estimated Gas:', estimatedGas.toString());
+
+    // Obter dados de gás
+    const feeData = await provider.getFeeData();
+    const gasPrice = feeData.gasPrice || ethers.parseUnits('10', 'gwei');
+    console.log('Recommended Gas Price (Gwei):', ethers.formatUnits(gasPrice, 'gwei'));
+
+    // Ajustar gasLimit com margem de 20%
+    const gasLimit = (estimatedGas * 120n) / 100n;
+    console.log('Gas Limit:', gasLimit.toString());
+
+    // Chamar a função endGame no contrato
+    console.log('Calling endGame with:', endGameParams);
+    const tx = await contract.endGame(
+      endGameParams.won,
+      endGameParams.wordLength,
+      endGameParams.tokenId,
+      endGameParams.finalPoints,
+      endGameParams.rewardAmount,
+      endGameParams.signature,
+      {
+        gasLimit,
+        gasPrice,
       }
+    );
+    console.log('Transaction sent:', tx.hash);
 
-      const initialPlayerBalance = await provider.getBalance(account);
-      const contractBalance = await provider.getBalance('0xBEa6E7c7c4375111C512d9966D2D75F0873d16Ab');
-      console.log('Initial player balance (MON):', ethers.formatEther(initialPlayerBalance));
-      console.log('Contract balance (MON):', ethers.formatEther(contractBalance));
+    // Aguardar confirmação da transação
+    const receipt = await tx.wait();
+    console.log('Transaction receipt:', receipt);
 
-      const initialPlayerData = await contract.players(account);
-      console.log('Initial player state:', {
-        points: initialPlayerData.points.toString(),
-        gamesPlayed: initialPlayerData.gamesPlayed.toString(),
-        isPlaying: initialPlayerData.isPlaying,
-        nonce: initialPlayerData.nonce.toString(),
-      });
-
-      const playerNonce = initialPlayerData.nonce.toString();
-      console.log('Current player nonce:', playerNonce);
-      const wordLength = currentWord ? currentWord.length : 0;
-      const params = {
-        player: ethers.getAddress(account),
-        won,
-        wordLength,
-        tokenId: 0,
-        finalPoints: 0,
-        nonce: playerNonce,
-        gameMode,
-        chances,
-        useHint,
-      };
-
-      console.log('Parameters sent to backend:', params);
-        //'http://localhost:3001/sign-result'
-      await fetch('https://cors-proxy-forca-production.up.railway.app/proxy', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(params),
-      });
-
-
-      if (!response.ok) {
-        throw new Error(`Backend error: ${response.statusText}`);
-      }
-
-      const data = await response.json();
-      console.log('Backend response:', data);
-
-      if (!data.signature || data.rewardAmount === undefined) {
-        throw new Error('Invalid backend response: missing signature or rewardAmount');
-      }
-
-      const endGameParams = {
-        won,
-        wordLength,
-        tokenId: 0,
-        finalPoints: data.finalPoints,
-        rewardAmount: data.rewardAmount.toString(),
-        signature: data.signature,
-      };
-
-      const estimatedGas = await contract.endGame.estimateGas(
-        endGameParams.won,
-        endGameParams.wordLength,
-        endGameParams.tokenId,
-        endGameParams.finalPoints,
-        endGameParams.rewardAmount,
-        endGameParams.signature
-      );
-      console.log('Estimated Gas:', estimatedGas.toString());
-
-      const feeData = await provider.getFeeData();
-      const gasPrice = feeData.gasPrice || ethers.parseUnits('10', 'gwei');
-      console.log('Recommended Gas Price (Gwei):', ethers.formatUnits(gasPrice, 'gwei'));
-
-      const gasLimit = estimatedGas * 120n / 100n;
-      console.log('Gas Limit:', gasLimit.toString());
-
-      console.log('Calling endGame with:', endGameParams);
-      const tx = await contract.endGame(
-        endGameParams.won,
-        endGameParams.wordLength,
-        endGameParams.tokenId,
-        endGameParams.finalPoints,
-        endGameParams.rewardAmount,
-        endGameParams.signature,
-        {
-          gasLimit,
-          gasPrice,
+    // Processar eventos da transação
+    const events = receipt.logs
+      .map(log => {
+        try {
+          return contract.interface.parseLog(log);
+        } catch (e) {
+          return null;
         }
-      );
-      console.log('Transaction sent:', tx.hash);
-      const receipt = await tx.wait();
-      console.log('Transaction receipt:', receipt);
-
-      const events = receipt.logs
-        .map(log => {
-          try {
-            return contract.interface.parseLog(log);
-          } catch (e) {
-            return null;
-          }
-        })
-        .filter(event => event);
-      console.log('Events emitted:', events.map(event => ({
+      })
+      .filter(event => event);
+    console.log(
+      'Events emitted:',
+      events.map(event => ({
         name: event.name,
         args: Object.fromEntries(
           Object.entries(event.args).map(([k, v]) => [
             k,
-            typeof v === 'bigint' ? ethers.formatEther(v) : v.toString()
+            typeof v === 'bigint' ? ethers.formatEther(v) : v.toString(),
           ])
         ),
-      })));
+      }))
+    );
 
-      const finalPlayerBalance = await provider.getBalance(account);
-      console.log('Final player balance (MON):', ethers.formatEther(finalPlayerBalance));
-      console.log('Balance difference (MON):', ethers.formatEther(finalPlayerBalance - initialPlayerBalance));
+    // Verificar saldo final do jogador
+    const finalPlayerBalance = await provider.getBalance(account);
+    console.log('Final player balance (MON):', ethers.formatEther(finalPlayerBalance));
+    console.log(
+      'Balance difference (MON):',
+      ethers.formatEther(finalPlayerBalance - initialPlayerBalance)
+    );
 
-      const finalPlayerData = await contract.players(account);
-      console.log('Final player state:', {
-        points: finalPlayerData.points.toString(),
-        gamesPlayed: finalPlayerData.gamesPlayed.toString(),
-        isPlaying: finalPlayerData.isPlaying,
-        nonce: finalPlayerData.nonce.toString(),
-      });
+    // Verificar estado final do jogador
+    const finalPlayerData = await contract.players(account);
+    console.log('Final player state:', {
+      points: finalPlayerData.points.toString(),
+      gamesPlayed: finalPlayerData.gamesPlayed.toString(),
+      isPlaying: finalPlayerData.isPlaying,
+      nonce: finalPlayerData.nonce.toString(),
+    });
 
-      if (!won) {
-        setMessage(
-          translations[language].pt
-            ? '❌ Você perdeu! Nenhuma recompensa ou pontos ganhos.'
-            : '❌ You lost! No rewards or points earned.'
-        );
-      } else {
-        const rewardInMon = ethers.formatEther(data.rewardAmount);
-        const bonusMessage = !useHint
-          ? translations[language].pt
-            ? ' (inclui bônus de 20% por não usar dica)'
-            : ' (includes 20% bonus for no hint)'
-          : '';
-        setMessage(
-          translations[language].pt
-            ? `✅ Você recebeu ${rewardInMon} MON e ${data.finalPoints} pontos!${bonusMessage}`
-            : `✅ You received ${rewardInMon} MON and ${data.finalPoints} points!${bonusMessage}`
-        );
-      }
-
-      setIsPlaying(false);
-      setGameActive(false);
-    } catch (error) {
-      console.error('Error ending game:', error);
-      setMessage(translations[language].pt ? '❌ Erro ao finalizar o jogo: ' + error.message : '❌ Error ending game: ' + error.message);
-    } finally {
-      setIsEndingGame(false);
+    // Definir mensagem com base no resultado
+    if (!won) {
+      setMessage(
+        translations[language].pt
+          ? '❌ Você perdeu! Nenhuma recompensa ou pontos ganhos.'
+          : '❌ You lost! No rewards or points earned.'
+      );
+    } else {
+      const rewardInMon = ethers.formatEther(data.rewardAmount);
+      const bonusMessage = !useHint
+        ? translations[language].pt
+          ? ' (inclui bônus de 20% por não usar dica)'
+          : ' (includes 20% bonus for no hint)'
+        : '';
+      setMessage(
+        translations[language].pt
+          ? `✅ Você recebeu ${rewardInMon} MON e ${data.finalPoints} pontos!${bonusMessage}`
+          : `✅ You received ${rewardInMon} MON and ${data.finalPoints} points!${bonusMessage}`
+      );
     }
+
+    // Atualizar estado do jogo
+    setIsPlaying(false);
+    setGameActive(false);
+  } catch (error) {
+    console.error('Error ending game:', error);
+    setMessage(
+      translations[language].pt
+        ? `❌ Erro ao finalizar o jogo: ${error.message}`
+        : `❌ Error ending game: ${error.message}`
+    );
+  } finally {
+    setIsEndingGame(false);
   }
+}
 
   async function loadWord() {
     try {
