@@ -248,40 +248,21 @@ async function forceEndGame(won) {
   try {
     console.log('forceEndGame called', { won, currentWord, account, timeLeft, gameMode, useHint });
 
-    // Validação de currentWord
-    if (!currentWord) {
-      console.warn('currentWord is empty, defaulting to wordLength: 0');
-    }
-
-    // Obter saldos iniciais
-    const initialPlayerBalance = await provider.getBalance(account);
-    const contractBalance = await provider.getBalance('0xBEa6E7c7c4375111C512d9966D2D75F0873d16Ab');
-    console.log('Initial player balance (MON):', ethers.formatEther(initialPlayerBalance));
-    console.log('Contract balance (MON):', ethers.formatEther(contractBalance));
-
-    // Obter dados iniciais do jogador
-    const initialPlayerData = await contract.players(account);
-    console.log('Initial player state:', {
-      points: initialPlayerData.points.toString(),
-      gamesPlayed: initialPlayerData.gamesPlayed.toString(),
-      isPlaying: initialPlayerData.isPlaying,
-      nonce: initialPlayerData.nonce.toString(),
-    });
-
-    const playerNonce = initialPlayerData.nonce.toString();
-    console.log('Current player nonce:', playerNonce);
-
-    // Definir wordLength com base em currentWord
-    const wordLength = currentWord ? currentWord.length : 0;
+    // Configuração CORS explícita para a requisição
+    const corsHeaders = {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      // Adicione outros headers necessários aqui
+    };
 
     // Parâmetros para o backend
     const params = {
       player: ethers.getAddress(account),
       won,
-      wordLength,
+      wordLength: currentWord ? currentWord.length : 0,
       tokenId: 0,
       finalPoints: 0,
-      nonce: playerNonce,
+      nonce: (await contract.players(account)).nonce.toString(),
       gameMode,
       chances,
       useHint,
@@ -289,19 +270,22 @@ async function forceEndGame(won) {
 
     console.log('Parameters sent to backend:', params);
 
-    // Fazer a chamada ao backend via proxy
+    // Fazer a chamada ao backend via proxy com tratamento CORS completo
     const response = await fetch('https://cors-proxy-forca-production.up.railway.app/proxy', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: corsHeaders,
       body: JSON.stringify(params),
+      mode: 'cors', // Define explicitamente o modo CORS
+      credentials: 'include', // Se estiver usando cookies/sessão
     });
 
-    // Verificar se a requisição foi bem-sucedida
     if (!response.ok) {
-      throw new Error(`Backend error: ${response.status} ${response.statusText}`);
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(
+        errorData.message || `Backend error: ${response.status} ${response.statusText}`
+      );
     }
 
-    // Processar a resposta do backend
     const data = await response.json();
     console.log('Backend response:', data);
 
@@ -431,6 +415,13 @@ async function forceEndGame(won) {
         ? `❌ Erro ao finalizar o jogo: ${error.message}`
         : `❌ Error ending game: ${error.message}`
     );
+    // Log adicional para diagnóstico
+    if (error.name === 'TypeError' && error.message.includes('Failed to fetch')) {
+      console.error('Possível problema de CORS ou conexão. Verifique:');
+      console.error('1. Se o servidor proxy está online');
+      console.error('2. Se os headers CORS estão sendo retornados corretamente');
+      console.error('3. Se há erros no console do navegador (F12 > Console)');
+    }
   } finally {
     setIsEndingGame(false);
   }
