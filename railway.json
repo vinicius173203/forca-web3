@@ -1,0 +1,7 @@
+{
+  "build": {
+    "install": "yarn install",
+    "build": "yarn build",
+    "output": "dist"
+  }
+}
