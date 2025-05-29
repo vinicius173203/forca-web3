@@ -9,7 +9,7 @@ const BACKEND_URL = 'https://backend-leaderboard-production.up.railway.app';
 const BACKEND_UR = 'https://palavras-production.up.railway.app';
 
 const contractABI = rawContract.abi;
-
+//0x6Bf69Ce556233E3c1A3B94e3F0c95C1479e1c22a somia
 export const GlobalContext = createContext();
 
 export const GlobalProvider = ({ children }) => {

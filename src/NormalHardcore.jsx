@@ -248,53 +248,64 @@ async function forceEndGame(won) {
   try {
     console.log('forceEndGame called', { won, currentWord, account, timeLeft, gameMode, useHint });
 
-    // Configuração CORS explícita para a requisição
-    const corsHeaders = {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      // Adicione outros headers necessários aqui
-    };
+      if (!currentWord) {
+        console.warn('currentWord is empty, defaulting to wordLength: 0');
+      }
 
-    // Parâmetros para o backend
+      const initialPlayerBalance = await provider.getBalance(account);
+      const contractBalance = await provider.getBalance('0xBEa6E7c7c4375111C512d9966D2D75F0873d16Ab');
+      console.log('Initial player balance (MON):', ethers.formatEther(initialPlayerBalance));
+      console.log('Contract balance (MON):', ethers.formatEther(contractBalance));
+
+      const initialPlayerData = await contract.players(account);
+      console.log('Initial player state:', {
+        points: initialPlayerData.points.toString(),
+        gamesPlayed: initialPlayerData.gamesPlayed.toString(),
+        isPlaying: initialPlayerData.isPlaying,
+        nonce: initialPlayerData.nonce.toString(),
+      });
+
+      const playerNonce = initialPlayerData.nonce.toString();
+      console.log('Current player nonce:', playerNonce);
+      const wordLength = currentWord ? currentWord.length : 0;
     const params = {
       player: ethers.getAddress(account),
       won,
-      wordLength: currentWord ? currentWord.length : 0,
+        wordLength,
       tokenId: 0,
       finalPoints: 0,
-      nonce: (await contract.players(account)).nonce.toString(),
+        nonce: playerNonce,
       gameMode,
       chances,
       useHint,
     };
-
-    console.log('Parameters sent to backend:', params);
-
-    // Fazer a chamada ao backend via proxy com tratamento CORS completo
-    const response = await fetch('https://cors-proxy-forca-production.up.railway.app/proxy', {
-      method: 'POST',
-      headers: corsHeaders,
-      body: JSON.stringify(params),
-      mode: 'cors', // Define explicitamente o modo CORS
-      credentials: 'include', // Se estiver usando cookies/sessão
-    });
+    //'http://localhost:3001/sign-result'
+        //'https://backend-assinatura-production.up.railway.app/sign-result'
+    const response = await fetch('https://backend-assinatura-production.up.railway.app/sign-result', {
+          method: 'POST',
+          headers: { 
+            'Content-Type': 'application/json',
+            // Adicione outros headers se necessário
+          },
+          body: JSON.stringify(params),
+          mode: 'cors', // Isso força o modo CORS
+          credentials: 'include' // Se estiver usando cookies/sessão
+        }).catch(error => {
+          console.error('Fetch error:', error);
+          throw error;
+        });
 
     if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
-      throw new Error(
-        errorData.message || `Backend error: ${response.status} ${response.statusText}`
-      );
+        throw new Error(`Backend error: ${response.statusText}`);
     }
 
     const data = await response.json();
     console.log('Backend response:', data);
 
-    // Validar a resposta do backend
-    if (!data.signature || data.rewardAmount === undefined || data.finalPoints === undefined) {
-      throw new Error('Invalid backend response: missing signature, rewardAmount, or finalPoints');
+      if (!data.signature || data.rewardAmount === undefined) {
+        throw new Error('Invalid backend response: missing signature or rewardAmount');
     }
 
-    // Preparar parâmetros para a chamada ao contrato
     const endGameParams = {
       won,
       wordLength,
@@ -304,7 +315,6 @@ async function forceEndGame(won) {
       signature: data.signature,
     };
 
-    // Estimar gás
     const estimatedGas = await contract.endGame.estimateGas(
       endGameParams.won,
       endGameParams.wordLength,
@@ -315,16 +325,13 @@ async function forceEndGame(won) {
     );
     console.log('Estimated Gas:', estimatedGas.toString());
 
-    // Obter dados de gás
     const feeData = await provider.getFeeData();
     const gasPrice = feeData.gasPrice || ethers.parseUnits('10', 'gwei');
     console.log('Recommended Gas Price (Gwei):', ethers.formatUnits(gasPrice, 'gwei'));
 
-    // Ajustar gasLimit com margem de 20%
-    const gasLimit = (estimatedGas * 120n) / 100n;
+      const gasLimit = estimatedGas * 120n / 100n;
     console.log('Gas Limit:', gasLimit.toString());
 
-    // Chamar a função endGame no contrato
     console.log('Calling endGame with:', endGameParams);
     const tx = await contract.endGame(
       endGameParams.won,
@@ -339,12 +346,9 @@ async function forceEndGame(won) {
       }
     );
     console.log('Transaction sent:', tx.hash);
-
-    // Aguardar confirmação da transação
     const receipt = await tx.wait();
     console.log('Transaction receipt:', receipt);
 
-    // Processar eventos da transação
     const events = receipt.logs
       .map(log => {
         try {
@@ -354,26 +358,19 @@ async function forceEndGame(won) {
         }
       })
       .filter(event => event);
-    console.log(
-      'Events emitted:',
-      events.map(event => ({
+      console.log('Events emitted:', events.map(event => ({
         name: event.name,
         args: Object.fromEntries(
           Object.entries(event.args).map(([k, v]) => [
             k,
-            typeof v === 'bigint' ? ethers.formatEther(v) : v.toString(),
+            typeof v === 'bigint' ? ethers.formatEther(v) : v.toString()
           ])
         ),
-      }))
-    );
+      })));
 
-    // Verificar saldo final do jogador
     const finalPlayerBalance = await provider.getBalance(account);
     console.log('Final player balance (MON):', ethers.formatEther(finalPlayerBalance));
-    console.log(
-      'Balance difference (MON):',
-      ethers.formatEther(finalPlayerBalance - initialPlayerBalance)
-    );
+      console.log('Balance difference (MON):', ethers.formatEther(finalPlayerBalance - initialPlayerBalance));
 
     // Verificar estado final do jogador
     const finalPlayerData = await contract.players(account);
@@ -410,18 +407,7 @@ async function forceEndGame(won) {
     setGameActive(false);
   } catch (error) {
     console.error('Error ending game:', error);
-    setMessage(
-      translations[language].pt
-        ? `❌ Erro ao finalizar o jogo: ${error.message}`
-        : `❌ Error ending game: ${error.message}`
-    );
-    // Log adicional para diagnóstico
-    if (error.name === 'TypeError' && error.message.includes('Failed to fetch')) {
-      console.error('Possível problema de CORS ou conexão. Verifique:');
-      console.error('1. Se o servidor proxy está online');
-      console.error('2. Se os headers CORS estão sendo retornados corretamente');
-      console.error('3. Se há erros no console do navegador (F12 > Console)');
-    }
+      setMessage(translations[language].pt ? '❌ Erro ao finalizar o jogo: ' + error.message : '❌ Error ending game: ' + error.message);
   } finally {
     setIsEndingGame(false);
   }
