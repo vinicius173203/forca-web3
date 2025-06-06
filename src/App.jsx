@@ -35,15 +35,21 @@ const AppContent = () => {
     setLanguage,
     showWalletModal,
     setShowWalletModal,
+    showNetworkModal,
+    setShowNetworkModal,
     connectWallet,
     renderLeaderboard,
+    renderNetworkModal,
     translations,
     disconnectWallet,
+    currentNetwork,
+    switchNetwork,
+    contractAddress
   } = useContext(GlobalContext);
 
-  const [gameMode, setGameMode] = useState('easy'); // Default to easy mode
+  const [gameMode, setGameMode] = useState('easy');
 
-  return (
+    return (
     <>
       <Routes>
         <Route
@@ -53,17 +59,24 @@ const AppContent = () => {
               <div style={{ position: 'absolute', top: '10px', right: '20px', textAlign: 'right' }}>
                 {!isConnected ? (
                   <div>
-                    <p>{translations[language].connect}</p>
                     <button className="action-button" onClick={() => setShowWalletModal(true)}>
                       {translations[language].connect}
                     </button>
                   </div>
                 ) : (
                   <>
-                    <p>👤 {account.slice(0, 6)}...{account.slice(-4)}</p>
-                    <button className="action-button" onClick={disconnectWallet}>
-                      {translations[language].pt ? 'Desconectar' : 'Disconnect'}
-                    </button>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      <button 
+                        className="network-button"
+                        onClick={() => setShowNetworkModal(true)}
+                      >
+                        {currentNetwork === 'somnia' ? 'Somnia' : 'Monad'}
+                      </button>
+                      <p>👤 {account.slice(0, 6)}...{account.slice(-4)}</p>
+                      <button className="action-button" onClick={disconnectWallet}>
+                        {translations[language].pt ? 'Desconectar' : 'Disconnect'}
+                      </button>
+                    </div>
                   </>
                 )}
               </div>
@@ -164,10 +177,8 @@ const AppContent = () => {
                   <div className="leaderboard-section">{renderLeaderboard()}</div>
                 </div>
               </div>
-              <div style={{ textAlign: 'center', marginTop: '20px' }}>
-                <h8>Endereço do contrato: 0xBEa6E7c7c4375111C512d9966D2D75F0873d16Ab</h8>
-              </div>
-              {showWalletModal && (
+            
+               {showWalletModal && (
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -202,6 +213,15 @@ const AppContent = () => {
                   </motion.div>
                 </motion.div>
               )}
+
+              {/* Adicione o modal de rede */}
+              {renderNetworkModal()}
+
+              <div style={{ textAlign: 'center', marginTop: '20px' }}>
+                <h8>
+                  {translations[language].pt ? 'Endereço do contrato:' : 'Contract address:'} {contractAddress}
+                </h8>
+              </div>
             </>
           }
         />

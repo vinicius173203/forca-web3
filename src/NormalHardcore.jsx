@@ -14,6 +14,8 @@ const NormalHardcore = ({ gameMode }) => {
     ProgressBar,
     fetchLeaderboard,
     provider,
+    currentNetwork,
+    contractAddress,
   } = useContext(GlobalContext);
 
   const [currentWord, setCurrentWord] = useState('');
@@ -41,29 +43,15 @@ const NormalHardcore = ({ gameMode }) => {
       try {
         const feeInWei = await contract.entryFee();
         const fee = ethers.formatEther(feeInWei);
-        let adjustedFee;
-        switch (gameMode) {
-          case 'easy':
-            adjustedFee = '0.1';
-            break;
-          case 'normal':
-            adjustedFee = '0.1';
-            break;
-          case 'hardcore':
-            adjustedFee = '0.1';
-            break;
-          default:
-            adjustedFee = '0.1';
-        }
-        setEntryFee(adjustedFee);
-        console.log(`Entry fee for ${gameMode}: ${adjustedFee} Ether`);
+        setEntryFee(fee);
+        console.log(`Entry fee for ${gameMode} on ${currentNetwork}: ${fee} ${currentNetwork === 'somnia' ? 'STT' : 'MON'}`);
       } catch (err) {
         console.error('Erro ao definir entryFee:', err);
         setMessage(translations[language].pt ? '❌ Erro ao carregar taxa de entrada.' : '❌ Error loading entry fee.');
       }
     }
     fetchEntryFee();
-  }, [contract, language, translations, gameMode]);
+  }, [contract, language, translations, gameMode, currentNetwork]);
 
   useEffect(() => {
     let timer;
@@ -75,9 +63,9 @@ const NormalHardcore = ({ gameMode }) => {
         setTimeLeft((prev) => {
           const newTime = prev - 1;
           if (newTime <= 10) {
-            warningSound.play();
+            warningSound.play().catch(() => {}); // Handle potential audio errors
           } else {
-            tickSound.play();
+            tickSound.play().catch(() => {});
           }
           return newTime;
         });
@@ -107,9 +95,7 @@ const NormalHardcore = ({ gameMode }) => {
     }
 
     window.addEventListener('keydown', handleKeyPress);
-    return () => {
-      window.removeEventListener('keydown', handleKeyPress);
-    };
+    return () => window.removeEventListener('keydown', handleKeyPress);
   }, [gameActive, usedLetters]);
 
   async function checkIfPlaying() {
@@ -143,7 +129,7 @@ const NormalHardcore = ({ gameMode }) => {
     }
     try {
       const passNFTPrice = await contract.passNFTPrice();
-      console.log(`Pass NFT price: ${ethers.formatEther(passNFTPrice)} Ether`);
+      console.log(`Pass NFT price: ${ethers.formatEther(passNFTPrice)} ${currentNetwork === 'somnia' ? 'STT' : 'MON'}`);
       const tx = await contract.buyAndMintPass({ value: passNFTPrice });
       await tx.wait();
       setMessage(translations[language].pt ? '✅ Pass NFT comprado com sucesso!' : '✅ Pass NFT purchased successfully!');
@@ -154,12 +140,21 @@ const NormalHardcore = ({ gameMode }) => {
   }
 
   async function startGame() {
-    console.log('startGame chamado', { account, contract: !!contract, provider: !!provider, gameMode });
+    console.log('startGame chamado', {
+      account,
+      contract: !!contract,
+      provider: !!provider,
+      gameMode,
+      currentNetwork,
+      contractAddress,
+    });
+
     if (!contract || !provider) {
       console.error('Contrato ou provedor não inicializado');
       setMessage(translations[language].pt ? '❌ Contrato ou provedor não inicializado.' : '❌ Contract or provider not initialized.');
       return;
     }
+
     try {
       console.log('Verificando se jogador está ativo...');
       const isPlaying = await checkIfPlaying();
@@ -172,29 +167,20 @@ const NormalHardcore = ({ gameMode }) => {
         );
         return;
       }
-      //taxa inicial de entrada
-      console.log('Verificando saldo...');
-      let feeInWei;
-      switch (gameMode) {
-        case 'easy':
-          feeInWei = ethers.parseEther('0.1');
-          break;
-        case 'normal':
-          feeInWei = ethers.parseEther('0.1');
-          break;
-        case 'hardcore':
-          feeInWei = ethers.parseEther('0.1');
-          break;
-        default:
-          feeInWei = ethers.parseEther('0.1');
-      }
+
+      const feeInWei = ethers.parseEther(entryFee);
       console.log(`Entry Fee (wei): ${feeInWei.toString()}`);
-      
+
       const balance = await provider.getBalance(account);
-      console.log(`User balance (Ether): ${ethers.formatEther(balance)}`);
+      console.log(`User balance (${currentNetwork === 'somnia' ? 'STT' : 'MON'}): ${ethers.formatEther(balance)}`);
+
       if (balance < feeInWei) {
         console.log('Saldo insuficiente');
-        setMessage(translations[language].pt ? '💰 Você está sem saldo para iniciar uma partida.' : '💰 You have insufficient balance to start a game.');
+        setMessage(
+          translations[language].pt
+            ? `💰 Você está sem saldo para iniciar uma partida (Necessário: ${entryFee} ${currentNetwork === 'somnia' ? 'STT' : 'MON'}).`
+            : `💰 You have insufficient balance to start a game (Required: ${entryFee} ${currentNetwork === 'somnia' ? 'STT' : 'MON'}).`
+        );
         return;
       }
 
@@ -224,7 +210,11 @@ const NormalHardcore = ({ gameMode }) => {
             : '⛔ You have reached the daily game limit. Come back tomorrow or buy a Pass NFT for more games.'
         );
       } else if (err.message.includes('insufficient funds') || err.reason?.includes('Incorrect entry fee')) {
-        setMessage(translations[language].pt ? '💰 Você está sem saldo para iniciar uma partida.' : '💰 You have insufficient balance to start a game.');
+        setMessage(
+          translations[language].pt
+            ? `💰 Você está sem saldo para iniciar uma partida (Necessário: ${entryFee} ${currentNetwork === 'somnia' ? 'STT' : 'MON'}).`
+            : `💰 You have insufficient balance to start a game (Required: ${entryFee} ${currentNetwork === 'somnia' ? 'STT' : 'MON'}).`
+        );
       } else if (err.code === -32002) {
         setMessage(translations[language].pt ? '❌ MetaMask: Solicitação pendente. Verifique sua carteira.' : '❌ MetaMask: Request pending. Check your wallet.');
       } else {
@@ -233,29 +223,29 @@ const NormalHardcore = ({ gameMode }) => {
     }
   }
 
-async function forceEndGame(won) {
-  if (!contract || !account) {
-    console.error('Contrato ou conta não inicializados');
-    setMessage(
-      translations[language].pt
-        ? '❌ Contrato ou conta não inicializados.'
-        : '❌ Contract or account not initialized.'
-    );
-    return;
-  }
+  async function forceEndGame(won) {
+    if (!contract || !account) {
+      console.error('Contrato ou conta não inicializados');
+      setMessage(
+        translations[language].pt
+          ? '❌ Contrato ou conta não inicializados.'
+          : '❌ Contract or account not initialized.'
+      );
+      return;
+    }
 
-  setIsEndingGame(true);
-  try {
-    console.log('forceEndGame called', { won, currentWord, account, timeLeft, gameMode, useHint });
+    setIsEndingGame(true);
+    try {
+      console.log('forceEndGame called', { won, currentWord, account, timeLeft, gameMode, useHint, contractAddress });
 
       if (!currentWord) {
         console.warn('currentWord is empty, defaulting to wordLength: 0');
       }
 
       const initialPlayerBalance = await provider.getBalance(account);
-      const contractBalance = await provider.getBalance('0xBEa6E7c7c4375111C512d9966D2D75F0873d16Ab');
-      console.log('Initial player balance (MON):', ethers.formatEther(initialPlayerBalance));
-      console.log('Contract balance (MON):', ethers.formatEther(contractBalance));
+      const contractBalance = await provider.getBalance(contractAddress);
+      console.log(`Initial player balance (${currentNetwork === 'somnia' ? 'STT' : 'MON'}): ${ethers.formatEther(initialPlayerBalance)}`);
+      console.log(`Contract balance (${currentNetwork === 'somnia' ? 'STT' : 'MON'}): ${ethers.formatEther(contractBalance)}`);
 
       const initialPlayerData = await contract.players(account);
       console.log('Initial player state:', {
@@ -264,100 +254,95 @@ async function forceEndGame(won) {
         isPlaying: initialPlayerData.isPlaying,
         nonce: initialPlayerData.nonce.toString(),
       });
-
       const playerNonce = initialPlayerData.nonce.toString();
       console.log('Current player nonce:', playerNonce);
       const wordLength = currentWord ? currentWord.length : 0;
-    const params = {
-      player: ethers.getAddress(account),
-      won,
+      const params = {
+        player: ethers.getAddress(account),
+        won,
         wordLength,
-      tokenId: 0,
-      finalPoints: 0,
+        tokenId: 0,
+        finalPoints: 0,
         nonce: playerNonce,
-      gameMode,
-      chances,
-      useHint,
-    };
-    //'http://localhost:3001/sign-result'
-        //'https://backend-assinatura-production.up.railway.app/sign-result'
-    const response = await fetch('https://backend-assinatura-production.up.railway.app/sign-result', {
-          method: 'POST',
-          headers: { 
-            'Content-Type': 'application/json',
-            // Adicione outros headers se necessário
-          },
-          body: JSON.stringify(params),
-          mode: 'cors', // Isso força o modo CORS
-          credentials: 'include' // Se estiver usando cookies/sessão
-        }).catch(error => {
-          console.error('Fetch error:', error);
-          throw error;
-        });
+        gameMode,
+        chances,
+        useHint,
+        network: currentNetwork,
+        entryFee,
+      };
+      // 'https://assinatura.fly.dev/sign-result'
+   //'http://localhost:3001/sign-result'
+   //'https://backend-assinatura-production.up.railway.app/sign-result'
+      console.log('Parameters sent to backend:', params);
+      const response = await fetch('https://assinatura.fly.dev/sign-result', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(params),
+      });
 
-    if (!response.ok) {
+      if (!response.ok) {
         throw new Error(`Backend error: ${response.statusText}`);
-    }
+      }
 
-    const data = await response.json();
-    console.log('Backend response:', data);
+      const data = await response.json();
+      console.log('Backend response:', data);
 
       if (!data.signature || data.rewardAmount === undefined) {
         throw new Error('Invalid backend response: missing signature or rewardAmount');
-    }
+      }
 
-    const endGameParams = {
-      won,
-      wordLength,
-      tokenId: 0,
-      finalPoints: data.finalPoints,
-      rewardAmount: data.rewardAmount.toString(),
-      signature: data.signature,
-    };
+      const endGameParams = {
+        won,
+        wordLength,
+        tokenId: 0,
+        finalPoints: data.finalPoints,
+        rewardAmount: data.rewardAmount.toString(),
+        signature: data.signature,
+      };
 
-    const estimatedGas = await contract.endGame.estimateGas(
-      endGameParams.won,
-      endGameParams.wordLength,
-      endGameParams.tokenId,
-      endGameParams.finalPoints,
-      endGameParams.rewardAmount,
-      endGameParams.signature
-    );
-    console.log('Estimated Gas:', estimatedGas.toString());
+      const estimatedGas = await contract.endGame.estimateGas(
+        endGameParams.won,
+        endGameParams.wordLength,
+        endGameParams.tokenId,
+        endGameParams.finalPoints,
+        endGameParams.rewardAmount,
+        endGameParams.signature
+      );
+      console.log('Estimated Gas:', estimatedGas.toString());
 
-    const feeData = await provider.getFeeData();
-    const gasPrice = feeData.gasPrice || ethers.parseUnits('10', 'gwei');
-    console.log('Recommended Gas Price (Gwei):', ethers.formatUnits(gasPrice, 'gwei'));
+      const feeData = await provider.getFeeData();
+      const gasPrice = feeData.gasPrice || ethers.parseUnits('10', 'gwei');
+      console.log('Recommended Gas Price (Gwei):', ethers.formatUnits(gasPrice, 'gwei'));
 
       const gasLimit = estimatedGas * 120n / 100n;
-    console.log('Gas Limit:', gasLimit.toString());
+      console.log('Gas Limit:', gasLimit.toString());
 
-    console.log('Calling endGame with:', endGameParams);
-    const tx = await contract.endGame(
-      endGameParams.won,
-      endGameParams.wordLength,
-      endGameParams.tokenId,
-      endGameParams.finalPoints,
-      endGameParams.rewardAmount,
-      endGameParams.signature,
-      {
-        gasLimit,
-        gasPrice,
-      }
-    );
-    console.log('Transaction sent:', tx.hash);
-    const receipt = await tx.wait();
-    console.log('Transaction receipt:', receipt);
-
-    const events = receipt.logs
-      .map(log => {
-        try {
-          return contract.interface.parseLog(log);
-        } catch (e) {
-          return null;
+      console.log('Calling endGame with:', endGameParams);
+      const tx = await contract.endGame(
+        endGameParams.won,
+        endGameParams.wordLength,
+        endGameParams.tokenId,
+        endGameParams.finalPoints,
+        endGameParams.rewardAmount,
+        endGameParams.signature,
+        {
+          gasLimit,
+          gasPrice,
         }
-      })
-      .filter(event => event);
+      );
+      console.log('Transaction sent:', tx.hash);
+      const receipt = await tx.wait();
+      console.log('Transaction receipt:', receipt);
+
+      const events = receipt.logs
+        .map(log => {
+          try {
+            return contract.interface.parseLog(log);
+          } catch (e) {
+            return null;
+          }
+        })
+        .filter(event => event);
       console.log('Events emitted:', events.map(event => ({
         name: event.name,
         args: Object.fromEntries(
@@ -368,50 +353,47 @@ async function forceEndGame(won) {
         ),
       })));
 
-    const finalPlayerBalance = await provider.getBalance(account);
-    console.log('Final player balance (MON):', ethers.formatEther(finalPlayerBalance));
-      console.log('Balance difference (MON):', ethers.formatEther(finalPlayerBalance - initialPlayerBalance));
+      const finalPlayerBalance = await provider.getBalance(account);
+      console.log(`Final player balance (${currentNetwork === 'somnia' ? 'STT' : 'MON'}): ${ethers.formatEther(finalPlayerBalance)}`);
+      console.log(`Balance difference (${currentNetwork === 'somnia' ? 'STT' : 'MON'}): ${ethers.formatEther(finalPlayerBalance - initialPlayerBalance)}`);
 
-    // Verificar estado final do jogador
-    const finalPlayerData = await contract.players(account);
-    console.log('Final player state:', {
-      points: finalPlayerData.points.toString(),
-      gamesPlayed: finalPlayerData.gamesPlayed.toString(),
-      isPlaying: finalPlayerData.isPlaying,
-      nonce: finalPlayerData.nonce.toString(),
-    });
+      const finalPlayerData = await contract.players(account);
+      console.log('Final player state:', {
+        points: finalPlayerData.points.toString(),
+        gamesPlayed: finalPlayerData.gamesPlayed.toString(),
+        isPlaying: finalPlayerData.isPlaying,
+        nonce: finalPlayerData.nonce.toString(),
+      });
 
-    // Definir mensagem com base no resultado
-    if (!won) {
-      setMessage(
-        translations[language].pt
-          ? '❌ Você perdeu! Nenhuma recompensa ou pontos ganhos.'
-          : '❌ You lost! No rewards or points earned.'
-      );
-    } else {
-      const rewardInMon = ethers.formatEther(data.rewardAmount);
-      const bonusMessage = !useHint
-        ? translations[language].pt
-          ? ' (inclui bônus de 20% por não usar dica)'
-          : ' (includes 20% bonus for no hint)'
-        : '';
-      setMessage(
-        translations[language].pt
-          ? `✅ Você recebeu ${rewardInMon} MON e ${data.finalPoints} pontos!${bonusMessage}`
-          : `✅ You received ${rewardInMon} MON and ${data.finalPoints} points!${bonusMessage}`
-      );
-    }
+      if (!won) {
+        setMessage(
+          translations[language].pt
+            ? '❌ Você perdeu! Nenhuma recompensa ou pontos ganhos.'
+            : '❌ You lost! No rewards or points earned.'
+        );
+      } else {
+        const rewardInToken = ethers.formatEther(data.rewardAmount);
+        const bonusMessage = !useHint
+          ? translations[language].pt
+            ? ' (inclui bônus de 20% por não usar dica)'
+            : ' (includes 20% bonus for no hint)'
+          : '';
+        setMessage(
+          translations[language].pt
+            ? `✅ Você recebeu ${rewardInToken} ${currentNetwork === 'somnia' ? 'STT' : 'MON'} e ${data.finalPoints} pontos!${bonusMessage}`
+            : `✅ You received ${rewardInToken} ${currentNetwork === 'somnia' ? 'STT' : 'MON'} and ${data.finalPoints} points!${bonusMessage}`
+        );
+      }
 
-    // Atualizar estado do jogo
-    setIsPlaying(false);
-    setGameActive(false);
-  } catch (error) {
-    console.error('Error ending game:', error);
+      setIsPlaying(false);
+      setGameActive(false);
+    } catch (error) {
+      console.error('Error ending game:', error);
       setMessage(translations[language].pt ? '❌ Erro ao finalizar o jogo: ' + error.message : '❌ Error ending game: ' + error.message);
-  } finally {
-    setIsEndingGame(false);
+    } finally {
+      setIsEndingGame(false);
+    }
   }
-}
 
   async function loadWord() {
     try {
@@ -424,7 +406,7 @@ async function forceEndGame(won) {
         throw new Error('Palavra não encontrada no backend');
       }
       console.log('Loaded word:', data.palavra);
-      
+
       setCurrentWord(data.palavra);
       setCurrentHint(data.dica || data.dica1 || '');
       setSecondHint(data.dica2 || '');

@@ -49,7 +49,39 @@ h8 {
   position: relative;
   margin-right: 200px;
 }
+/* Estilo para o botão de rede */
+.network-button {
+  padding: 8px 12px;
+  background-color: #4a5568;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
 
+.network-button:hover {
+  background-color: #2d3748;
+}
+
+/* Estilo para os botões no modal de rede */
+.modal-content button {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 12px;
+  margin: 8px 0;
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.modal-content button:hover {
+  background-color: #e0e0e0;
+}
 button:hover, .how-to-play-button:hover, .back-button:hover {
   background: linear-gradient(45deg, #00f7ff, #ff4da6);
   color: #1a1d3e;

@@ -3,13 +3,42 @@ import { ethers } from 'ethers';
 import { motion } from 'framer-motion';
 import rawContract from './ForcaGame.json';
 
-// Definir as variáveis de ambiente com fallback
-const contractAddress = '0xBEa6E7c7c4375111C512d9966D2D75F0873d16Ab';
+// Configuração de redes suportadas
+const SUPPORTED_NETWORKS = {
+  somnia: {
+    chainId: '0xc488', // 50312 em hexadecimal
+    chainName: 'Somnia Testnet',
+    nativeCurrency: {
+      name: 'STT',
+      symbol: 'STT',
+      decimals: 18
+    },
+    rpcUrls: ['https://dream-rpc.somnia.network'],
+    blockExplorerUrls: ['https://somnia.console.so/']
+  },
+  monad: {
+    chainId: '0x279f', // Monad em hexadecimal (não oficial, verifique o chainId correto)
+    chainName: 'Monad Testnet',
+    nativeCurrency: {
+      name: 'MON',
+      symbol: 'MON',
+      decimals: 18
+    },
+    rpcUrls: ['https://testnet-rpc.monad.xyz'], // Verifique o RPC correto
+    blockExplorerUrls: ['https://monad-testnet.socialscan.io/'] // Verifique o explorer correto
+  }
+};
+
+// Contratos por rede
+const CONTRACT_ADDRESSES = {
+  somnia: '0x6Bf69Ce556233E3c1A3B94e3F0c95C1479e1c22a',
+  monad: '0xBEa6E7c7c4375111C512d9966D2D75F0873d16Ab'
+};
+
+const contractABI = rawContract.abi;
 const BACKEND_URL = 'https://backend-leaderboard-production.up.railway.app';
 const BACKEND_UR = 'https://palavras-production.up.railway.app';
 
-const contractABI = rawContract.abi;
-//0x6Bf69Ce556233E3c1A3B94e3F0c95C1479e1c22a somia
 export const GlobalContext = createContext();
 
 export const GlobalProvider = ({ children }) => {
@@ -22,7 +51,10 @@ export const GlobalProvider = ({ children }) => {
   const [leaderboard, setLeaderboard] = useState([]);
   const [isOwner, setIsOwner] = useState(false);
   const [showWalletModal, setShowWalletModal] = useState(false);
+  const [showNetworkModal, setShowNetworkModal] = useState(false);
   const [isLeaderboardLoading, setIsLeaderboardLoading] = useState(false);
+  const [currentNetwork, setCurrentNetwork] = useState('somnia');
+  const [contractAddress, setContractAddress] = useState(CONTRACT_ADDRESSES.somnia);
 
   // Definir translations dentro do GlobalProvider
   const translations = {
@@ -60,15 +92,20 @@ export const GlobalProvider = ({ children }) => {
     },
   };
 
-  // Inicializa o contrato sem verificação de rede
+  // Inicializa o contrato com base na rede atual
   const initializeContract = async (ethProvider) => {
     try {
       const provider = new ethers.BrowserProvider(ethProvider);
       setProvider(provider);
       const signer = await provider.getSigner();
       setSigner(signer);
-      const contractInstance = new ethers.Contract(contractAddress, contractABI, signer);
+      
+      // Usa o endereço do contrato baseado na rede atual
+      const currentContractAddress = CONTRACT_ADDRESSES[currentNetwork];
+      const contractInstance = new ethers.Contract(currentContractAddress, contractABI, signer);
       setContract(contractInstance);
+      setContractAddress(currentContractAddress);
+      
       const address = await signer.getAddress();
       setAccount(address);
       setIsConnected(true);
@@ -77,6 +114,60 @@ export const GlobalProvider = ({ children }) => {
       console.error('Erro ao inicializar contrato:', err);
       alert(translations[language].contractError);
       return false;
+    }
+  };
+
+  // Função para mudar de rede
+  const switchNetwork = async (networkName) => {
+    try {
+      if (!window.ethereum) {
+        alert(translations[language].walletNotDetected);
+        return;
+      }
+
+      const networkConfig = SUPPORTED_NETWORKS[networkName];
+      if (!networkConfig) {
+        alert('Rede não suportada');
+        return;
+      }
+
+      try {
+        await window.ethereum.request({
+          method: 'wallet_switchEthereumChain',
+          params: [{ chainId: networkConfig.chainId }],
+        });
+      } catch (switchError) {
+        // Se a rede não estiver adicionada, tente adicioná-la
+        if (switchError.code === 4902) {
+          try {
+            await window.ethereum.request({
+              method: 'wallet_addEthereumChain',
+              params: [networkConfig],
+            });
+          } catch (addError) {
+            console.error('Erro ao adicionar rede:', addError);
+            alert('Erro ao adicionar rede');
+            return;
+          }
+        } else {
+          console.error('Erro ao mudar de rede:', switchError);
+          alert('Erro ao mudar de rede');
+          return;
+        }
+      }
+
+      // Atualiza o estado da rede e reconecta
+      setCurrentNetwork(networkName);
+      setContractAddress(CONTRACT_ADDRESSES[networkName]);
+      setShowNetworkModal(false);
+      
+      // Reinicializa o contrato com a nova rede
+      if (isConnected) {
+        await initializeContract(window.ethereum);
+      }
+    } catch (err) {
+      console.error('Erro ao mudar de rede:', err);
+      alert('Erro ao mudar de rede');
     }
   };
 
@@ -158,7 +249,7 @@ export const GlobalProvider = ({ children }) => {
     }
   }
 
-  // Listener para mudanças de contas
+  // Listener para mudanças de contas e rede
   useEffect(() => {
     if (window.ethereum) {
       // Verifica contas conectadas ao carregar a página
@@ -193,13 +284,22 @@ export const GlobalProvider = ({ children }) => {
         }
       };
 
+      // Listener para mudanças de rede
+      const handleChainChanged = async () => {
+        if (isConnected) {
+          await initializeContract(window.ethereum);
+        }
+      };
+
       window.ethereum.on('accountsChanged', handleAccountsChanged);
+      window.ethereum.on('chainChanged', handleChainChanged);
 
       return () => {
         window.ethereum.removeListener('accountsChanged', handleAccountsChanged);
+        window.ethereum.removeListener('chainChanged', handleChainChanged);
       };
     }
-  }, []);
+  }, [currentNetwork, isConnected]);
 
   async function fetchWithBackoff(url, retries = 3, delay = 1000) {
     for (let i = 0; i < retries; i++) {
@@ -321,6 +421,38 @@ export const GlobalProvider = ({ children }) => {
     );
   };
 
+  const renderNetworkModal = () => {
+    if (!showNetworkModal) return null;
+
+    return (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="modal-overlay"
+        onClick={() => setShowNetworkModal(false)}
+      >
+        <motion.div
+          initial={{ scale: 0.9 }}
+          animate={{ scale: 1 }}
+          transition={{ type: 'spring', stiffness: 200 }}
+          className="modal-content"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <h2>{translations[language].pt ? 'Selecione a Rede' : 'Select Network'}</h2>
+          <button onClick={() => switchNetwork('somnia')}>
+            <img src="/sommia.ico" alt="Somnia" style={{ width: '24px', marginRight: '8px' }} />
+            Somnia Testnet
+          </button>
+          <button onClick={() => switchNetwork('monad')}>
+            <img src="/monad.png" alt="Monad" style={{ width: '24px', marginRight: '8px' }} />
+            Monad Testnet
+          </button>
+        </motion.div>
+      </motion.div>
+    );
+  };
+
   return (
     <GlobalContext.Provider
       value={{
@@ -335,12 +467,17 @@ export const GlobalProvider = ({ children }) => {
         isOwner,
         showWalletModal,
         setShowWalletModal,
+        showNetworkModal,
+        setShowNetworkModal,
+        currentNetwork,
+        switchNetwork,
         connectWallet,
         disconnectWallet,
         fetchLeaderboard,
         ProgressBar,
         renderMessage,
         renderLeaderboard,
+        renderNetworkModal,
         translations,
         BACKEND_URL,
         BACKEND_UR,
@@ -349,6 +486,7 @@ export const GlobalProvider = ({ children }) => {
       }}
     >
       {children}
+      {renderNetworkModal()}
     </GlobalContext.Provider>
   );
 };
