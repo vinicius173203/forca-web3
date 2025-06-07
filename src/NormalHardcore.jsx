@@ -25,7 +25,7 @@ const NormalHardcore = ({ gameMode }) => {
   const [usedLetters, setUsedLetters] = useState([]);
   const [entryFee, setEntryFee] = useState('0');
   const [gameActive, setGameActive] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(45);
+  const [timeLeft, setTimeLeft] = useState(gameMode === 'hardcore' ? 60 : gameMode === 'normal' ? 30 : 20);
   const [currentHint, setCurrentHint] = useState('');
   const [useHint, setUseHint] = useState(true);
   const [secondHint, setSecondHint] = useState('');
@@ -197,7 +197,7 @@ const NormalHardcore = ({ gameMode }) => {
         return;
       }
 
-      setTimeLeft(useHint ? 30 : 45);
+      setTimeLeft(gameMode === 'hardcore' ? 60 : gameMode === 'normal' ? 30 : 20);
       setHintLocked(useHint);
       setGameActive(true);
       fetchLeaderboard();
@@ -270,9 +270,6 @@ const NormalHardcore = ({ gameMode }) => {
         network: currentNetwork,
         entryFee,
       };
-      // 'https://assinatura.fly.dev/sign-result'
-   //'http://localhost:3001/sign-result'
-   //'https://backend-assinatura-production.up.railway.app/sign-result'
       console.log('Parameters sent to backend:', params);
       const response = await fetch('https://assinatura.fly.dev/sign-result', {
         method: 'POST',
@@ -414,7 +411,8 @@ const NormalHardcore = ({ gameMode }) => {
       setUsedLetters([]);
       setMessage('');
 
-      const baseChances = data.palavra.length <= 6 ? 3 : data.palavra.length <= 9 ? 4 : 5;
+      // Set chances based on game mode
+      const baseChances = gameMode === 'hardcore' ? 6 : (data.palavra.length <= 6 ? 3 : data.palavra.length <= 9 ? 4 : 5);
       setChances(baseChances);
 
       return data.palavra;
@@ -425,7 +423,7 @@ const NormalHardcore = ({ gameMode }) => {
       setCurrentHint('Um dispositivo de áudio');
       setSecondHint('Usado em gravações');
       setMaskedWord('_ '.repeat(9));
-      setChances(4);
+      setChances(gameMode === 'hardcore' ? 6 : 4);
       return 'microfone';
     }
   }
@@ -471,8 +469,7 @@ const NormalHardcore = ({ gameMode }) => {
 
   const renderChances = () => {
     if (!currentWord) return null;
-    const wordLength = currentWord.length;
-    const total = wordLength <= 6 ? 3 : wordLength <= 9 ? 4 : 5;
+    const total = gameMode === 'hardcore' ? 6 : (currentWord.length <= 6 ? 3 : currentWord.length <= 9 ? 4 : 5);
     const safeChances = Math.max(0, chances);
     const safeMisses = Math.max(0, total - safeChances);
     return (
@@ -488,7 +485,29 @@ const NormalHardcore = ({ gameMode }) => {
     return (
       <div>
         {translations[language].timeLeft}: {timeLeft} {translations[language].pt ? 'segundos' : 'seconds'}
-        <ProgressBar timeLeft={timeLeft} maxTime={hintLocked ? 30 : 45} />
+        <ProgressBar timeLeft={timeLeft} maxTime={gameMode === 'hardcore' ? 60 : gameMode === 'normal' ? 30 : 20} />
+      </div>
+    );
+  };
+
+  const renderHints = () => {
+    if (!gameActive || !useHint) {
+      return !useHint ? (
+        <p>{translations[language].pt ? 'Sem dica selecionada' : 'No hint selected'}</p>
+      ) : null;
+    }
+
+    const secondHintTime = gameMode === 'hardcore' ? 30 : gameMode === 'normal' ? 15 : 10;
+    return (
+      <div className="hint">
+        <p>
+          <strong>{translations[language].pt ? 'Dica:' : 'Hint:'}</strong> {currentHint}
+        </p>
+        {timeLeft <= secondHintTime && secondHint && (
+          <p>
+            <strong>{translations[language].pt ? 'Dica 2:' : 'Hint 2:'}</strong> {secondHint}
+          </p>
+        )}
       </div>
     );
   };
@@ -533,21 +552,7 @@ const NormalHardcore = ({ gameMode }) => {
               {translations[language].pt ? 'Comprar Pass NFT' : 'Buy Pass NFT'}
             </button>
           )}
-          {gameActive && useHint && (
-            <div className="hint">
-              <p>
-                <strong>{translations[language].pt ? 'Dica:' : 'Hint:'}</strong> {currentHint}
-              </p>
-              {timeLeft <= 30 && secondHint && (
-                <p>
-                  <strong>{translations[language].pt ? 'Dica 2:' : 'Hint 2:'}</strong> {secondHint}
-                </p>
-              )}
-            </div>
-          )}
-          {gameActive && !useHint && (
-            <p>{translations[language].pt ? 'Sem dica selecionada' : 'No hint selected'}</p>
-          )}
+          {renderHints()}
           <p className="masked-word">{maskedWord}</p>
           {renderChances()}
           {renderTimer()}

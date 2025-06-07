@@ -49,14 +49,14 @@ const AppContent = () => {
 
   const [gameMode, setGameMode] = useState('easy');
 
-    return (
+  return (
     <>
       <Routes>
         <Route
           path="/"
           element={
             <>
-              <div style={{ position: 'absolute', top: '10px', right: '20px', textAlign: 'right' }}>
+              <div style={{ position: 'absolute', top: '10px', right: '10px', textAlign: 'right' }}>
                 {!isConnected ? (
                   <div>
                     <button className="action-button" onClick={() => setShowWalletModal(true)}>
@@ -64,20 +64,20 @@ const AppContent = () => {
                     </button>
                   </div>
                 ) : (
-                  <>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                      <button 
-                        className="network-button"
-                        onClick={() => setShowNetworkModal(true)}
-                      >
-                        {currentNetwork === 'somnia' ? 'Somnia' : 'Monad'}
-                      </button>
-                      <p>👤 {account.slice(0, 6)}...{account.slice(-4)}</p>
-                      <button className="action-button" onClick={disconnectWallet}>
-                        {translations[language].pt ? 'Desconectar' : 'Disconnect'}
-                      </button>
-                    </div>
-                  </>
+                  <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '8px' }}>
+                    <button 
+                      className="network-button"
+                      onClick={() => setShowNetworkModal(true)}
+                    >
+                      {currentNetwork === 'somnia' ? 'Somnia' : 'Monad'}
+                    </button>
+                    <p style={{ margin: '0', fontSize: '0.9rem' }}>
+                      👤 {account.slice(0, 6)}...{account.slice(-4)}
+                    </p>
+                    <button className="action-button" onClick={disconnectWallet}>
+                      {translations[language].pt ? 'Desconectar' : 'Disconnect'}
+                    </button>
+                  </div>
                 )}
               </div>
 
@@ -178,7 +178,7 @@ const AppContent = () => {
                 </div>
               </div>
             
-               {showWalletModal && (
+              {showWalletModal && (
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -214,7 +214,6 @@ const AppContent = () => {
                 </motion.div>
               )}
 
-              {/* Adicione o modal de rede */}
               {renderNetworkModal()}
 
               <div style={{ textAlign: 'center', marginTop: '20px' }}>

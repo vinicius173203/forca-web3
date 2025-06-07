@@ -34,7 +34,8 @@ const CONTRACT_ADDRESSES = {
   somnia: '0x6Bf69Ce556233E3c1A3B94e3F0c95C1479e1c22a',
   monad: '0xBEa6E7c7c4375111C512d9966D2D75F0873d16Ab'
 };
-
+//'https://palavras-production.up.railway.app';
+//'http://localhost:3000';
 const contractABI = rawContract.abi;
 const BACKEND_URL = 'https://backend-leaderboard-production.up.railway.app';
 const BACKEND_UR = 'https://palavras-production.up.railway.app';
