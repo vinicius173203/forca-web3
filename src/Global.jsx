@@ -35,10 +35,12 @@ const CONTRACT_ADDRESSES = {
   monad: '0xBEa6E7c7c4375111C512d9966D2D75F0873d16Ab'
 };
 //'https://palavras-production.up.railway.app';
-//'http://localhost:3000';
+//'http://localhost:3003';
+//'http://localhost:3002';
 const contractABI = rawContract.abi;
 const BACKEND_URL = 'https://backend-leaderboard-production.up.railway.app';
 const BACKEND_UR = 'https://palavras-production.up.railway.app';
+//const BACKEND_UR = 'http://localhost:3003';
 
 export const GlobalContext = createContext();
 

@@ -18,7 +18,6 @@ const NormalHardcore = ({ gameMode }) => {
     contractAddress,
   } = useContext(GlobalContext);
 
-  const [currentWord, setCurrentWord] = useState('');
   const [maskedWord, setMaskedWord] = useState('');
   const [chances, setChances] = useState(0);
   const [message, setMessage] = useState('');
@@ -63,21 +62,21 @@ const NormalHardcore = ({ gameMode }) => {
         setTimeLeft((prev) => {
           const newTime = prev - 1;
           if (newTime <= 10) {
-            warningSound.play().catch(() => {}); // Handle potential audio errors
+            warningSound.play().catch(() => {});
           } else {
             tickSound.play().catch(() => {});
           }
           return newTime;
         });
       }, 1000);
-    } else if (gameActive && timeLeft <= 0 && currentWord && !pendingEnd) {
+    } else if (gameActive && timeLeft <= 0 && !pendingEnd) {
       setMessage(translations[language].pt ? '⏰ Tempo esgotado! Você perdeu!' : '⏰ Time’s up! You lost!');
       setGameActive(false);
       setPendingEnd({ won: false });
     }
 
     return () => clearInterval(timer);
-  }, [gameActive, timeLeft, currentWord, pendingEnd, language]);
+  }, [gameActive, timeLeft, pendingEnd, language]);
 
   useEffect(() => {
     if (pendingEnd) {
@@ -236,11 +235,7 @@ const NormalHardcore = ({ gameMode }) => {
 
     setIsEndingGame(true);
     try {
-      console.log('forceEndGame called', { won, currentWord, account, timeLeft, gameMode, useHint, contractAddress });
-
-      if (!currentWord) {
-        console.warn('currentWord is empty, defaulting to wordLength: 0');
-      }
+      console.log('forceEndGame called', { won, account, timeLeft, gameMode, useHint, contractAddress });
 
       const initialPlayerBalance = await provider.getBalance(account);
       const contractBalance = await provider.getBalance(contractAddress);
@@ -256,7 +251,7 @@ const NormalHardcore = ({ gameMode }) => {
       });
       const playerNonce = initialPlayerData.nonce.toString();
       console.log('Current player nonce:', playerNonce);
-      const wordLength = currentWord ? currentWord.length : 0;
+      const wordLength = maskedWord ? maskedWord.split(' ').length : 0;
       const params = {
         player: ethers.getAddress(account),
         won,
@@ -309,12 +304,8 @@ const NormalHardcore = ({ gameMode }) => {
 
       const feeData = await provider.getFeeData();
       const gasPrice = feeData.gasPrice || ethers.parseUnits('10', 'gwei');
-      console.log('Recommended Gas Price (Gwei):', ethers.formatUnits(gasPrice, 'gwei'));
 
       const gasLimit = estimatedGas * 120n / 100n;
-      console.log('Gas Limit:', gasLimit.toString());
-
-      console.log('Calling endGame with:', endGameParams);
       const tx = await contract.endGame(
         endGameParams.won,
         endGameParams.wordLength,
@@ -351,8 +342,6 @@ const NormalHardcore = ({ gameMode }) => {
       })));
 
       const finalPlayerBalance = await provider.getBalance(account);
-      console.log(`Final player balance (${currentNetwork === 'somnia' ? 'STT' : 'MON'}): ${ethers.formatEther(finalPlayerBalance)}`);
-      console.log(`Balance difference (${currentNetwork === 'somnia' ? 'STT' : 'MON'}): ${ethers.formatEther(finalPlayerBalance - initialPlayerBalance)}`);
 
       const finalPlayerData = await contract.players(account);
       console.log('Final player state:', {
@@ -386,7 +375,19 @@ const NormalHardcore = ({ gameMode }) => {
       setGameActive(false);
     } catch (error) {
       console.error('Error ending game:', error);
-      setMessage(translations[language].pt ? '❌ Erro ao finalizar o jogo: ' + error.message : '❌ Error ending game: ' + error.message);
+      if (error?.data?.message?.includes('No balance') || error?.reason?.includes('No balance')) {
+        setMessage(
+          translations[language].pt
+            ? '❌ O contrato está sem saldo, aguarde uma nova pool para continuar jogando.'
+            : '❌ The contract has no balance, please wait for a new pool to continue playing.'
+        );
+      } else {
+        setMessage(
+          translations[language].pt
+            ? '❌ Erro ao finalizar o jogo: ' + error.message
+            : '❌ Error ending game: ' + error.message
+        );
+      }
     } finally {
       setIsEndingGame(false);
     }
@@ -399,57 +400,58 @@ const NormalHardcore = ({ gameMode }) => {
         throw new Error(`Failed to fetch word: ${response.statusText}`);
       }
       const data = await response.json();
-      if (!data || !data.palavra) {
+      if (!data || !data.maskedWord) {
         throw new Error('Palavra não encontrada no backend');
       }
-      console.log('Loaded word:', data.palavra);
 
-      setCurrentWord(data.palavra);
+
+      setMaskedWord(data.maskedWord);
       setCurrentHint(data.dica || data.dica1 || '');
       setSecondHint(data.dica2 || '');
-      setMaskedWord('_ '.repeat(data.palavra.length));
+      setChances(data.chances);
       setUsedLetters([]);
       setMessage('');
 
-      // Set chances based on game mode
-      const baseChances = gameMode === 'hardcore' ? 6 : (data.palavra.length <= 6 ? 3 : data.palavra.length <= 9 ? 4 : 5);
-      setChances(baseChances);
-
-      return data.palavra;
+      return data.maskedWord;
     } catch (err) {
       console.error('Erro ao carregar palavra:', err);
       setMessage(translations[language].pt ? '❌ Erro ao carregar palavra: ' + err.message : '❌ Error loading word: ' + err.message);
-      setCurrentWord('microfone');
+      setMaskedWord('_ '.repeat(9));
       setCurrentHint('Um dispositivo de áudio');
       setSecondHint('Usado em gravações');
-      setMaskedWord('_ '.repeat(9));
       setChances(gameMode === 'hardcore' ? 6 : 4);
-      return 'microfone';
+      return '_ '.repeat(9);
     }
   }
 
   async function handleGuess(letter) {
     if (!gameActive || usedLetters.includes(letter) || message) return;
-    setUsedLetters((prev) => [...prev, letter]);
-    if (!currentWord.includes(letter)) {
-      setChances((prev) => {
-        const newChances = prev - 1;
-        if (newChances <= 0) {
-          setMessage('❌ ' + (translations[language].pt ? 'Você perdeu!' : 'You lost!'));
-          setGameActive(false);
-          setPendingEnd({ won: false });
-        }
-        return newChances;
-      });
-      return;
-    }
 
-    const updated = maskedWord.split(' ').map((char, i) => (currentWord[i] === letter ? letter : char));
-    setMaskedWord(updated.join(' '));
-    if (!updated.includes('_')) {
-      setMessage('✅ ' + (translations[language].pt ? 'Você venceu!' : 'You won!'));
-      setGameActive(false);
-      setPendingEnd({ won: true });
+    try {
+      const response = await fetch(`${BACKEND_UR}/guess`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ wallet: account, lang: language, mode: gameMode, letter }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to guess: ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      
+
+      setMaskedWord(data.maskedWord);
+      setChances(data.chances);
+      setUsedLetters((prev) => [...prev, letter]);
+      if (data.message) {
+        setMessage(data.message);
+        setGameActive(false);
+        setPendingEnd({ won: data.won });
+      }
+    } catch (err) {
+      console.error('Erro ao processar palpite:', err);
+      setMessage(translations[language].pt ? '❌ Erro ao processar palpite: ' + err.message : '❌ Error processing guess: ' + err.message);
     }
   }
 
@@ -468,8 +470,8 @@ const NormalHardcore = ({ gameMode }) => {
   };
 
   const renderChances = () => {
-    if (!currentWord) return null;
-    const total = gameMode === 'hardcore' ? 6 : (currentWord.length <= 6 ? 3 : currentWord.length <= 9 ? 4 : 5);
+    if (!maskedWord) return null;
+    const total = gameMode === 'hardcore' ? 6 : (maskedWord.split(' ').length <= 6 ? 3 : maskedWord.split(' ').length <= 9 ? 4 : 5);
     const safeChances = Math.max(0, chances);
     const safeMisses = Math.max(0, total - safeChances);
     return (
@@ -497,7 +499,7 @@ const NormalHardcore = ({ gameMode }) => {
       ) : null;
     }
 
-    const secondHintTime = gameMode === 'hardcore' ? 30 : gameMode === 'normal' ? 15 : 10;
+    const secondHintTime = gameMode === 'hardcore' ? 30 : 10;
     return (
       <div className="hint">
         <p>
