@@ -266,7 +266,8 @@ const NormalHardcore = ({ gameMode }) => {
         entryFee,
       };
       console.log('Parameters sent to backend:', params);
-      const response = await fetch('https://assinatura.fly.dev/sign-result', {
+      const ASSINATURA= import.meta.env.VITE_APP_ASSINATURA; //ASSINATURA
+      const response = await fetch(`${ASSINATURA}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(params),
