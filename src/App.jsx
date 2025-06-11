@@ -56,30 +56,55 @@ const AppContent = () => {
           path="/"
           element={
             <>
-              <div style={{ position: 'absolute', top: '10px', right: '20px', textAlign: 'right' }}>
-                {!isConnected ? (
-                  <div>
-                    <button className="action-button" onClick={() => setShowWalletModal(true)}>
-                      {translations[language].connect}
-                    </button>
-                  </div>
-                ) : (
-                  <>
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                      <button 
-                        className="network-button"
-                        onClick={() => setShowNetworkModal(true)}
-                      >
-                        {currentNetwork === 'somnia' ? 'Somnia' : 'Monad'}
-                      </button>
-                      <p>👤 {account.slice(0, 6)}...{account.slice(-4)}</p>
-                      <button className="action-button" onClick={disconnectWallet}>
-                        {translations[language].pt ? 'Desconectar' : 'Disconnect'}
-                      </button>
-                    </div>
-                  </>
-                )}
-              </div>
+              <div style={{
+  position: 'absolute',
+  top: '7px',
+  right: '20px',
+  padding: '15px',
+  backgroundColor: '#1a1d3e',
+  borderRadius: '12px',
+  boxShadow: '0 0 10px rgba(0, 255, 255, 0.5)',
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'stretch',
+  width: '150px',
+  gap: '10px',
+}}>
+  {!isConnected ? (
+    <button
+      className="action-button"
+      onClick={() => setShowWalletModal(true)}
+      style={{ width: '100%' }}
+    >
+      {translations[language].connect}
+    </button>
+  ) : (
+    <>
+      <div style={{ color: '#fff', fontSize: '14px' }}>
+        👤 {account.slice(0, 6)}...{account.slice(-4)}
+      </div>
+      <span style={{ color: '#00f0ff', fontSize: '0.9rem', marginBottom: '5px' }}>
+        {language === 'pt' ? 'Selecione sua rede' : 'Select Network'}
+      </span>
+      <button
+        className="network-button"
+        onClick={() => setShowNetworkModal(true)}
+        style={{ width: '100%' }}
+      >
+        {currentNetwork === 'somnia' ? 'Somnia' : 'Monad'}
+      </button>
+      <button
+        className="action-button"
+        onClick={disconnectWallet}
+        style={{ width: '100%' }}
+      >
+        {translations[language].pt ? 'Desconectar' : 'Disconnect'}
+      </button>
+    </>
+  )}
+</div>
+
+
 
               <div className="main-container">
                 <div className="sidebar-section">

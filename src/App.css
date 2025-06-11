@@ -66,23 +66,38 @@ h8 {
   background-color: #2d3748;
 }
 
-/* Modal buttons */
 .modal-content button {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
+  gap: 12px;
+  padding: 12px 20px;
   width: 100%;
-  padding: 10px;
-  margin: 6px 0;
-  background-color: #f0f0f0;
-  border: none;
-  border-radius: 8px;
+  background-color: #111;
+  border: 1px solid #00f0ff;
+  border-radius: 12px;
+  color: white;
+  font-size: 1.1rem;
   cursor: pointer;
-  transition: background-color 0.3s;
+  margin-top: 10px;
+  transition: transform 0.2s, background-color 0.2s;
 }
 
 .modal-content button:hover {
-  background-color: #e0e0e0;
+  background-color: #00f0ff;
+  color: black;
+  transform: scale(1.03);
 }
+
+.modal-content img {
+  width: 32px !important;
+  height: 32px;
+}
+
+.modal-content button {
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+}
+
 
 button:hover, .how-to-play-button:hover, .back-button:hover {
   background: linear-gradient(45deg, #00f7ff, #ff4da6);
@@ -253,7 +268,7 @@ button:hover, .how-to-play-button:hover, .back-button:hover {
 
 .modal-content img {
   width: 16px;
-  height: 16px;
+  height: 25px;
 }
 
 .close-button {

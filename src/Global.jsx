@@ -38,8 +38,8 @@ const CONTRACT_ADDRESSES = {
 //'http://localhost:3003';
 //'http://localhost:3002';
 const contractABI = rawContract.abi;
-const BACKEND_URL = import.meta.env.VITE_APP_BACKEND_URL; //palavras
-const BACKEND_UR = import.meta.env.VITE_APP_BACKEND_UR; //leadboard
+const BACKEND_URL = import.meta.env.VITE_APP_BACKEND_URL; //leadboard
+const BACKEND_UR = import.meta.env.VITE_APP_BACKEND_UR; //palavras
 
 
 export const GlobalContext = createContext();
