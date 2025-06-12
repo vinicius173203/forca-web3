@@ -34,7 +34,7 @@ button, .how-to-play-button, .back-button {
   display: inline-block;
 }
 
-h8 {
+.contract-address {
   background: linear-gradient(45deg, #00f7ff22, #ff4da622);
   border: 1px solid #00f7ff;
   color: #e0e0e0;
@@ -47,7 +47,7 @@ h8 {
   text-decoration: none;
   display: inline-block;
   position: relative;
-  margin-right: 10px; /* Reduced for smaller screens */
+  margin-right: 160px;                     
 }
 
 /* Network button styles */
@@ -641,10 +641,10 @@ button:hover, .how-to-play-button:hover, .back-button:hover {
     font-size: 0.7rem;
   }
 
-  h8 {
+.contract-address {
     font-size: 0.8rem;
     padding: 6px 12px;
-    margin-right: 5px;
+    margin-right: 50px;
     word-break: break-all;
   }
 }
@@ -742,7 +742,7 @@ button:hover, .how-to-play-button:hover, .back-button:hover {
     font-size: 0.6rem;
   }
 
-  h8 {
+.contract-address {
     font-size: 0.7rem;
     padding: 5px 10px;
   }

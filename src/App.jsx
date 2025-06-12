@@ -242,10 +242,9 @@ const AppContent = () => {
               {/* Adicione o modal de rede */}
               {renderNetworkModal()}
 
-              <div style={{ textAlign: 'center', marginTop: '20px' }}>
-                <h8>
+              <div className="contract-address">                
                   {translations[language].pt ? 'Endereço do contrato:' : 'Contract address:'} {contractAddress}
-                </h8>
+                
               </div>
             </>
           }

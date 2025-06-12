@@ -110,7 +110,7 @@ const NormalHardcore = ({ gameMode }) => {
       return isPlaying;
     } catch (err) {
       console.error('Erro ao verificar estado do jogador:', err);
-      setMessage(translations[language].pt ? '❌ Erro ao verificar estado do jogador.' : '❌ Error checking player status.');
+      setMessage(translations[language].pt ? ' Bem vindo ao Forca Game'             : '  Welcome to Forca Game');
       return false;
     }
   }
