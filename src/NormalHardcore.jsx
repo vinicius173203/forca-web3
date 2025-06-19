@@ -11,8 +11,8 @@ const NormalHardcore = ({ gameMode }) => {
     translations,
     BACKEND_UR,
     renderMessage,
+    LEADBOARD,
     ProgressBar,
-    fetchLeaderboard,
     provider,
     currentNetwork,
     contractAddress,
@@ -199,7 +199,6 @@ const NormalHardcore = ({ gameMode }) => {
       setTimeLeft(gameMode === 'hardcore' ? 60 : gameMode === 'normal' ? 30 : 20);
       setHintLocked(useHint);
       setGameActive(true);
-      fetchLeaderboard();
     } catch (err) {
       console.error('Erro ao iniciar o jogo:', err);
       if (err.reason && err.reason.includes('Daily play limit reached')) {
@@ -374,6 +373,28 @@ const NormalHardcore = ({ gameMode }) => {
 
       setIsPlaying(false);
       setGameActive(false);
+      // Salva playpoints no backend
+try {
+  const res = await fetch(`${LEADBOARD}/save-playpoints`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      wallet: account,
+      network: currentNetwork,
+      playpoints: finalPlayerData.points.toString(),
+      timestamp: new Date().toISOString()
+    })
+  });
+
+  if (!res.ok) {
+    console.error('Erro ao salvar playpoints:', await res.text());
+  } else {
+    console.log('Playpoints salvos com sucesso!');
+  }
+} catch (err) {
+  console.error('Erro ao enviar playpoints:', err);
+}
+
     } catch (error) {
       console.error('Error ending game:', error);
       if (error?.data?.message?.includes('No balance') || error?.reason?.includes('No balance')) {

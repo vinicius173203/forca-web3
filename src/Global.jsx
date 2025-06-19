@@ -38,9 +38,8 @@ const CONTRACT_ADDRESSES = {
 //'http://localhost:3003';
 //'http://localhost:3002';
 const contractABI = rawContract.abi;
-const BACKEND_URL = import.meta.env.VITE_APP_BACKEND_URL; //leadboard
 const BACKEND_UR = import.meta.env.VITE_APP_BACKEND_UR; //palavras
-
+const LEADBOARD = import.meta.env.VITE_APP_LEADBOARD; //leadboard
 
 export const GlobalContext = createContext();
 
@@ -318,26 +317,6 @@ export const GlobalProvider = ({ children }) => {
     }
   }
 
-  async function fetchLeaderboard() {
-    if (isLeaderboardLoading) return;
-    setIsLeaderboardLoading(true);
-    try {
-      console.log('Iniciando busca do leaderboard...');
-      const data = await fetchWithBackoff(`${BACKEND_URL}/leaderboard`);
-      const leaderboardData = data.map((item) => ({
-        address: item.address,
-        points: item.points.toString(),
-      }));
-      setLeaderboard(leaderboardData);
-      console.log('Leaderboard carregado com sucesso:', leaderboardData);
-    } catch (err) {
-      console.error('Erro ao buscar leaderboard do backend:', err);
-      alert(translations[language].leaderboardError);
-    } finally {
-      setIsLeaderboardLoading(false);
-    }
-  }
-
   async function checkOwner() {
     if (!contract) return;
     try {
@@ -349,12 +328,15 @@ export const GlobalProvider = ({ children }) => {
   }
 
   // Carrega o leaderboard e verifica o owner quando o contrato é inicializado
-  useEffect(() => {
-    if (contract && !isLeaderboardLoading) {
-      fetchLeaderboard();
-      checkOwner();
-    }
-  }, [contract]);
+ useEffect(() => {
+  if (contract && !isLeaderboardLoading) {
+    fetchLeaderboardPaginated(currentNetwork, 1).then((data) => {
+      setLeaderboard(data.data);
+    });
+    checkOwner();
+  }
+}, [contract]);
+
 
   const ProgressBar = ({ timeLeft, maxTime }) => {
     const percentage = (timeLeft / maxTime) * 100;
@@ -423,6 +405,16 @@ export const GlobalProvider = ({ children }) => {
       </div>
     );
   };
+const fetchLeaderboardPaginated = async (network, page = 1) => {
+  try {
+    const response = await fetch(`${LEADBOARD}/leaderboard?network=${network}&page=${page}`);
+    if (!response.ok) throw new Error('Erro ao buscar leaderboard');
+    return await response.json();
+  } catch (err) {
+    console.error(err);
+    return { total: 0, data: [] };
+  }
+};
 
   const renderNetworkModal = () => {
     if (!showNetworkModal) return null;
@@ -476,16 +468,17 @@ export const GlobalProvider = ({ children }) => {
         switchNetwork,
         connectWallet,
         disconnectWallet,
-        fetchLeaderboard,
         ProgressBar,
         renderMessage,
         renderLeaderboard,
         renderNetworkModal,
         translations,
-        BACKEND_URL,
         BACKEND_UR,
+        LEADBOARD,
         contractAddress,
         contractABI,
+        fetchLeaderboardPaginated,
+
       }}
     >
       {children}

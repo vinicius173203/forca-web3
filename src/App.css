@@ -39,16 +39,15 @@ button, .how-to-play-button, .back-button {
   border: 1px solid #00f7ff;
   color: #e0e0e0;
   padding: 8px 16px;
-  margin: 3px;
   border-radius: 12px;
   font-size: 0.9rem;
-  transition: all 0.4s ease;
   font-family: 'Poppins', sans-serif;
   text-decoration: none;
   display: inline-block;
-  position: relative;
-  margin-right: 160px;                     
+  margin: 10px auto 0 auto;  /* centraliza */
+  text-align: center;
 }
+
 
 /* Network button styles */
 .network-button {
@@ -337,7 +336,6 @@ button:hover, .how-to-play-button:hover, .back-button:hover {
   border-radius: 12px;
   box-shadow: 0 0 12px rgba(0, 247, 255, 0.2);
   max-height: 320px;
-  overflow-y: auto;
 }
 
 .letters-container {
@@ -477,6 +475,58 @@ button:hover, .how-to-play-button:hover, .back-button:hover {
 
 .back-button:hover {
   background-color: #0056b3;
+}
+/* App.css (fim do arquivo, logo antes dos @media já existentes) */
+
+/* ——— Painel desktop ——— */
+.wallet-panel {
+  position: fixed;          /* mantém visível ao rolar */
+  top: 7px;
+  right: 20px;
+  padding: 15px;
+  width: 160px;
+  background: #1a1d3e;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: stretch;
+  z-index: 1000;
+}
+
+.account-label,
+.network-label {
+  color: #fff;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+/* ——— Ajuste mobile ——— */
+@media (max-width: 768px) {
+  .wallet-panel {
+    position: static;       /* sai do overlay e entra no fluxo */
+    width: 100%;
+    margin: 0 auto 8px auto;
+    padding: 10px 8px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+  }
+
+  .account-label,
+  .network-label {
+    font-size: 0.75rem;
+    text-align: left;
+  }
+
+  .wallet-panel button {
+    flex: 1 1 auto;         /* cada botão divide o espaço */
+    min-width: 0;           /* permite encolher */
+    padding: 6px;
+    font-size: 0.75rem;
+  }
 }
 
 @media (max-width: 768px) {

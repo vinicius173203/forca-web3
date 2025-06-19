@@ -5,6 +5,8 @@ import { GlobalProvider, GlobalContext } from './Global.jsx';
 import NormalHardcore from './NormalHardcore.jsx';
 import PvP from './PvP.jsx';
 import HowToPlay from './HowToPlay.jsx';
+import LeaderboardPaginated from './LeaderboardPaginated.jsx'; // ajuste o caminho se estiver em outra pasta
+
 import { Route, Routes, Link } from 'react-router-dom';
 
 class ErrorBoundary extends React.Component {
@@ -79,28 +81,31 @@ const AppContent = () => {
       {translations[language].connect}
     </button>
   ) : (
-    <>
-      <div style={{ color: '#fff', fontSize: '14px' }}>
-        👤 {account.slice(0, 6)}...{account.slice(-4)}
-      </div>
-      <span style={{ color: '#00f0ff', fontSize: '0.9rem', marginBottom: '5px' }}>
-        {language === 'pt' ? 'Selecione sua rede' : 'Select Network'}
-      </span>
-      <button
-        className="network-button"
-        onClick={() => setShowNetworkModal(true)}
-        style={{ width: '100%' }}
-      >
-        {currentNetwork === 'somnia' ? 'Somnia' : 'Monad'}
-      </button>
-      <button
-        className="action-button"
-        onClick={disconnectWallet}
-        style={{ width: '100%' }}
-      >
-        {translations[language].pt ? 'Desconectar' : 'Disconnect'}
-      </button>
-    </>
+/* App.jsx (trecho) */
+<div className="wallet-panel">
+  <div className="account-label">
+    👤 {account.slice(0, 6)}...{account.slice(-4)}
+  </div>
+
+  <span className="network-label">
+    {language === 'pt' ? 'Selecione sua rede' : 'Select Network'}
+  </span>
+
+  <button
+    className="network-button"
+    onClick={() => setShowNetworkModal(true)}
+  >
+    {currentNetwork === 'somnia' ? 'Somnia' : 'Monad'}
+  </button>
+
+  <button
+    className="action-button"
+    onClick={disconnectWallet}
+  >
+    {language === 'pt' ? 'Desconectar' : 'Disconnect'}
+  </button>
+</div>
+
   )}
 </div>
 
@@ -197,9 +202,13 @@ const AppContent = () => {
                     ) : (
                       <NormalHardcore gameMode={gameMode} />
                     )}
+                    <div className="contract-address">                
+                    {translations[language].pt ? 'Endereço do contrato:' : 'Contract address:'} {contractAddress}
+                  
+                </div>
                   </div>
 
-                  <div className="leaderboard-section">{renderLeaderboard()}</div>
+                  <div className="leaderboard-section">{<LeaderboardPaginated />}</div>
                 </div>
               </div>
             
@@ -242,10 +251,7 @@ const AppContent = () => {
               {/* Adicione o modal de rede */}
               {renderNetworkModal()}
 
-              <div className="contract-address">                
-                  {translations[language].pt ? 'Endereço do contrato:' : 'Contract address:'} {contractAddress}
-                
-              </div>
+              
             </>
           }
         />
