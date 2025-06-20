@@ -36,7 +36,7 @@ const NormalHardcore = ({ gameMode }) => {
   useEffect(() => {
     async function fetchEntryFee() {
       if (!contract) {
-        console.log('Contrato não inicializado');
+        //console.log('Contrato não inicializado');
         return;
       }
       try {
@@ -45,7 +45,7 @@ const NormalHardcore = ({ gameMode }) => {
         setEntryFee(fee);
         console.log(`Entry fee for ${gameMode} on ${currentNetwork}: ${fee} ${currentNetwork === 'somnia' ? 'STT' : 'MON'}`);
       } catch (err) {
-        console.error('Erro ao definir entryFee:', err);
+        //console.error('Erro ao definir entryFee:', err);
         setMessage(translations[language].pt ? '❌ Erro ao carregar taxa de entrada.' : '❌ Error loading entry fee.');
       }
     }
@@ -109,7 +109,7 @@ const NormalHardcore = ({ gameMode }) => {
       setIsPlaying(isPlaying);
       return isPlaying;
     } catch (err) {
-      console.error('Erro ao verificar estado do jogador:', err);
+      //console.error('Erro ao verificar estado do jogador:', err);
       setMessage(translations[language].pt ? ' Bem vindo ao Forca Game'             : '  Welcome to Forca Game');
       return false;
     }
@@ -123,7 +123,7 @@ const NormalHardcore = ({ gameMode }) => {
 
   async function buyPassNFT() {
     if (!contract) {
-      console.log('Contrato não inicializado para buyPassNFT');
+      //console.log('Contrato não inicializado para buyPassNFT');
       return;
     }
     try {
@@ -137,8 +137,47 @@ const NormalHardcore = ({ gameMode }) => {
       setMessage(translations[language].pt ? '❌ Erro ao comprar Pass NFT: ' + err.message : '❌ Error purchasing Pass NFT: ' + err.message);
     }
   }
+async function canStartToday() {
+  try {
+    const PARTIDAS= import.meta.env.VITE_APP_PARTIDAS;
+    const res = await fetch(`${PARTIDAS}/check-limit`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        wallet: account,
+        modo: gameMode,
+        rede: currentNetwork,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (!data.allowed) {
+      setMessage(
+        translations[language].pt
+          ? '⛔ Limite de partidas diárias atingido.'
+          : '⛔ Daily play limit reached.'
+      );
+      return false;
+    }
+
+    return true;
+  } catch (err) {
+    console.error('Erro ao verificar limite:', err);
+    setMessage(
+      translations[language].pt
+        ? '❌ Erro ao verificar limite de partidas.'
+        : '❌ Error checking play limit.'
+    );
+    return false;
+  }
+}
 
   async function startGame() {
+    // Verifica se jogador pode começar hoje
+const canPlay = await canStartToday();
+if (!canPlay) return;
+
     console.log('startGame chamado', {
       account,
       contract: !!contract,
@@ -147,6 +186,7 @@ const NormalHardcore = ({ gameMode }) => {
       currentNetwork,
       contractAddress,
     });
+    
 
     if (!contract || !provider) {
       console.error('Contrato ou provedor não inicializado');
@@ -195,6 +235,22 @@ const NormalHardcore = ({ gameMode }) => {
         setMessage(translations[language].pt ? '❌ Erro ao carregar palavra do jogo.' : '❌ Error loading game word.');
         return;
       }
+      try {
+        const PARTIDAS= import.meta.env.VITE_APP_PARTIDAS;
+        await fetch(`${PARTIDAS}/save-partida`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            wallet: account,
+            modo: gameMode,
+            rede: currentNetwork,
+          }),
+        });
+        
+      } catch (err) {
+        console.error('❌ Erro ao registrar partida:', err);
+      }
+
 
       setTimeLeft(gameMode === 'hardcore' ? 60 : gameMode === 'normal' ? 30 : 20);
       setHintLocked(useHint);

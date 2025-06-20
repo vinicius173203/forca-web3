@@ -41,6 +41,7 @@ const contractABI = rawContract.abi;
 const BACKEND_UR = import.meta.env.VITE_APP_BACKEND_UR; //palavras
 const LEADBOARD = import.meta.env.VITE_APP_LEADBOARD; //leadboard
 
+
 export const GlobalContext = createContext();
 
 export const GlobalProvider = ({ children }) => {
@@ -323,7 +324,7 @@ export const GlobalProvider = ({ children }) => {
       const owner = await contract.owner();
       setIsOwner(owner.toLowerCase() === account.toLowerCase());
     } catch (err) {
-      console.error('Erro ao verificar proprietário:', err);
+      //console.error('Erro ao verificar proprietário:', err);
     }
   }
 

@@ -132,7 +132,7 @@ const AppContent = () => {
                         }}
                       />
                       <h1 style={{ margin: 0, fontSize: '2.5rem', color: '#00f0ff', textShadow: '0 0 10px #00f0ff' }}>
-                        Forca Web3
+                        Hangman  Web3
                       </h1>
                       <img
                         src="/forca.png"
