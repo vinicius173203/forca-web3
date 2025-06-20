@@ -58,21 +58,10 @@ const AppContent = () => {
           path="/"
           element={
             <>
-              <div style={{
-  position: 'absolute',
-  top: '7px',
-  right: '20px',
-  padding: '15px',
-  backgroundColor: '#1a1d3e',
-  borderRadius: '12px',
-  boxShadow: '0 0 10px rgba(0, 255, 255, 0.5)',
-  display: 'flex',
-  flexDirection: 'column',
-  alignItems: 'stretch',
-  width: '150px',
-  gap: '10px',
-}}>
+              {/* Painel da carteira / rede */}
+<div className="wallet-panel">
   {!isConnected ? (
+    /* ——— Não conectado: mostra botão conectar ——— */
     <button
       className="action-button"
       onClick={() => setShowWalletModal(true)}
@@ -81,31 +70,30 @@ const AppContent = () => {
       {translations[language].connect}
     </button>
   ) : (
-/* App.jsx (trecho) */
-<div className="wallet-panel">
-  <div className="account-label">
-    👤 {account.slice(0, 6)}...{account.slice(-4)}
-  </div>
+    /* ——— Conectado: mostra dados da conta + rede + desconectar ——— */
+    <>
+      <div className="account-label">
+        👤 {account.slice(0, 6)}...{account.slice(-4)}
+      </div>
 
-  <span className="network-label">
-    {language === 'pt' ? 'Selecione sua rede' : 'Select Network'}
-  </span>
+      <span className="network-label">
+        {language === 'pt' ? 'Selecione sua rede' : 'Select Network'}
+      </span>
 
-  <button
-    className="network-button"
-    onClick={() => setShowNetworkModal(true)}
-  >
-    {currentNetwork === 'somnia' ? 'Somnia' : 'Monad'}
-  </button>
+      <button
+        className="network-button"
+        onClick={() => setShowNetworkModal(true)}
+      >
+        {currentNetwork === 'somnia' ? 'Somnia' : 'Monad'}
+      </button>
 
-  <button
-    className="action-button"
-    onClick={disconnectWallet}
-  >
-    {language === 'pt' ? 'Desconectar' : 'Disconnect'}
-  </button>
-</div>
-
+      <button
+        className="action-button"
+        onClick={disconnectWallet}
+      >
+        {language === 'pt' ? 'Desconectar' : 'Disconnect'}
+      </button>
+    </>
   )}
 </div>
 

@@ -35,18 +35,19 @@ button, .how-to-play-button, .back-button {
 }
 
 .contract-address {
+  margin-inline: auto;
+  text-align: center;
+  padding: 8px 16px;
+  border-radius: 12px;
   background: linear-gradient(45deg, #00f7ff22, #ff4da622);
   border: 1px solid #00f7ff;
   color: #e0e0e0;
-  padding: 8px 16px;
-  border-radius: 12px;
   font-size: 0.9rem;
   font-family: 'Poppins', sans-serif;
-  text-decoration: none;
-  display: inline-block;
-  margin: 10px auto 0 auto;  /* centraliza */
-  text-align: center;
+  word-break: break-word;
+  max-width: 90%;
 }
+
 
 
 /* Network button styles */
@@ -526,6 +527,22 @@ button:hover, .how-to-play-button:hover, .back-button:hover {
     min-width: 0;           /* permite encolher */
     padding: 6px;
     font-size: 0.75rem;
+  }
+}
+@media (max-width: 768px) {
+  .contract-address {
+    text-align: center;
+    margin: 10px auto 0 auto;
+    width: fit-content;
+    max-width: 90%;
+    word-break: break-word;
+  }
+}
+@media (max-width: 768px) {
+  .contract-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
   }
 }
 
