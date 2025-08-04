@@ -56,8 +56,9 @@ export const GlobalProvider = ({ children }) => {
   const [showWalletModal, setShowWalletModal] = useState(false);
   const [showNetworkModal, setShowNetworkModal] = useState(false);
   const [isLeaderboardLoading, setIsLeaderboardLoading] = useState(false);
-  const [currentNetwork, setCurrentNetwork] = useState('somnia');
-  const [contractAddress, setContractAddress] = useState(CONTRACT_ADDRESSES.somnia);
+  const [currentNetwork, setCurrentNetwork] = useState('monad');
+  const [contractAddress, setContractAddress] = useState(CONTRACT_ADDRESSES.monad);
+
 
   // Definir translations dentro do GlobalProvider
   const translations = {
