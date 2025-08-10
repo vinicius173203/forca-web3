@@ -32,7 +32,7 @@ const SUPPORTED_NETWORKS = {
 // Contratos por rede
 const CONTRACT_ADDRESSES = {
   somnia: '0x6Bf69Ce556233E3c1A3B94e3F0c95C1479e1c22a',
-  monad: '0xBEa6E7c7c4375111C512d9966D2D75F0873d16Ab'
+  monad: '0x777bE5526d0eCE7642B5519A7FDd8d2e63C8D61B'
 };
 
 //'http://localhost:3003';
